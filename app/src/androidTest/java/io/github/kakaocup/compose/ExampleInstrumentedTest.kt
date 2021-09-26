@@ -1,8 +1,6 @@
 package io.github.kakaocup.compose
 
-import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithText
 import io.github.kakaocup.compose.screens.MainActivityScreen
 import io.github.kakaocup.compose.testframework.ComposeScreen.Companion.onComposeScreen
 
@@ -15,14 +13,21 @@ class ExampleInstrumentedTest {
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun testGreeting() {
-        //Espresso style
-        composeTestRule.onNodeWithText("Button 1").assertIsDisplayed()
-
-        //Kakao Compose style
+    fun simpleTest() {
         onComposeScreen<MainActivityScreen>(composeTestRule) {
             myButton {
                 isDisplayed()
+                textContains("Button 1")
+            }
+
+            myText1 {
+                isDisplayed()
+                textContains("Simple text 1")
+            }
+
+            myText2 {
+                isDisplayed()
+                textContains("Simple text 2")
             }
         }
     }

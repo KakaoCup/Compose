@@ -8,7 +8,18 @@ import io.github.kakaocup.compose.testframework.KNode
 
 class MainActivityScreen(composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity>): ComposeScreen<MainActivityScreen, MainActivity>(composeTestRule) {
 
+    val myText1 = KNode(this) {
+        hasTestTag("mySimpleText")
+        hasPosition(0)
+    }
+
+    val myText2 = KNode(this) {
+        hasTestTag("mySimpleText")
+        hasPosition(1)
+    }
+
     val myButton = KNode(this) {
-        withTag("mySimpleText")
+        hasTestTag("myTestButton")
+        hasText("Button 1")
     }
 }

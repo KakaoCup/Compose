@@ -16,12 +16,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Column {
-                Text(text = "Simple text", modifier = Modifier.semantics { testTag = "mySimpleText" })
+                Text(text = "Simple text 1", modifier = Modifier.semantics { testTag = "mySimpleText" })
+                Text(text = "Simple text 2", modifier = Modifier.semantics { testTag = "mySimpleText" })
                 Button(content = {
                     Text(text = "Button 1")
                 }, onClick = {
 
-                })
+                },modifier = Modifier.semantics { testTag = "myTestButton" })
             }
         }
     }

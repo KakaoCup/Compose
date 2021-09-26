@@ -1,16 +1,32 @@
 package io.github.kakaocup.compose.testframework
 
-import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
-import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 
-class ViewBuilder(private val composeTestRule: AndroidComposeTestRule<*,*>) {
+class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
 
-    var nodeInteraction : SemanticsNodeInteraction? = null
+    private var semanticsNodeInteractionCollection: SemanticsNodeInteractionCollection =
+        composeTestRule.onRoot().onChildren()
 
-    fun withTag(tag: String){
-        nodeInteraction = composeTestRule.onNodeWithTag(tag)
+    val nodeInteraction: SemanticsNodeInteraction
+        get() = semanticsNodeInteractionCollection[position]
+
+    private var position = 0
+
+    fun hasTestTag(testTag: String) {
+        addFilter(androidx.compose.ui.test.hasTestTag(testTag))
     }
 
+    fun hasText(text: String) {
+        addFilter(androidx.compose.ui.test.hasText(text))
+    }
+
+    private fun addFilter(semanticsMatcher: SemanticsMatcher){
+        semanticsNodeInteractionCollection =
+            semanticsNodeInteractionCollection.filter(semanticsMatcher)
+    }
+
+    fun hasPosition(position: Int) {
+        this.position = position
+    }
 }
