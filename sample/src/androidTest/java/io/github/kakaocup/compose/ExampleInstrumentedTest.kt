@@ -15,24 +15,24 @@ class ExampleInstrumentedTest {
     fun simpleTest() {
         onComposeScreen<MainActivityScreen>(composeTestRule) {
             myButton {
-                isDisplayed()
-                textContains("Button 1")
+                assertIsDisplayed()
+                assertTextContains("Button 1")
             }
 
             myText1 {
-                isDisplayed()
-                textContains("Simple text 1")
+                assertIsDisplayed()
+                assertTextContains("Simple text 1")
             }
 
             myText2 {
-                isDisplayed()
-                textContains("Simple text 2")
+                assertIsDisplayed()
+                assertTextContains("Simple text 2")
             }
 
             onNode {
                 hasTestTag("doesNotExist")
             }.invoke {
-                doesNotExist()
+                assertDoesNotExist()
             }
         }
     }
