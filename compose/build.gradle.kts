@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("org.jetbrains.dokka")
 }
 
 android {
@@ -28,5 +29,16 @@ dependencies {
     implementation(Libraries.espresso_core)
     implementation(Libraries.kotlin_stdlib)
     implementation(Libraries.Compose.junit)
+
+    dokkaHtmlPlugin(Libraries.dokka)
+}
+
+tasks.dokkaGfm {
+    moduleName.set("compose")
+    outputDirectory.set(File("$rootDir/docs"))
+}
+tasks.dokkaHtml.configure {
+    moduleName.set("compose")
+    outputDirectory.set(File("$rootDir/html"))
 }
 
