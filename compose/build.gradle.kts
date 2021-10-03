@@ -14,6 +14,10 @@ android {
         versionName(Versions.composeVersion)
     }
 
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
     sourceSets {
         getByName("main") {
             java.srcDir("src/main/kotlin")
