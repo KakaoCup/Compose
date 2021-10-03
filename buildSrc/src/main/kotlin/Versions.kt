@@ -26,7 +26,7 @@ object Versions {
 
     object Compose {
         const val activity_compose = "1.3.1"
-        const val ui_tooling = "1.0.2"
+        const val ui_tooling = "1.0.3"
     }
 }
 
@@ -35,8 +35,8 @@ object Libraries {
         val activityCompose =
             "androidx.activity:activity-compose:${Versions.Compose.activity_compose}"
         val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.Compose.ui_tooling}"
-        val junit = "androidx.compose.ui:ui-test-junit4:1.0.2"
-        val material = "androidx.compose.material:material:1.0.2"
+        val junit = "androidx.compose.ui:ui-test-junit4:${Versions.Compose.ui_tooling}"
+        val material = "androidx.compose.material:material:${Versions.Compose.ui_tooling}"
     }
 
     val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"

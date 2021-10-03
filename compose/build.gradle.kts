@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         minSdkVersion(21)
-        targetSdkVersion(31)
+        targetSdkVersion(30)
         versionCode(1)
         versionName(Versions.composeVersion)
     }
