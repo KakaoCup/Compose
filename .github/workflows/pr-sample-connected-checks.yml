@@ -1,5 +1,8 @@
 name: sample-connected-checks
-on: [ pull_request ]
+on:
+  pull_request:
+    paths-ignore:
+      - 'README.md'
 jobs:
   integration-test:
     runs-on: macOS-10.15
