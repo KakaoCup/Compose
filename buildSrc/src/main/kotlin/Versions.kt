@@ -1,5 +1,7 @@
+import java.io.File
+
 object Versions {
-    val composeVersion = "0.0.1"
+    val composeVersion = File("buildsystem/version").readText().trim()
 
     val kotlin = "1.5.21"
     val detekt = "1.17.1"
