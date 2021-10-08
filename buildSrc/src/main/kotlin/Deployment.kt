@@ -98,8 +98,9 @@ object Deployment {
         project.configure<PublishingExtension> {
             publications {
                 create("default", MavenPublication::class.java) {
-                    Deployment.customizePom(pom)
-                    additionalArtifacts.forEach { it ->
+                    groupId = "io.github.kakaocup"
+                    customizePom(pom)
+                    additionalArtifacts.forEach {
                         artifact(it)
                     }
                     from(component)
