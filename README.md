@@ -16,7 +16,8 @@ Nice and simple DSL for Espresso Compose in Kotlin
 #### Create Screen
 Create your entity `ComposeScreen` where you will add the views involved in the interactions of the tests:
 ```Kotlin
-class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>) : ComposeScreen<MainActivityScreen>(composeTestRule)
+class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>):
+      ComposeScreen<MainActivityScreen>(composeTestRule)
 ```
  `ComposeScreen` can represent the whole user interface or a portion of UI.
 If you are using [Page Object pattern](https://martinfowler.com/bliki/PageObject.html) you can put the interactions of Kakao inside the Page Objects.
