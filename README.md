@@ -14,15 +14,15 @@ Nice and simple DSL for Espresso Compose in Kotlin
 
 ### How to use it
 #### Create Screen
-Create your entity `Screen` where you will add the views involved in the interactions of the tests:
+Create your entity `ComposeScreen` where you will add the views involved in the interactions of the tests:
 ```Kotlin
-class FormScreen : Screen<FormScreen>()
+class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>) : ComposeScreen<MainActivityScreen>(composeTestRule)
 ```
- `Screen` can represent the whole user interface or a portion of UI.
+ `ComposeScreen` can represent the whole user interface or a portion of UI.
 If you are using [Page Object pattern](https://martinfowler.com/bliki/PageObject.html) you can put the interactions of Kakao inside the Page Objects.
 
-#### Create KView
-`Screen` contains `KView`, these are the Android Framework views where you want to do the interactions:
+#### Create KNode
+`ComposeScreen` contains `KNode`, these are the Android Framework views where you want to do the interactions:
 ```Kotlin
 class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>) :
     ComposeScreen<MainActivityScreen>(composeTestRule) {
@@ -40,10 +40,10 @@ Every `KNode` contains many matches. Some examples of matchers provided by Kakao
 
 Like in Espresso you can combine different matchers:
 ```Kotlin
-  val myButton = KNode(this) {
-        hasTestTag("myTestButton")
-        hasText("Button 1")
-    }
+val myButton = KNode(this) {
+      hasTestTag("myTestButton")
+      hasText("Button 1")
+ }
 ```
 
 #### Write the interaction. 
