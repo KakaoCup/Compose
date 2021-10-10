@@ -49,14 +49,21 @@ val myButton = KNode(this) {
 
 #### Write the interaction. 
 
-The syntax of the test with Kakao is very easy, once you have the `Screen` and the `KNode` defined, you only have to apply 
+The syntax of the test with Kakao is very easy, once you have the `ComposeScreen` and the `KNode` defined, you only have to apply 
 the actions or assertions like in Espresso: 
 ```Kotlin
-onComposeScreen<MainActivityScreen>(composeTestRule) {
+class ExampleInstrumentedTest {
+    @Rule
+    @JvmField
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
+
+    @Test
+    fun simpleTest() {
+        onComposeScreen<MainActivityScreen>(composeTestRule) {
             myButton {
                 assertIsDisplayed()
                 assertTextContains("Button 1")
-            }         
+            }
 
             onNode {
                 hasTestTag("doesNotExist")
@@ -65,6 +72,7 @@ onComposeScreen<MainActivityScreen>(composeTestRule) {
             }
         }
     }
+}
 ```
 
 ### Setup
