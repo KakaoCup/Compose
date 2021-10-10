@@ -3,6 +3,8 @@ on:
   pull_request:
     paths-ignore:
       - 'README.md'
+      - '.github/workflows/master-github-pages.yaml'
+      - '.github/workflows/release-deploy.yaml'
 jobs:
   integration-test:
     runs-on: macOS-10.15
