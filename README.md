@@ -104,6 +104,6 @@ Please refer to [Code of Conduct](https://github.com/kakaocup/compose/blob/maste
 
 ### License
 
-Kakao is open source and available under the [Apache License, Version 2.0](https://github.com/kakaocup/compose/blob/master/LICENSE).
+Kakao Compose is open source and available under the [Apache License, Version 2.0](https://github.com/kakaocup/compose/blob/master/LICENSE).
 
 
