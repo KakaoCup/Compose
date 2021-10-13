@@ -3,7 +3,7 @@ import java.io.File
 object Versions {
     val composeVersion = File("buildsystem/version").readText().trim()
 
-    val kotlin = "1.5.21"
+    val kotlin = "1.5.30"
     val detekt = "1.17.1"
     val dokka = "1.4.32"
     val android_gradle = "4.2.1"
@@ -19,16 +19,17 @@ object Versions {
     val espresso_rules = "1.4.0"
     val espresso_runner = "1.4.0"
     val junit = "4.13.2"
-    val junit_ext = "1.1.2"
+    val junit_ext = "1.1.3"
     val gradle_versions = "0.39.0"
     val google_maps = "17.0.1"
     val google_maps_utils = "2.3.0"
     val multidex = "2.0.1"
     val material = "1.4.0"
+    val testCore = "1.4.0"
 
     object Compose {
         const val activity_compose = "1.3.1"
-        const val ui_tooling = "1.0.3"
+        const val compose = "1.0.3"
     }
 }
 
@@ -36,9 +37,9 @@ object Libraries {
     object Compose {
         val activityCompose =
             "androidx.activity:activity-compose:${Versions.Compose.activity_compose}"
-        val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.Compose.ui_tooling}"
-        val junit = "androidx.compose.ui:ui-test-junit4:${Versions.Compose.ui_tooling}"
-        val material = "androidx.compose.material:material:${Versions.Compose.ui_tooling}"
+        val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.Compose.compose}"
+        val junit = "androidx.compose.ui:ui-test-junit4:${Versions.Compose.compose}"
+        val material = "androidx.compose.material:material:${Versions.Compose.compose}"
     }
 
     val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
@@ -63,6 +64,7 @@ object Libraries {
     val espresso_web = "androidx.test.espresso:espresso-web:${Versions.espresso}"
     val espresso_contrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
     val espresso_intents = "androidx.test.espresso:espresso-intents:${Versions.espresso}"
+    val test_core = "androidx.test:core:${Versions.testCore}"
     val junit = "junit:junit:${Versions.junit}"
     val junit_ext = "androidx.test.ext:junit:${Versions.junit_ext}"
     val gradle_versions = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradle_versions}"

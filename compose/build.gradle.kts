@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         minSdkVersion(21)
-        targetSdkVersion(30)
+        targetSdkVersion(31)
         versionCode(1)
         versionName(Versions.composeVersion)
     }
@@ -33,6 +33,7 @@ dependencies {
     implementation(Libraries.espresso_core)
     implementation(Libraries.kotlin_stdlib)
     implementation(Libraries.Compose.junit)
+    implementation(Libraries.junit_ext)
 
     dokkaHtmlPlugin(Libraries.dokka)
 }
