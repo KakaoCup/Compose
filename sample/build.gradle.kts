@@ -20,8 +20,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.5.21"
-        kotlinCompilerExtensionVersion = "1.0.2"
+        kotlinCompilerVersion = Versions.kotlin
+        kotlinCompilerExtensionVersion = Versions.Compose.compose
     }
 
     packagingOptions {
@@ -67,4 +67,7 @@ dependencies {
 
     androidTestImplementation(project(":compose"))
     implementation(Libraries.Compose.junit)
+
+    //Remove this dependency after androidx.compose.ui:ui-test-junit4:1.1.0
+    implementation(Libraries.junit_ext)
 }

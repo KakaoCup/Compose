@@ -98,7 +98,7 @@ object Deployment {
         project.configure<PublishingExtension> {
             publications {
                 create("default", MavenPublication::class.java) {
-                    groupId = "io.github.kakaocup"
+                    groupId = Description.mavenGroup
                     customizePom(pom)
                     additionalArtifacts.forEach {
                         artifact(it)
