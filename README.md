@@ -1,5 +1,5 @@
 # Kakao Compose
-[![Kotlin version badge](https://img.shields.io/badge/kotlin-1.5.20-blue.svg)](http://kotlinlang.org/)
+[![Kotlin version badge](https://img.shields.io/badge/kotlin-1.5.30-blue.svg)](http://kotlinlang.org/)
 [![Telegram](https://img.shields.io/static/v1?label=Telegram&message=RU&color=0088CC)](https://t.me/kaspresso)
 [![Telegram](https://img.shields.io/static/v1?label=Telegram&message=EN&color=0088CC)](https://t.me/kaspresso_en)
 
