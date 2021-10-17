@@ -2,13 +2,15 @@ package io.github.kakaocup.compose.node
 
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.text.input.ImeAction
 
-class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
+class ViewBuilder(composeTestRule: ComposeTestRule) {
 
     private var semanticsNodeInteractionCollection: SemanticsNodeInteractionCollection =
-        composeTestRule.onRoot().onChildren()
+        composeTestRule
+            .onRoot()
+            .onChildren()
 
     val nodeInteraction: SemanticsNodeInteraction
         get() = semanticsNodeInteractionCollection[position]

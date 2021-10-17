@@ -1,9 +1,9 @@
 package io.github.kakaocup.compose.screen
 
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.junit4.ComposeTestRule
 import io.github.kakaocup.compose.node.KNode
 
-class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>) :
+class MainActivityScreen(composeTestRule: ComposeTestRule) :
     ComposeScreen<MainActivityScreen>(composeTestRule) {
 
     val myText1 = KNode(this) {
