@@ -10,8 +10,7 @@ import org.junit.Test
 
 class SimpleTest {
 
-    @Rule
-    @JvmField
+    @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
