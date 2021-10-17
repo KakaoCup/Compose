@@ -1,12 +1,15 @@
-package io.github.kakaocup.compose
+package io.github.kakaocup.compose.test
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import io.github.kakaocup.compose.MainActivity
 import io.github.kakaocup.compose.node.extensions.onNode
 import io.github.kakaocup.compose.screen.ComposeScreen.Companion.onComposeScreen
+import io.github.kakaocup.compose.screen.MainActivityScreen
 import org.junit.Rule
 import org.junit.Test
 
-class ExampleInstrumentedTest {
+class SimpleTest {
+
     @Rule
     @JvmField
     val composeTestRule = createAndroidComposeRule<MainActivity>()
