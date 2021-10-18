@@ -7,7 +7,7 @@ import io.github.kakaocup.compose.screen.ComposeScreen
 open class KNode : KDSL<KNode>, NodeAssertions, NodeActions, TextActions {
     override val nodeInteraction: SemanticsNodeInteraction
 
-    constructor(composeScreen: ComposeScreen<*>, function: ViewBuilder.() -> Unit) {
-        nodeInteraction = ViewBuilder(composeScreen.composeTestRule).apply(function).nodeInteraction
+    constructor(composeScreen: ComposeScreen<*>, useUnmergedTree : Boolean = false, function: ViewBuilder.() -> Unit) {
+        nodeInteraction = ViewBuilder(composeScreen.composeTestRule, useUnmergedTree).apply(function).nodeInteraction
     }
 }

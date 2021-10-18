@@ -4,11 +4,12 @@ import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.text.input.ImeAction
+import io.github.kakaocup.compose.node.matchers.isAny
 
-class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
+class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>, useUnmergedTree: Boolean = false) {
 
     private var semanticsNodeInteractionCollection: SemanticsNodeInteractionCollection =
-        composeTestRule.onRoot().onChildren()
+        composeTestRule.onAllNodes(isAny(), useUnmergedTree)
 
     val nodeInteraction: SemanticsNodeInteraction
         get() = semanticsNodeInteractionCollection[position]
@@ -37,6 +38,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      * @see SemanticsProperties.ToggleableState
      */
     fun isOn() = addFilter(androidx.compose.ui.test.isOn())
+
     /**
      * Returns whether the node is not toggled.
      *
@@ -99,6 +101,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      * @see SemanticsActions.OnClick
      */
     fun hasClickAction() = addFilter(androidx.compose.ui.test.hasClickAction())
+
     /**
      * Return whether the node has no semantics click action defined.
      *
@@ -154,6 +157,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
     fun hasContentDescriptionExactly(
         vararg values: String
     ) = addFilter(androidx.compose.ui.test.hasContentDescriptionExactly(values = values))
+
     /**
      * Returns whether the node's text contains the given [text].
      *
@@ -287,7 +291,6 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      */
     @ExperimentalTestApi
     fun hasScrollToKeyAction() = addFilter(androidx.compose.ui.test.hasScrollToKeyAction())
-
 
     /**
      * Return whether the node is the root semantics node.
