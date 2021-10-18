@@ -5,14 +5,16 @@ import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.text.TextRange
 
 interface TextActions {
+
     val nodeMatcher: SemanticsMatcher
     val composeTestRule: AndroidComposeTestRule<*, *>
+    val useUnmergedTree : Boolean
 
     /**
      * Clears the text in this node in similar way to IME.
      */
     fun performTextClearance() {
-        composeTestRule.onNode(nodeMatcher).performTextClearance()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performTextClearance()
     }
 
     /**
@@ -21,7 +23,7 @@ interface TextActions {
      * @param text Text to send.
      */
     fun performTextInput(text: String) {
-        composeTestRule.onNode(nodeMatcher).performTextInput(text)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performTextInput(text)
     }
 
     /**
@@ -31,7 +33,7 @@ interface TextActions {
      */
     @ExperimentalTestApi
     fun performTextInputSelection(selection: TextRange) {
-        composeTestRule.onNode(nodeMatcher).performTextInputSelection(selection)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performTextInputSelection(selection)
     }
 
     /**
@@ -42,7 +44,7 @@ interface TextActions {
      * @param text Text to send.
      */
     fun performTextReplacement(text: String) {
-        composeTestRule.onNode(nodeMatcher).performTextReplacement(text)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performTextReplacement(text)
     }
 
     /**
@@ -55,6 +57,6 @@ interface TextActions {
      * focused)
      */
     fun performImeAction() {
-        composeTestRule.onNode(nodeMatcher).performImeAction()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performImeAction()
     }
 }

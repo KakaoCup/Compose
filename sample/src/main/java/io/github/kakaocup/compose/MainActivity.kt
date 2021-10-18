@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -22,6 +23,11 @@ class MainActivity : AppCompatActivity() {
                 }, onClick = {
 
                 }, modifier = Modifier.testTag("myTestButton"))
+                OutlinedButton(content = {
+                    Text(modifier = Modifier.testTag("myTestOutlinedButtonContent"), text = "Button 2")
+                }, onClick = {
+
+                }, modifier = Modifier.testTag("myTestOutlinedButton"))
             }
         }
     }

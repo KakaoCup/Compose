@@ -9,10 +9,14 @@ import java.lang.Exception
 open class KNode : KDSL<KNode>, NodeAssertions, NodeActions, TextActions {
     override val nodeMatcher: SemanticsMatcher
     override val composeTestRule: AndroidComposeTestRule<*, *>
+    override val useUnmergedTree: Boolean
 
     constructor(composeScreen: ComposeScreen<*>, function: ViewBuilder.() -> Unit) {
         composeTestRule = composeScreen.composeTestRule
-        nodeMatcher = ViewBuilder().apply(function).nodeMatcher ?:
-                throw Exception("No matchers declared for KNode")
+
+        val viewBuilder = ViewBuilder().apply(function)
+
+        nodeMatcher = viewBuilder.nodeMatcher ?: throw Exception("No matchers declared for KNode")
+        useUnmergedTree = viewBuilder.useUnmergedTree
     }
 }

@@ -9,9 +9,10 @@ interface NodeAssertions {
 
     val nodeMatcher: SemanticsMatcher
     val composeTestRule: AndroidComposeTestRule<*, *>
+    val useUnmergedTree : Boolean
 
     fun assertIsDisplayed() {
-        composeTestRule.onNode(nodeMatcher).assertIsDisplayed()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsDisplayed()
     }
 
     /**
@@ -20,7 +21,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is displayed.
      */
     fun assertIsNotDisplayed() {
-        composeTestRule.onNode(nodeMatcher).assertIsNotDisplayed()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsNotDisplayed()
     }
 
     /**
@@ -29,7 +30,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not enabled or does not define the property at all.
      */
     fun assertIsEnabled() {
-        composeTestRule.onNode(nodeMatcher).assertIsEnabled()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsEnabled()
     }
 
     /**
@@ -38,7 +39,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is enabled or does not defined the property at all.
      */
     fun assertIsNotEnabled(){
-        composeTestRule.onNode(nodeMatcher).assertIsNotEnabled()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsNotEnabled()
     }
 
     /**
@@ -47,7 +48,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not unchecked, indeterminate, or not toggleable.
      */
     fun assertIsOn() {
-        composeTestRule.onNode(nodeMatcher).assertIsOn()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsOn()
     }
 
     /**
@@ -56,7 +57,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is checked, indeterminate, or not toggleable.
      */
     fun assertIsOff() {
-        composeTestRule.onNode(nodeMatcher).assertIsOff()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsOff()
     }
 
     /**
@@ -65,7 +66,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is unselected or not selectable.
      */
     fun assertIsSelected() {
-        composeTestRule.onNode(nodeMatcher).assertIsSelected()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsSelected()
     }
 
     /**
@@ -74,7 +75,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is selected or not selectable.
      */
     fun assertIsNotSelected() {
-        composeTestRule.onNode(nodeMatcher).assertIsNotSelected()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsNotSelected()
     }
     /**
      * Asserts that the current semantics node is toggleable.
@@ -82,7 +83,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not toggleable.
      */
     fun assertIsToggleable() {
-        composeTestRule.onNode(nodeMatcher).assertIsToggleable()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsToggleable()
     }
 
     /**
@@ -91,7 +92,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not selectable.
      */
     fun assertIsSelectable() {
-        composeTestRule.onNode(nodeMatcher).assertIsSelectable()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsSelectable()
     }
     /**
      * Asserts that the current semantics node has a focus.
@@ -99,7 +100,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not in the focus or does not defined the property at all.
      */
     fun assertIsFocused() {
-        composeTestRule.onNode(nodeMatcher).assertIsFocused()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsFocused()
     }
 
     /**
@@ -108,7 +109,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is in the focus or does not defined the property at all.
      */
     fun assertIsNotFocused() {
-        composeTestRule.onNode(nodeMatcher).assertIsNotFocused()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertIsNotFocused()
     }
 
     /**
@@ -127,7 +128,7 @@ interface NodeAssertions {
     fun assertContentDescriptionEquals(
         vararg values: String
     ) {
-        composeTestRule.onNode(nodeMatcher).assertContentDescriptionEquals(values = values)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertContentDescriptionEquals(values = values)
     }
 
     /**
@@ -150,7 +151,7 @@ interface NodeAssertions {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) {
-        composeTestRule.onNode(nodeMatcher).assertContentDescriptionContains(value, substring, ignoreCase)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertContentDescriptionContains(value, substring, ignoreCase)
     }
 
     /**
@@ -173,7 +174,7 @@ interface NodeAssertions {
         vararg values: String,
         includeEditableText: Boolean = true
     ) {
-        composeTestRule.onNode(nodeMatcher).assertTextEquals(values = values, includeEditableText = includeEditableText)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertTextEquals(values = values, includeEditableText = includeEditableText)
     }
 
     /**
@@ -198,7 +199,7 @@ interface NodeAssertions {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) {
-        composeTestRule.onNode(nodeMatcher).assertTextContains(value, substring, ignoreCase)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertTextContains(value, substring, ignoreCase)
     }
 
     /**
@@ -208,7 +209,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node's value is not equal to `value`, or if the node has no value
      */
     fun assertValueEquals(value: String) {
-        composeTestRule.onNode(nodeMatcher).assertValueEquals(value)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertValueEquals(value)
     }
 
     /**
@@ -218,7 +219,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node's value is not equal to `value`, or if the node has no value
      */
     fun assertRangeInfoEquals(value: ProgressBarRangeInfo) {
-        composeTestRule.onNode(nodeMatcher).assertRangeInfoEquals(value)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertRangeInfoEquals(value)
     }
 
     /**
@@ -227,7 +228,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is doesn't have a click action.
      */
     fun assertHasClickAction() {
-        composeTestRule.onNode(nodeMatcher).assertHasClickAction()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertHasClickAction()
     }
 
     /**
@@ -236,7 +237,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node has a click action.
      */
     fun assertHasNoClickAction() {
-        composeTestRule.onNode(nodeMatcher).assertHasNoClickAction()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertHasNoClickAction()
     }
 
     /**
@@ -247,7 +248,7 @@ interface NodeAssertions {
      * @throws [AssertionError] if the assert fails.
      */
     fun assertDoesNotExist() {
-        composeTestRule.onNode(nodeMatcher).assertDoesNotExist()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertDoesNotExist()
     }
 
     /**
@@ -264,6 +265,6 @@ interface NodeAssertions {
      * @throws [AssertionError] if the assert fails.
      */
     fun assertExists() {
-        composeTestRule.onNode(nodeMatcher).assertExists()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).assertExists()
     }
 }

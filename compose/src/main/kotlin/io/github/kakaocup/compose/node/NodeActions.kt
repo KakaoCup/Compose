@@ -12,12 +12,13 @@ interface NodeActions {
 
     val nodeMatcher: SemanticsMatcher
     val composeTestRule: AndroidComposeTestRule<*, *>
+    val useUnmergedTree : Boolean
 
     /**
      * Performs a click action on the element represented by the given semantics node.
      */
     fun performClick() {
-        composeTestRule.onNode(nodeMatcher).performClick()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performClick()
     }
 
     /**
@@ -33,7 +34,7 @@ interface NodeActions {
      * Throws an [AssertionError] if there is no scroll parent.
      */
     fun performScrollTo() {
-        composeTestRule.onNode(nodeMatcher).performScrollTo()
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performScrollTo()
     }
 
     /**
@@ -53,7 +54,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToIndex(index: Int) {
-        composeTestRule.onNode(nodeMatcher).performScrollToIndex(index)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performScrollToIndex(index)
     }
 
     /**
@@ -71,7 +72,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToKey(key: Any) {
-        composeTestRule.onNode(nodeMatcher).performScrollToKey(key)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performScrollToKey(key)
     }
 
     /**
@@ -105,7 +106,7 @@ interface NodeActions {
     fun performGesture(
         block: GestureScope.() -> Unit
     ) {
-        composeTestRule.onNode(nodeMatcher).performGesture(block)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performGesture(block)
     }
 
     /**
@@ -127,7 +128,7 @@ interface NodeActions {
         key: SemanticsPropertyKey<AccessibilityAction<T>>,
         invocation: (T) -> Unit
     ) {
-        composeTestRule.onNode(nodeMatcher).performSemanticsAction(key, invocation)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performSemanticsAction(key, invocation)
     }
 
     /**
@@ -146,6 +147,6 @@ interface NodeActions {
     fun performSemanticsAction(
         key: SemanticsPropertyKey<AccessibilityAction<() -> Boolean>>
     ) {
-        composeTestRule.onNode(nodeMatcher).performSemanticsAction(key)
+        composeTestRule.onNode(nodeMatcher, useUnmergedTree).performSemanticsAction(key)
     }
 }

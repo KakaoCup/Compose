@@ -15,4 +15,13 @@ class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>) :
         hasTestTag("myTestButton")
         hasText("Button 1")
     }
+
+    val myOutlinedButtonText = KNode(this) {
+        hasTestTag("myTestOutlinedButtonContent")
+    }
+
+    val unmergedTreeOutlinedButtonText = KNode(this) {
+        useUnmergedTree = true
+        hasTestTag("myTestOutlinedButtonContent")
+    }
 }

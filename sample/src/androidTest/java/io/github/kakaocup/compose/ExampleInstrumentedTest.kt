@@ -34,4 +34,18 @@ class ExampleInstrumentedTest {
             }
         }
     }
+
+    @Test
+    fun unmergedTreeTest() {
+        onComposeScreen<MainActivityScreen>(composeTestRule) {
+            myOutlinedButtonText {
+                assertDoesNotExist()
+            }
+
+            unmergedTreeOutlinedButtonText {
+                assertExists()
+            }
+        }
+    }
+
 }

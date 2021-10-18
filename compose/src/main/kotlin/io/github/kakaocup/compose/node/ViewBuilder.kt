@@ -2,12 +2,11 @@ package io.github.kakaocup.compose.node
 
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.text.input.ImeAction
 
-class ViewBuilder() {
-
+class ViewBuilder {
     var nodeMatcher: SemanticsMatcher? = null
+    var useUnmergedTree : Boolean = false
 
     fun isEnabled() = addSemanticsMatcher(androidx.compose.ui.test.isEnabled())
 
@@ -31,6 +30,7 @@ class ViewBuilder() {
      * @see SemanticsProperties.ToggleableState
      */
     fun isOn() = addSemanticsMatcher(androidx.compose.ui.test.isOn())
+
     /**
      * Returns whether the node is not toggled.
      *
@@ -93,6 +93,7 @@ class ViewBuilder() {
      * @see SemanticsActions.OnClick
      */
     fun hasClickAction() = addSemanticsMatcher(androidx.compose.ui.test.hasClickAction())
+
     /**
      * Return whether the node has no semantics click action defined.
      *
@@ -148,6 +149,7 @@ class ViewBuilder() {
     fun hasContentDescriptionExactly(
         vararg values: String
     ) = addSemanticsMatcher(androidx.compose.ui.test.hasContentDescriptionExactly(values = values))
+
     /**
      * Returns whether the node's text contains the given [text].
      *
@@ -281,7 +283,6 @@ class ViewBuilder() {
      */
     @ExperimentalTestApi
     fun hasScrollToKeyAction() = addSemanticsMatcher(androidx.compose.ui.test.hasScrollToKeyAction())
-
 
     /**
      * Return whether the node is the root semantics node.
