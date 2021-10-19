@@ -16,7 +16,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun MainScreen() {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .semantics { testTag = "MainScreen" }
     ) {
         Text(
             text = "Simple text 1",

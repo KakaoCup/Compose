@@ -2,20 +2,15 @@ package io.github.kakaocup.compose.node
 
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.text.input.ImeAction
 
-class ViewBuilder(composeTestRule: ComposeTestRule) {
+class ViewBuilder {
 
-    private var semanticsNodeInteractionCollection: SemanticsNodeInteractionCollection =
-        composeTestRule
-            .onRoot()
-            .onChildren()
-
-    val nodeInteraction: SemanticsNodeInteraction
-        get() = semanticsNodeInteractionCollection[position]
+    private val semanticsMatcherList = mutableListOf<SemanticsMatcher>()
 
     private var position = 0
+
+    var useUnmergedTree: Boolean = false
 
     fun isEnabled() = addFilter(androidx.compose.ui.test.isEnabled())
 
@@ -348,7 +343,12 @@ class ViewBuilder(composeTestRule: ComposeTestRule) {
     }
 
     private fun addFilter(semanticsMatcher: SemanticsMatcher) {
-        semanticsNodeInteractionCollection =
-            semanticsNodeInteractionCollection.filter(semanticsMatcher)
+        semanticsMatcherList.add(semanticsMatcher)
+    }
+
+    fun build(): UserMatcher {
+        if (semanticsMatcherList.isEmpty()) throw IllegalStateException("Please set matchers for your Element!")
+        val matcher = semanticsMatcherList.reduce { finalMatcher, matcher -> finalMatcher and matcher }
+        return UserMatcher(matcher, position, useUnmergedTree)
     }
 }

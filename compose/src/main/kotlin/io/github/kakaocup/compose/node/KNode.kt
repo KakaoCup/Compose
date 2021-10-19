@@ -1,13 +1,23 @@
 package io.github.kakaocup.compose.node
 
-import androidx.compose.ui.test.SemanticsNodeInteraction
-import io.github.kakaocup.compose.node.core.KDSL
-import io.github.kakaocup.compose.screen.ComposeScreen
+import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 
-open class KNode : KDSL<KNode>, NodeAssertions, NodeActions, TextActions {
-    override val nodeInteraction: SemanticsNodeInteraction
+open class KNode : BaseNode<KNode> {
 
-    constructor(composeScreen: ComposeScreen<*>, function: ViewBuilder.() -> Unit) {
-        nodeInteraction = ViewBuilder(composeScreen.composeTestRule).apply(function).nodeInteraction
-    }
+    internal constructor(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
+        userMatcher: UserMatcher,
+        parentMatcher: SemanticsMatcher? = null,
+    ) : super(semanticsProvider, userMatcher, parentMatcher)
+
+    constructor(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
+        viewBuilderAction: ViewBuilder.() -> Unit,
+    ) : super(semanticsProvider, viewBuilderAction)
+
+    constructor(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
+        userMatcher: UserMatcher,
+    ) : super(semanticsProvider, userMatcher)
 }

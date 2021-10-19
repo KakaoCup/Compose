@@ -1,36 +1,23 @@
 package io.github.kakaocup.compose.screen
 
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
-import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import io.github.kakaocup.compose.node.BaseNode
+import io.github.kakaocup.compose.node.KNode
+import io.github.kakaocup.compose.node.UserMatcher
+import io.github.kakaocup.compose.node.ViewBuilder
 
 @Suppress("UNCHECKED_CAST")
-open class ComposeScreen<out T : ComposeScreen<T>>(
-    val composeTestRule: ComposeTestRule
-) {
+open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
 
-    operator fun invoke(function: T.() -> Unit) {
-        function.invoke(this as T)
-    }
+    constructor(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
+        viewBuilderAction: ViewBuilder.() -> Unit,
+    ) : super(semanticsProvider, viewBuilderAction)
 
-    companion object {
-        inline fun <reified T : ComposeScreen<T>> onComposeScreen(
-            androidComposeTestRule: AndroidComposeTestRule<*, *>,
-            noinline function: T.() -> Unit
-        ): T {
-            return T::class.java
-                .getDeclaredConstructor(ComposeTestRule::class.java)
-                .newInstance(androidComposeTestRule)
-                .apply { this(function) }
-        }
+    constructor(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
+        userMatcher: UserMatcher,
+    ) : super(semanticsProvider, userMatcher)
 
-        inline fun <reified T : ComposeScreen<T>> onComposeScreen(
-            composeTestRule: ComposeTestRule,
-            noinline function: T.() -> Unit
-        ): T {
-            return T::class.java
-                .getDeclaredConstructor(ComposeTestRule::class.java)
-                .newInstance(composeTestRule)
-                .apply { this(function) }
-        }
-    }
+    fun ComposeScreen<*>.onNode(viewBuilderAction: ViewBuilder.() -> Unit) = KNode(semanticsProvider, viewBuilderAction)
 }

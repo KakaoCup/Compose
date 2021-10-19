@@ -4,19 +4,22 @@ import androidx.compose.ui.test.junit4.ComposeTestRule
 import io.github.kakaocup.compose.node.KNode
 
 class MainActivityScreen(composeTestRule: ComposeTestRule) :
-    ComposeScreen<MainActivityScreen>(composeTestRule) {
+    ComposeScreen<MainActivityScreen>(
+        semanticsProvider = composeTestRule,
+        viewBuilderAction = { hasTestTag("MainScreen") }
+    ) {
 
-    val myText1 = KNode(this) {
+    val myText1: KNode = child {
         hasTestTag("mySimpleText")
         hasPosition(0)
     }
 
-    val myText2 = KNode(this) {
+    val myText2: KNode = child {
         hasTestTag("mySimpleText")
         hasPosition(1)
     }
 
-    val myButton = KNode(this) {
+    val myButton: KNode = child {
         hasTestTag("myTestButton")
         hasText("Button 1")
     }
