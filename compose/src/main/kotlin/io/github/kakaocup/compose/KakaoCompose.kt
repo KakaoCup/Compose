@@ -4,6 +4,7 @@ import io.github.kakaocup.compose.intercept.base.Interceptor
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
+import io.github.kakaocup.compose.node.BaseNode
 
 object KakaoCompose {
     internal var composeInterceptor: Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = null
@@ -39,5 +40,6 @@ object KakaoCompose {
      */
     fun reset() {
         composeInterceptor = null
+        BaseNode.composeInterceptors.clear()
     }
 }

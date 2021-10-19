@@ -47,30 +47,23 @@ abstract class BaseNode<out T : BaseNode<T>> internal constructor(
     private var isActive = false
 
     /**
-     * Sets the interceptors for the screen.
-     * Interceptors will be invoked on all interactions while the screen is active.
+     * Sets the interceptors for the Node.
+     * Interceptors will be invoked on all interactions while the Node is active.
      *
-     * The screen is considered `active` when it is invoked in one of the following ways:
+     * The node is considered `active` when it is invoked in one of the following ways:
      * ```
-     * val screen = SomeScreen()
+     * val node = SomeNode()
      *
-     * screen { // Active
-     *     view { click() }
-     *     ...
-     * } // Inactive
-     *
-     * // OR
-     *
-     * onScreen<SomeScreen>() { // Active
-     *     view { click() }
+     * node { // Active
+     *     childNode { click() }
      *     ...
      * } // Inactive
      * ```
      *
-     * If you use nesting screens, all interceptors of the screens that became active will be invoked
+     * If you use nesting nodes, all interceptors of the nodes that became active will be invoked
      * in LIFO order (using Deque).
      *
-     * @param configurator Configuration of the interceptors
+     * @param builder Builder of interceptor
      *
      * @see Interceptor
      */
@@ -88,7 +81,7 @@ abstract class BaseNode<out T : BaseNode<T>> internal constructor(
     }
 
     /**
-     * Removes the interceptors from the screen.
+     * Removes the interceptors from the node.
      *
      * @see intercept
      * @see Interceptor
@@ -104,7 +97,7 @@ abstract class BaseNode<out T : BaseNode<T>> internal constructor(
     /**
      * Operator that allows usage of DSL style
      *
-     * @param function Tail lambda with receiver which is your screen
+     * @param function Tail lambda with receiver which is your node
      */
     override operator fun invoke(function: T.() -> Unit) {
         isActive = true
