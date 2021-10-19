@@ -1,9 +1,9 @@
-package io.github.kakaocup.compose.node
+package io.github.kakaocup.compose.node.builder
 
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
 import androidx.compose.ui.text.input.ImeAction
-import io.github.kakaocup.compose.ComposeMarker
+import io.github.kakaocup.compose.node.core.ComposeMarker
 
 @ComposeMarker
 class ViewBuilder {

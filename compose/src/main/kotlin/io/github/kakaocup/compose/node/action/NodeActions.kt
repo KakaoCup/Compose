@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.node
+package io.github.kakaocup.compose.node.action
 
 import androidx.compose.ui.semantics.AccessibilityAction
 import androidx.compose.ui.semantics.SemanticsActions

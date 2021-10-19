@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.node
+package io.github.kakaocup.compose.node.action
 
 import androidx.compose.ui.test.*
 import androidx.compose.ui.text.TextRange

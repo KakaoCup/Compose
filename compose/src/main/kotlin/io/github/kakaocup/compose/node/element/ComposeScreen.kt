@@ -1,11 +1,10 @@
-package io.github.kakaocup.compose.screen
+package io.github.kakaocup.compose.node.element
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import io.github.kakaocup.compose.ComposeMarker
-import io.github.kakaocup.compose.node.BaseNode
-import io.github.kakaocup.compose.node.KNode
-import io.github.kakaocup.compose.node.UserMatcher
-import io.github.kakaocup.compose.node.ViewBuilder
+import io.github.kakaocup.compose.node.core.ComposeMarker
+import io.github.kakaocup.compose.node.core.BaseNode
+import io.github.kakaocup.compose.node.builder.UserMatcher
+import io.github.kakaocup.compose.node.builder.ViewBuilder
 
 @Suppress("UNCHECKED_CAST")
 @ComposeMarker

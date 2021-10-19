@@ -6,7 +6,7 @@ import io.github.kakaocup.compose.intercept.base.Interceptor
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
-import io.github.kakaocup.compose.node.BaseNode
+import io.github.kakaocup.compose.node.core.BaseNode
 
 class ComposeDelegate(
     private val nodeProvider: () -> SemanticsNodeInteraction

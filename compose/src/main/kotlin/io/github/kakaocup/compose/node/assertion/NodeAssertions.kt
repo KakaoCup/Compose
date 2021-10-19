@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.node
+package io.github.kakaocup.compose.node.assertion
 
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.SemanticsProperties

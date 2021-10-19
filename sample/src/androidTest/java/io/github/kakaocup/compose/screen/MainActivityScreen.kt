@@ -1,7 +1,8 @@
 package io.github.kakaocup.compose.screen
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import io.github.kakaocup.compose.node.KNode
+import io.github.kakaocup.compose.node.element.ComposeScreen
+import io.github.kakaocup.compose.node.element.KNode
 
 class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(

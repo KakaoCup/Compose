@@ -1,14 +1,17 @@
-package io.github.kakaocup.compose.node
+package io.github.kakaocup.compose.node.core
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.hasParent
-import io.github.kakaocup.compose.ComposeMarker
 import io.github.kakaocup.compose.intercept.base.Interceptor
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
-import io.github.kakaocup.compose.node.core.KDSL
+import io.github.kakaocup.compose.node.action.NodeActions
+import io.github.kakaocup.compose.node.action.TextActions
+import io.github.kakaocup.compose.node.assertion.NodeAssertions
+import io.github.kakaocup.compose.node.builder.UserMatcher
+import io.github.kakaocup.compose.node.builder.ViewBuilder
 import java.util.*
 
 @ComposeMarker
