@@ -1,6 +1,5 @@
 package io.github.kakaocup.compose.node
 
-import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 
 open class KNode : BaseNode<KNode> {
@@ -8,8 +7,8 @@ open class KNode : BaseNode<KNode> {
     internal constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
         userMatcher: UserMatcher,
-        parentMatcher: SemanticsMatcher? = null,
-    ) : super(semanticsProvider, userMatcher, parentMatcher)
+        parentNode: BaseNode<KNode>? = null,
+    ) : super(semanticsProvider, userMatcher, parentNode)
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,

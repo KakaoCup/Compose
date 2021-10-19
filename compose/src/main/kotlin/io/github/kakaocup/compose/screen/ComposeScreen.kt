@@ -11,6 +11,12 @@ import io.github.kakaocup.compose.node.ViewBuilder
 @ComposeMarker
 open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
 
+    internal constructor(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
+        userMatcher: UserMatcher,
+        parentNode: ComposeScreen<T>? = null,
+    ) : super(semanticsProvider, userMatcher, parentNode)
+
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
         viewBuilderAction: ViewBuilder.() -> Unit,
@@ -21,5 +27,5 @@ open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
         userMatcher: UserMatcher,
     ) : super(semanticsProvider, userMatcher)
 
-    fun ComposeScreen<*>.onNode(viewBuilderAction: ViewBuilder.() -> Unit) = KNode(semanticsProvider, viewBuilderAction)
+    fun onNode(viewBuilderAction: ViewBuilder.() -> Unit) = KNode(semanticsProvider, viewBuilderAction)
 }

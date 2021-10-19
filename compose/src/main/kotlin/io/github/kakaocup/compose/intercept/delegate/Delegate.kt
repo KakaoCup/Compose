@@ -12,9 +12,8 @@ import io.github.kakaocup.compose.intercept.base.Interceptor
  */
 interface Delegate<INTERACTION, ASSERTION, ACTION> {
     val interaction: INTERACTION
-    var interceptor: Interceptor<INTERACTION, ASSERTION, ACTION>?
 
-    fun screenInterceptors(): Iterable<Interceptor<INTERACTION, ASSERTION, ACTION>>
+    fun nodeInterceptors(): Iterable<Interceptor<INTERACTION, ASSERTION, ACTION>>
     fun globalInterceptor(): Interceptor<INTERACTION, ASSERTION, ACTION>?
 
     /**
@@ -28,8 +27,7 @@ interface Delegate<INTERACTION, ASSERTION, ACTION> {
             return interceptOnAll(interceptor) || interceptOnCheck(interceptor, assertion)
         }
 
-        return interceptor?.let { intercept(it) } ?: false ||
-                screenInterceptors().any { intercept(it) } ||
+        return nodeInterceptors().any { intercept(it) } ||
                 globalInterceptor()?.let { intercept(it) } ?: false
     }
 
@@ -44,8 +42,7 @@ interface Delegate<INTERACTION, ASSERTION, ACTION> {
             return interceptOnAll(interceptor) || interceptOnPerform(interceptor, action)
         }
 
-        return interceptor?.let { intercept(it) } ?: false ||
-                screenInterceptors().any { intercept(it) } ||
+        return nodeInterceptors().any { intercept(it) } ||
                 globalInterceptor()?.let { intercept(it) } ?: false
     }
 

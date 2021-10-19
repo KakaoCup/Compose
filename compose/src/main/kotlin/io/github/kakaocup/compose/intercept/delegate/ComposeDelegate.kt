@@ -6,6 +6,7 @@ import io.github.kakaocup.compose.intercept.base.Interceptor
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
+import io.github.kakaocup.compose.node.BaseNode
 
 class ComposeDelegate(
     private val nodeProvider: () -> SemanticsNodeInteraction
@@ -16,8 +17,6 @@ class ComposeDelegate(
         ComposeInteraction(semanticsInteraction)
     }
 
-    override var interceptor: Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = null
-
     fun perform(action: (SemanticsNodeInteraction) -> Unit) {
         if (!interceptPerform(action)) interaction.perform(action)
     }
@@ -26,7 +25,7 @@ class ComposeDelegate(
         if (!interceptCheck(assertion)) interaction.check(assertion)
     }
 
-    override fun screenInterceptors(): Iterable<Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>> = emptyList()
+    override fun nodeInterceptors(): Iterable<Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>> = BaseNode.composeInterceptors
 
     override fun globalInterceptor(): Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = KakaoCompose.composeInterceptor
 }
