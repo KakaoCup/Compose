@@ -1,11 +1,11 @@
 package io.github.kakaocup.compose.screen
 
-import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.node.KNode
 
-class MainActivityScreen(composeTestRule: ComposeTestRule) :
+class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
-        semanticsProvider = composeTestRule,
+        semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("MainScreen") }
     ) {
 

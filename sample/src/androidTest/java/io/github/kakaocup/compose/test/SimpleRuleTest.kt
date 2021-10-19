@@ -3,7 +3,7 @@ package io.github.kakaocup.compose.test
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.junit4.createComposeRule
 import io.github.kakaocup.compose.MainScreen
-import io.github.kakaocup.compose.screen.MainActivityScreen
+import io.github.kakaocup.compose.extensions.screens
 import org.junit.Rule
 import org.junit.Test
 
@@ -11,8 +11,6 @@ class SimpleRuleTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
-
-    private val mainActivityScreen = MainActivityScreen(composeTestRule)
 
     @Test
     fun simpleTest() {
@@ -22,7 +20,7 @@ class SimpleRuleTest {
             }
         }
 
-        mainActivityScreen {
+        composeTestRule.screens.main {
             myButton {
                 assertIsDisplayed()
                 assertTextContains("Button 1")

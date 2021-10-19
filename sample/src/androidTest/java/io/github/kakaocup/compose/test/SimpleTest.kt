@@ -2,7 +2,7 @@ package io.github.kakaocup.compose.test
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import io.github.kakaocup.compose.MainActivity
-import io.github.kakaocup.compose.screen.MainActivityScreen
+import io.github.kakaocup.compose.extensions.screens
 import org.junit.Rule
 import org.junit.Test
 
@@ -11,11 +11,9 @@ class SimpleTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
-    private val mainActivityScreen = MainActivityScreen(composeTestRule)
-
     @Test
     fun simpleTest() {
-        mainActivityScreen {
+        composeTestRule.screens.main {
             myButton {
                 assertIsDisplayed()
                 assertTextContains("Button 1")
