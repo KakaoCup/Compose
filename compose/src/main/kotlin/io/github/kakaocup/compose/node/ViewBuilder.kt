@@ -338,6 +338,11 @@ class ViewBuilder {
      */
     fun hasAnyDescendant(matcher: SemanticsMatcher) = addFilter(androidx.compose.ui.test.hasAnyDescendant(matcher))
 
+    /**
+     * Returns whether the node matches exactly to the given custom matcher.
+     */
+    fun customMatcher(matcher: SemanticsMatcher) = addFilter(matcher)
+
     fun hasPosition(position: Int) {
         this.position = position
     }
