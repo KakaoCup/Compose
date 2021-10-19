@@ -6,16 +6,17 @@ import androidx.compose.ui.semantics.SemanticsActions.ScrollToIndex
 import androidx.compose.ui.semantics.SemanticsProperties.IndexForKey
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.test.*
+import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 
 interface NodeActions {
-    val nodeInteraction: SemanticsNodeInteraction
+    val node: ComposeDelegate
 
 
     /**
      * Performs a click action on the element represented by the given semantics node.
      */
     fun performClick() {
-        nodeInteraction.performClick()
+        node.perform { it.performClick() }
     }
 
     /**
@@ -31,7 +32,7 @@ interface NodeActions {
      * Throws an [AssertionError] if there is no scroll parent.
      */
     fun performScrollTo() {
-        nodeInteraction.performScrollTo()
+        node.perform { it.performScrollTo() }
     }
 
     /**
@@ -51,7 +52,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToIndex(index: Int) {
-        nodeInteraction.performScrollToIndex(index)
+        node.perform { it.performScrollToIndex(index) }
     }
 
     /**
@@ -69,7 +70,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToKey(key: Any) {
-        nodeInteraction.performScrollToKey(key)
+        node.perform { it.performScrollToKey(key) }
     }
 
     /**
@@ -103,7 +104,7 @@ interface NodeActions {
     fun performGesture(
         block: GestureScope.() -> Unit
     ) {
-        nodeInteraction.performGesture(block)
+        node.perform { it.performGesture(block) }
     }
 
     /**
@@ -125,7 +126,7 @@ interface NodeActions {
         key: SemanticsPropertyKey<AccessibilityAction<T>>,
         invocation: (T) -> Unit
     ) {
-        nodeInteraction.performSemanticsAction(key, invocation)
+        node.perform { it.performSemanticsAction(key, invocation) }
     }
 
     /**
@@ -144,6 +145,6 @@ interface NodeActions {
     fun performSemanticsAction(
         key: SemanticsPropertyKey<AccessibilityAction<() -> Boolean>>
     ) {
-        nodeInteraction.performSemanticsAction(key)
+        node.perform { it.performSemanticsAction(key) }
     }
 }

@@ -1,10 +1,14 @@
 package io.github.kakaocup.compose.node
 
 import androidx.compose.ui.test.SemanticsMatcher
-import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.hasParent
 import io.github.kakaocup.compose.ComposeMarker
+import io.github.kakaocup.compose.intercept.base.Interceptable
+import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
+import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
+import io.github.kakaocup.compose.intercept.operation.ComposeAction
+import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
 import io.github.kakaocup.compose.node.core.KDSL
 
 @ComposeMarker
@@ -12,7 +16,8 @@ abstract class BaseNode<out T : BaseNode<T>> internal constructor(
     protected val semanticsProvider: SemanticsNodeInteractionsProvider,
     protected val userMatcher: UserMatcher,
     parentMatcher: SemanticsMatcher? = null,
-) : KDSL<T>, NodeAssertions, NodeActions, TextActions {
+) : KDSL<T>, NodeAssertions, NodeActions, TextActions,
+    Interceptable<ComposeInteraction, ComposeAssertion, ComposeAction> {
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
@@ -32,14 +37,12 @@ abstract class BaseNode<out T : BaseNode<T>> internal constructor(
         parentMatcher = null
     )
 
-    val composeInteractionDelegate: ComposeInteractionDelegate = ComposeInteractionDelegate(
+    override val node: ComposeDelegate = ComposeDelegate(
         nodeProvider = {
             val finalMatcher = if (parentMatcher == null) userMatcher.matcher else hasParent(parentMatcher) and userMatcher.matcher
             semanticsProvider.onAllNodes(finalMatcher)[userMatcher.position]
         }
     )
-
-    override val nodeInteraction: SemanticsNodeInteraction = composeInteractionDelegate.nodeInteraction
 
     protected inline fun <reified N> BaseNode<*>.child(function: ViewBuilder.() -> Unit): N {
         return N::class.java.getConstructor(
