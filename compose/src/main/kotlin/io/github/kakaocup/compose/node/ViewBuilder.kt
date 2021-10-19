@@ -5,120 +5,114 @@ import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.text.input.ImeAction
 
-class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
+class ViewBuilder() {
 
-    private var semanticsNodeInteractionCollection: SemanticsNodeInteractionCollection =
-        composeTestRule.onRoot().onChildren()
+    var nodeMatcher: SemanticsMatcher? = null
 
-    val nodeInteraction: SemanticsNodeInteraction
-        get() = semanticsNodeInteractionCollection[position]
-
-    private var position = 0
-
-    fun isEnabled() = addFilter(androidx.compose.ui.test.isEnabled())
+    fun isEnabled() = addSemanticsMatcher(androidx.compose.ui.test.isEnabled())
 
     /**
      * Returns whether the node is not enabled.
      *
      * @see SemanticsProperties.Disabled
      */
-    fun isNotEnabled() = addFilter(androidx.compose.ui.test.isNotEnabled())
+    fun isNotEnabled() = addSemanticsMatcher(androidx.compose.ui.test.isNotEnabled())
 
     /**
      * Return whether the node is checkable.
      *
      * @see SemanticsProperties.ToggleableState
      */
-    fun isToggleable() = addFilter(androidx.compose.ui.test.isToggleable())
+    fun isToggleable() = addSemanticsMatcher(androidx.compose.ui.test.isToggleable())
 
     /**
      * Returns whether the node is toggled.
      *
      * @see SemanticsProperties.ToggleableState
      */
-    fun isOn() = addFilter(androidx.compose.ui.test.isOn())
+    fun isOn() = addSemanticsMatcher(androidx.compose.ui.test.isOn())
     /**
      * Returns whether the node is not toggled.
      *
      * @see SemanticsProperties.ToggleableState
      */
-    fun isOff() = addFilter(androidx.compose.ui.test.isOff())
+    fun isOff() = addSemanticsMatcher(androidx.compose.ui.test.isOff())
 
     /**
      * Return whether the node is selectable.
      *
      * @see SemanticsProperties.Selected
      */
-    fun isSelectable() = addFilter(androidx.compose.ui.test.isSelectable())
+    fun isSelectable() = addSemanticsMatcher(androidx.compose.ui.test.isSelectable())
 
     /**
      * Returns whether the node is selected.
      *
      * @see SemanticsProperties.Selected
      */
-    fun isSelected() = addFilter(androidx.compose.ui.test.isSelected())
+    fun isSelected() = addSemanticsMatcher(androidx.compose.ui.test.isSelected())
 
     /**
      * Returns whether the node is not selected.
      *
      * @see SemanticsProperties.Selected
      */
-    fun isNotSelected() = addFilter(androidx.compose.ui.test.isNotSelected())
+    fun isNotSelected() = addSemanticsMatcher(androidx.compose.ui.test.isNotSelected())
 
     /**
      * Return whether the node is able to receive focus
      *
      * @see SemanticsProperties.Focused
      */
-    fun isFocusable() = addFilter(androidx.compose.ui.test.isFocusable())
+    fun isFocusable() = addSemanticsMatcher(androidx.compose.ui.test.isFocusable())
 
     /**
      * Return whether the node is not able to receive focus.
      *
      * @see SemanticsProperties.Focused
      */
-    fun isNotFocusable() = addFilter(androidx.compose.ui.test.isNotFocusable())
+    fun isNotFocusable() = addSemanticsMatcher(androidx.compose.ui.test.isNotFocusable())
 
     /**
      * Returns whether the node is focused.
      *
      * @see SemanticsProperties.Focused
      */
-    fun isFocused() = addFilter(androidx.compose.ui.test.isFocused())
+    fun isFocused() = addSemanticsMatcher(androidx.compose.ui.test.isFocused())
 
     /**
      * Returns whether the node is not focused.
      *
      * @see SemanticsProperties.Focused
      */
-    fun isNotFocused() = addFilter(androidx.compose.ui.test.isNotFocused())
+    fun isNotFocused() = addSemanticsMatcher(androidx.compose.ui.test.isNotFocused())
 
     /**
      * Return whether the node has a semantics click action defined.
      *
      * @see SemanticsActions.OnClick
      */
-    fun hasClickAction() = addFilter(androidx.compose.ui.test.hasClickAction())
+    fun hasClickAction() = addSemanticsMatcher(androidx.compose.ui.test.hasClickAction())
     /**
      * Return whether the node has no semantics click action defined.
      *
      * @see SemanticsActions.OnClick
      */
-    fun hasNoClickAction() = addFilter(androidx.compose.ui.test.hasNoClickAction())
+    fun hasNoClickAction() = addSemanticsMatcher(androidx.compose.ui.test.hasNoClickAction())
 
     /**
      * Return whether the node has a semantics scrollable action defined.
      *
      * @see SemanticsActions.ScrollBy
      */
-    fun hasScrollAction() = addFilter(androidx.compose.ui.test.hasScrollAction())
+    fun hasScrollAction() = addSemanticsMatcher(androidx.compose.ui.test.hasScrollAction())
 
     /**
      * Return whether the node has no semantics scrollable action defined.
      *
      * @see SemanticsActions.ScrollBy
      */
-    fun hasNoScrollAction() = addFilter(androidx.compose.ui.test.hasNoScrollAction())
+    fun hasNoScrollAction() = addSemanticsMatcher(androidx.compose.ui.test.hasNoScrollAction())
 
     /**
      * Returns whether the node's content description contains the given [value].
@@ -137,7 +131,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
         value: String,
         substring: Boolean = false,
         ignoreCase: Boolean = false
-    ) = addFilter(androidx.compose.ui.test.hasContentDescription(value, substring, ignoreCase))
+    ) = addSemanticsMatcher(androidx.compose.ui.test.hasContentDescription(value, substring, ignoreCase))
 
     /**
      * Returns whether the node's content description contains exactly the given [values] and nothing
@@ -153,7 +147,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      */
     fun hasContentDescriptionExactly(
         vararg values: String
-    ) = addFilter(androidx.compose.ui.test.hasContentDescriptionExactly(values = values))
+    ) = addSemanticsMatcher(androidx.compose.ui.test.hasContentDescriptionExactly(values = values))
     /**
      * Returns whether the node's text contains the given [text].
      *
@@ -174,7 +168,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
         text: String,
         substring: Boolean = false,
         ignoreCase: Boolean = false
-    ) = addFilter(androidx.compose.ui.test.hasText(text, substring, ignoreCase))
+    ) = addSemanticsMatcher(androidx.compose.ui.test.hasText(text, substring, ignoreCase))
 
     /**
      * Returns whether the node's text contains exactly the given [values] and nothing else.
@@ -194,7 +188,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
     fun hasTextExactly(
         vararg textValues: String,
         includeEditableText: Boolean = true
-    ) = addFilter(androidx.compose.ui.test.hasTextExactly(
+    ) = addSemanticsMatcher(androidx.compose.ui.test.hasTextExactly(
         textValues = textValues,
         includeEditableText = includeEditableText))
 
@@ -206,14 +200,14 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      * @see SemanticsProperties.StateDescription
      */
     fun hasStateDescription(value: String) =
-        addFilter(androidx.compose.ui.test.hasStateDescription(value))
+        addSemanticsMatcher(androidx.compose.ui.test.hasStateDescription(value))
 
     /**
      * Returns whether the node is marked as an accessibility header.
      *
      * @see SemanticsProperties.Heading
      */
-    fun isHeading() = addFilter(androidx.compose.ui.test.isHeading())
+    fun isHeading() = addSemanticsMatcher(androidx.compose.ui.test.isHeading())
 
     /**
      * Returns whether the node's range info matches exactly to the given accessibility range info.
@@ -223,7 +217,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      * @see SemanticsProperties.ProgressBarRangeInfo
      */
     fun hasProgressBarRangeInfo(rangeInfo: ProgressBarRangeInfo) =
-        addFilter(androidx.compose.ui.test.hasProgressBarRangeInfo(rangeInfo))
+        addSemanticsMatcher(androidx.compose.ui.test.hasProgressBarRangeInfo(rangeInfo))
 
     /**
      * Returns whether the node is annotated by the given test tag.
@@ -232,7 +226,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      *
      * @see SemanticsProperties.TestTag
      */
-    fun hasTestTag(testTag: String) = addFilter(androidx.compose.ui.test.hasTestTag(testTag))
+    fun hasTestTag(testTag: String) = addSemanticsMatcher(androidx.compose.ui.test.hasTestTag(testTag))
 
     /**
      * Returns whether the node is a dialog.
@@ -242,7 +236,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      *
      * @see SemanticsProperties.IsDialog
      */
-    fun isDialog() = addFilter(androidx.compose.ui.test.isDialog())
+    fun isDialog() = addSemanticsMatcher(androidx.compose.ui.test.isDialog())
 
     /**
      * Returns whether the node is a popup.
@@ -252,14 +246,14 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      *
      * @see SemanticsProperties.IsPopup
      */
-    fun isPopup() = addFilter(androidx.compose.ui.test.isPopup())
+    fun isPopup() = addSemanticsMatcher(androidx.compose.ui.test.isPopup())
 
     /**
      * Returns whether the node defines the given IME action.
      *
      * @param actionType the action to match.
      */
-    fun hasImeAction(actionType: ImeAction) = addFilter(androidx.compose.ui.test.hasImeAction(actionType))
+    fun hasImeAction(actionType: ImeAction) = addSemanticsMatcher(androidx.compose.ui.test.hasImeAction(actionType))
 
     /**
      * Returns whether the node defines semantics action to set text to it.
@@ -268,7 +262,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      *
      * @see SemanticsActions.SetText
      */
-    fun hasSetTextAction() = addFilter(androidx.compose.ui.test.hasSetTextAction())
+    fun hasSetTextAction() = addSemanticsMatcher(androidx.compose.ui.test.hasSetTextAction())
 
     /**
      * Returns whether the node defines the ability to scroll to an item index.
@@ -278,7 +272,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      * index, while [LazyColumn][androidx.compose.foundation.lazy.LazyColumn] does.
      */
     @ExperimentalTestApi
-    fun hasScrollToIndexAction() = addFilter(androidx.compose.ui.test.hasScrollToIndexAction())
+    fun hasScrollToIndexAction() = addSemanticsMatcher(androidx.compose.ui.test.hasScrollToIndexAction())
 
     /**
      * Returns whether the node defines the ability to scroll to an item identified by a key, such as
@@ -286,7 +280,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      * [LazyRow][androidx.compose.foundation.lazy.LazyRow].
      */
     @ExperimentalTestApi
-    fun hasScrollToKeyAction() = addFilter(androidx.compose.ui.test.hasScrollToKeyAction())
+    fun hasScrollToKeyAction() = addSemanticsMatcher(androidx.compose.ui.test.hasScrollToKeyAction())
 
 
     /**
@@ -294,26 +288,26 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      *
      * There is always one root in every node tree, added implicitly by Compose.
      */
-    fun isRoot() = addFilter(androidx.compose.ui.test.isRoot())
+    fun isRoot() = addSemanticsMatcher(androidx.compose.ui.test.isRoot())
 
     /**
      * Returns whether the node's parent satisfies the given matcher.
      *
      * Returns false if no parent exists.
      */
-    fun hasParent(matcher: SemanticsMatcher) = addFilter(androidx.compose.ui.test.hasParent(matcher))
+    fun hasParent(matcher: SemanticsMatcher) = addSemanticsMatcher(androidx.compose.ui.test.hasParent(matcher))
 
     /**
      * Returns whether the node has at least one child that satisfies the given matcher.
      */
-    fun hasAnyChild(matcher: SemanticsMatcher) = addFilter(androidx.compose.ui.test.hasAnyChild(matcher))
+    fun hasAnyChild(matcher: SemanticsMatcher) = addSemanticsMatcher(androidx.compose.ui.test.hasAnyChild(matcher))
 
     /**
      * Returns whether the node has at least one sibling that satisfies the given matcher.
      *
      * Sibling is defined as a any other node that shares the same parent.
      */
-    fun hasAnySibling(matcher: SemanticsMatcher) = addFilter(androidx.compose.ui.test.hasAnySibling(matcher))
+    fun hasAnySibling(matcher: SemanticsMatcher) = addSemanticsMatcher(androidx.compose.ui.test.hasAnySibling(matcher))
 
     /**
      * Returns whether the node has at least one ancestor that satisfies the given matcher.
@@ -326,7 +320,7 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      *     |-C2
      * In case of C1, we would check the matcher against A and B
      */
-    fun hasAnyAncestor(matcher: SemanticsMatcher) = addFilter(androidx.compose.ui.test.hasAnyAncestor(matcher))
+    fun hasAnyAncestor(matcher: SemanticsMatcher) = addSemanticsMatcher(androidx.compose.ui.test.hasAnyAncestor(matcher))
 
     /**
      * Returns whether the node has at least one descendant that satisfies the given matcher.
@@ -339,14 +333,9 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      *     |-C2
      * In case of A, we would check the matcher against B,C1 and C2
      */
-    fun hasAnyDescendant(matcher: SemanticsMatcher) = addFilter(androidx.compose.ui.test.hasAnyDescendant(matcher))
+    fun hasAnyDescendant(matcher: SemanticsMatcher) = addSemanticsMatcher(androidx.compose.ui.test.hasAnyDescendant(matcher))
 
-    fun hasPosition(position: Int) {
-        this.position = position
-    }
-
-    private fun addFilter(semanticsMatcher: SemanticsMatcher) {
-        semanticsNodeInteractionCollection =
-            semanticsNodeInteractionCollection.filter(semanticsMatcher)
+    private fun addSemanticsMatcher(semanticsMatcher: SemanticsMatcher) {
+        nodeMatcher = nodeMatcher?.and(semanticsMatcher) ?: semanticsMatcher
     }
 }

@@ -3,12 +3,15 @@ package io.github.kakaocup.compose.node
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.*
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 
 interface NodeAssertions {
-    val nodeInteraction: SemanticsNodeInteraction
+
+    val nodeMatcher: SemanticsMatcher
+    val composeTestRule: AndroidComposeTestRule<*, *>
 
     fun assertIsDisplayed() {
-        nodeInteraction.assertIsDisplayed()
+        composeTestRule.onNode(nodeMatcher).assertIsDisplayed()
     }
 
     /**
@@ -17,7 +20,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is displayed.
      */
     fun assertIsNotDisplayed() {
-        nodeInteraction.assertIsNotDisplayed()
+        composeTestRule.onNode(nodeMatcher).assertIsNotDisplayed()
     }
 
     /**
@@ -26,7 +29,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not enabled or does not define the property at all.
      */
     fun assertIsEnabled() {
-        nodeInteraction.assertIsEnabled()
+        composeTestRule.onNode(nodeMatcher).assertIsEnabled()
     }
 
     /**
@@ -35,7 +38,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is enabled or does not defined the property at all.
      */
     fun assertIsNotEnabled(){
-        nodeInteraction.assertIsNotEnabled()
+        composeTestRule.onNode(nodeMatcher).assertIsNotEnabled()
     }
 
     /**
@@ -44,7 +47,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not unchecked, indeterminate, or not toggleable.
      */
     fun assertIsOn() {
-        nodeInteraction.assertIsOn()
+        composeTestRule.onNode(nodeMatcher).assertIsOn()
     }
 
     /**
@@ -53,7 +56,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is checked, indeterminate, or not toggleable.
      */
     fun assertIsOff() {
-        nodeInteraction.assertIsOff()
+        composeTestRule.onNode(nodeMatcher).assertIsOff()
     }
 
     /**
@@ -62,7 +65,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is unselected or not selectable.
      */
     fun assertIsSelected() {
-        nodeInteraction.assertIsSelected()
+        composeTestRule.onNode(nodeMatcher).assertIsSelected()
     }
 
     /**
@@ -71,7 +74,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is selected or not selectable.
      */
     fun assertIsNotSelected() {
-        nodeInteraction.assertIsNotSelected()
+        composeTestRule.onNode(nodeMatcher).assertIsNotSelected()
     }
     /**
      * Asserts that the current semantics node is toggleable.
@@ -79,7 +82,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not toggleable.
      */
     fun assertIsToggleable() {
-        nodeInteraction.assertIsToggleable()
+        composeTestRule.onNode(nodeMatcher).assertIsToggleable()
     }
 
     /**
@@ -88,7 +91,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not selectable.
      */
     fun assertIsSelectable() {
-        nodeInteraction.assertIsSelectable()
+        composeTestRule.onNode(nodeMatcher).assertIsSelectable()
     }
     /**
      * Asserts that the current semantics node has a focus.
@@ -96,7 +99,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not in the focus or does not defined the property at all.
      */
     fun assertIsFocused() {
-        nodeInteraction.assertIsFocused()
+        composeTestRule.onNode(nodeMatcher).assertIsFocused()
     }
 
     /**
@@ -105,7 +108,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is in the focus or does not defined the property at all.
      */
     fun assertIsNotFocused() {
-        nodeInteraction.assertIsNotFocused()
+        composeTestRule.onNode(nodeMatcher).assertIsNotFocused()
     }
 
     /**
@@ -124,7 +127,7 @@ interface NodeAssertions {
     fun assertContentDescriptionEquals(
         vararg values: String
     ) {
-        nodeInteraction.assertContentDescriptionEquals(values = values)
+        composeTestRule.onNode(nodeMatcher).assertContentDescriptionEquals(values = values)
     }
 
     /**
@@ -147,7 +150,7 @@ interface NodeAssertions {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) {
-        nodeInteraction.assertContentDescriptionContains(value, substring, ignoreCase)
+        composeTestRule.onNode(nodeMatcher).assertContentDescriptionContains(value, substring, ignoreCase)
     }
 
     /**
@@ -170,7 +173,7 @@ interface NodeAssertions {
         vararg values: String,
         includeEditableText: Boolean = true
     ) {
-        nodeInteraction.assertTextEquals(values = values, includeEditableText = includeEditableText)
+        composeTestRule.onNode(nodeMatcher).assertTextEquals(values = values, includeEditableText = includeEditableText)
     }
 
     /**
@@ -195,7 +198,7 @@ interface NodeAssertions {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) {
-        nodeInteraction.assertTextContains(value, substring, ignoreCase)
+        composeTestRule.onNode(nodeMatcher).assertTextContains(value, substring, ignoreCase)
     }
 
     /**
@@ -205,7 +208,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node's value is not equal to `value`, or if the node has no value
      */
     fun assertValueEquals(value: String) {
-        nodeInteraction.assertValueEquals(value)
+        composeTestRule.onNode(nodeMatcher).assertValueEquals(value)
     }
 
     /**
@@ -215,7 +218,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node's value is not equal to `value`, or if the node has no value
      */
     fun assertRangeInfoEquals(value: ProgressBarRangeInfo) {
-        nodeInteraction.assertRangeInfoEquals(value)
+        composeTestRule.onNode(nodeMatcher).assertRangeInfoEquals(value)
     }
 
     /**
@@ -224,7 +227,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is doesn't have a click action.
      */
     fun assertHasClickAction() {
-        nodeInteraction.assertHasClickAction()
+        composeTestRule.onNode(nodeMatcher).assertHasClickAction()
     }
 
     /**
@@ -233,7 +236,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node has a click action.
      */
     fun assertHasNoClickAction() {
-        nodeInteraction.assertHasNoClickAction()
+        composeTestRule.onNode(nodeMatcher).assertHasNoClickAction()
     }
 
     /**
@@ -244,7 +247,7 @@ interface NodeAssertions {
      * @throws [AssertionError] if the assert fails.
      */
     fun assertDoesNotExist() {
-        nodeInteraction.assertDoesNotExist()
+        composeTestRule.onNode(nodeMatcher).assertDoesNotExist()
     }
 
     /**
@@ -261,6 +264,6 @@ interface NodeAssertions {
      * @throws [AssertionError] if the assert fails.
      */
     fun assertExists() {
-        nodeInteraction.assertExists()
+        composeTestRule.onNode(nodeMatcher).assertExists()
     }
 }

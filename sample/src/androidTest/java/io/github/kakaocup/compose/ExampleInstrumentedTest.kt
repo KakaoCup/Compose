@@ -1,5 +1,6 @@
 package io.github.kakaocup.compose
 
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import io.github.kakaocup.compose.node.extensions.onNode
 import io.github.kakaocup.compose.screen.ComposeScreen.Companion.onComposeScreen
@@ -13,6 +14,8 @@ class ExampleInstrumentedTest {
 
     @Test
     fun simpleTest() {
+        composeTestRule.onNode(hasText("Simple text 1")).assertExists()
+
         onComposeScreen<MainActivityScreen>(composeTestRule) {
             myButton {
                 assertIsDisplayed()
@@ -22,11 +25,6 @@ class ExampleInstrumentedTest {
             myText1 {
                 assertIsDisplayed()
                 assertTextContains("Simple text 1")
-            }
-
-            myText2 {
-                assertIsDisplayed()
-                assertTextContains("Simple text 2")
             }
 
             onNode {

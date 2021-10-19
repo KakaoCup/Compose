@@ -9,12 +9,6 @@ class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>) :
 
     val myText1 = KNode(this) {
         hasTestTag("mySimpleText")
-        hasPosition(0)
-    }
-
-    val myText2 = KNode(this) {
-        hasTestTag("mySimpleText")
-        hasPosition(1)
     }
 
     val myButton = KNode(this) {

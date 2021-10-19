@@ -1,16 +1,18 @@
 package io.github.kakaocup.compose.node
 
 import androidx.compose.ui.test.*
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.text.TextRange
 
 interface TextActions {
-    val nodeInteraction: SemanticsNodeInteraction
+    val nodeMatcher: SemanticsMatcher
+    val composeTestRule: AndroidComposeTestRule<*, *>
 
     /**
      * Clears the text in this node in similar way to IME.
      */
     fun performTextClearance() {
-        nodeInteraction.performTextClearance()
+        composeTestRule.onNode(nodeMatcher).performTextClearance()
     }
 
     /**
@@ -19,7 +21,7 @@ interface TextActions {
      * @param text Text to send.
      */
     fun performTextInput(text: String) {
-        nodeInteraction.performTextInput(text)
+        composeTestRule.onNode(nodeMatcher).performTextInput(text)
     }
 
     /**
@@ -29,7 +31,7 @@ interface TextActions {
      */
     @ExperimentalTestApi
     fun performTextInputSelection(selection: TextRange) {
-        nodeInteraction.performTextInputSelection(selection)
+        composeTestRule.onNode(nodeMatcher).performTextInputSelection(selection)
     }
 
     /**
@@ -40,7 +42,7 @@ interface TextActions {
      * @param text Text to send.
      */
     fun performTextReplacement(text: String) {
-        nodeInteraction.performTextReplacement(text)
+        composeTestRule.onNode(nodeMatcher).performTextReplacement(text)
     }
 
     /**
@@ -53,6 +55,6 @@ interface TextActions {
      * focused)
      */
     fun performImeAction() {
-        nodeInteraction.performImeAction()
+        composeTestRule.onNode(nodeMatcher).performImeAction()
     }
 }

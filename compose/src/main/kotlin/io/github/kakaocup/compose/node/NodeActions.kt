@@ -6,16 +6,18 @@ import androidx.compose.ui.semantics.SemanticsActions.ScrollToIndex
 import androidx.compose.ui.semantics.SemanticsProperties.IndexForKey
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.test.*
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 
 interface NodeActions {
-    val nodeInteraction: SemanticsNodeInteraction
 
+    val nodeMatcher: SemanticsMatcher
+    val composeTestRule: AndroidComposeTestRule<*, *>
 
     /**
      * Performs a click action on the element represented by the given semantics node.
      */
     fun performClick() {
-        nodeInteraction.performClick()
+        composeTestRule.onNode(nodeMatcher).performClick()
     }
 
     /**
@@ -31,7 +33,7 @@ interface NodeActions {
      * Throws an [AssertionError] if there is no scroll parent.
      */
     fun performScrollTo() {
-        nodeInteraction.performScrollTo()
+        composeTestRule.onNode(nodeMatcher).performScrollTo()
     }
 
     /**
@@ -51,7 +53,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToIndex(index: Int) {
-        nodeInteraction.performScrollToIndex(index)
+        composeTestRule.onNode(nodeMatcher).performScrollToIndex(index)
     }
 
     /**
@@ -69,7 +71,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToKey(key: Any) {
-        nodeInteraction.performScrollToKey(key)
+        composeTestRule.onNode(nodeMatcher).performScrollToKey(key)
     }
 
     /**
@@ -103,7 +105,7 @@ interface NodeActions {
     fun performGesture(
         block: GestureScope.() -> Unit
     ) {
-        nodeInteraction.performGesture(block)
+        composeTestRule.onNode(nodeMatcher).performGesture(block)
     }
 
     /**
@@ -125,7 +127,7 @@ interface NodeActions {
         key: SemanticsPropertyKey<AccessibilityAction<T>>,
         invocation: (T) -> Unit
     ) {
-        nodeInteraction.performSemanticsAction(key, invocation)
+        composeTestRule.onNode(nodeMatcher).performSemanticsAction(key, invocation)
     }
 
     /**
@@ -144,6 +146,6 @@ interface NodeActions {
     fun performSemanticsAction(
         key: SemanticsPropertyKey<AccessibilityAction<() -> Boolean>>
     ) {
-        nodeInteraction.performSemanticsAction(key)
+        composeTestRule.onNode(nodeMatcher).performSemanticsAction(key)
     }
 }

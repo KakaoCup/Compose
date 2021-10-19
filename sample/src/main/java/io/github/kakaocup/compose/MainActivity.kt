@@ -7,8 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.testTag
+import androidx.compose.ui.platform.testTag
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,15 +16,12 @@ class MainActivity : AppCompatActivity() {
             Column {
                 Text(
                     text = "Simple text 1",
-                    modifier = Modifier.semantics { testTag = "mySimpleText" })
-                Text(
-                    text = "Simple text 2",
-                    modifier = Modifier.semantics { testTag = "mySimpleText" })
+                    modifier = Modifier.testTag("mySimpleText"))
                 Button(content = {
                     Text(text = "Button 1")
                 }, onClick = {
 
-                }, modifier = Modifier.semantics { testTag = "myTestButton" })
+                }, modifier = Modifier.testTag("myTestButton"))
             }
         }
     }
