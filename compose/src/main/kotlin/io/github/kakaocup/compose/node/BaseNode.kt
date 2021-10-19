@@ -4,8 +4,10 @@ import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.hasParent
+import io.github.kakaocup.compose.ComposeMarker
 import io.github.kakaocup.compose.node.core.KDSL
 
+@ComposeMarker
 abstract class BaseNode<out T : BaseNode<T>> internal constructor(
     protected val semanticsProvider: SemanticsNodeInteractionsProvider,
     protected val userMatcher: UserMatcher,

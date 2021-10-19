@@ -3,7 +3,9 @@ package io.github.kakaocup.compose.node
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
 import androidx.compose.ui.text.input.ImeAction
+import io.github.kakaocup.compose.ComposeMarker
 
+@ComposeMarker
 class ViewBuilder {
 
     private val semanticsMatcherList = mutableListOf<SemanticsMatcher>()
