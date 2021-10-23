@@ -1,5 +1,6 @@
 package io.github.kakaocup.compose.node.element
 
+import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.node.core.ComposeMarker
 import io.github.kakaocup.compose.node.core.BaseNode
@@ -23,8 +24,27 @@ open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
-        userMatcher: UserMatcher,
+        userMatcher: UserMatcher = UserMatcher(
+            matcher = SemanticsMatcher(
+                description = "Empty matcher",
+                matcher = { true}
+            )
+        ),
     ) : super(semanticsProvider, userMatcher)
 
     fun onNode(viewBuilderAction: ViewBuilder.() -> Unit) = KNode(semanticsProvider, viewBuilderAction)
+
+    companion object {
+        inline fun <reified T : ComposeScreen<T>> onComposeScreen(
+            semanticsProvider: SemanticsNodeInteractionsProvider,
+            noinline function: T.() -> Unit
+        ): T {
+            return T::class.java
+                .getDeclaredConstructor(
+                    SemanticsNodeInteractionsProvider::class.java
+                )
+                .newInstance(semanticsProvider)
+                .apply { this(function) }
+        }
+    }
 }
