@@ -343,7 +343,7 @@ class ViewBuilder {
     /**
      * Returns whether the node matches exactly to the given custom matcher.
      */
-    fun customMatcher(matcher: SemanticsMatcher) = addFilter(matcher)
+    fun addSemanticsMatcher(matcher: SemanticsMatcher) = addFilter(matcher)
 
     fun hasPosition(position: Int) {
         this.position = position

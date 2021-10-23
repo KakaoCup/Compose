@@ -38,7 +38,7 @@ abstract class BaseNode<out T : BaseNode<T>> internal constructor(
     override val delegate: ComposeDelegate = ComposeDelegate(
         nodeProvider = {
             val finalMatcher = if (parentNode == null) userMatcher.matcher else hasParent(parentNode.userMatcher.matcher) and userMatcher.matcher
-            semanticsProvider.onAllNodes(finalMatcher)[userMatcher.position]
+            semanticsProvider.onAllNodes(finalMatcher, userMatcher.useUnmergedTree)[userMatcher.position]
         },
         parentDelegate = parentNode?.delegate
     )
