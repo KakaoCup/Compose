@@ -8,7 +8,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("MainScreen") }
-    ) {
+) {
 
     val myText1: KNode = child {
         hasTestTag("mySimpleText")

@@ -7,7 +7,7 @@ import io.github.kakaocup.compose.intercept.interaction.Interaction
  * Base delegate interface for Kakao-Compose.
  *
  * Provides functionality of aggregating interceptors and invoking them on `check`
- * and `perform` invocations.
+ * and `perform` functions.
  *
  * @see Interceptor
  */

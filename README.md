@@ -11,22 +11,84 @@ Nice and simple DSL for Espresso Compose in Kotlin
 - Readability
 - Reusability
 - Extensible DSL
+- Interceptors
+
+### Concept
+The one of the main concepts of Jetpack Compose is a presentation of UI according to UI tree (UI hierarchy) approach with a parent-children relationships support.
+It means that the related UI test library has to support a parent-children relationships for Nodes by default.
+It will be discovered below how Kakao Compose library supports mentioned parent-children relationships approach.
 
 ### How to use it
 #### Create Screen
 Create your entity `ComposeScreen` where you will add the views involved in the interactions of the tests:
 ```Kotlin
-class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>):
-      ComposeScreen<MainActivityScreen>(composeTestRule)
+class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<MainActivityScreen>(
+        semanticsProvider = semanticsProvider
+)
 ```
- `ComposeScreen` can represent the whole user interface or a portion of UI.
+`ComposeScreen` can represent the whole user interface or a portion of UI.
 If you are using [Page Object pattern](https://martinfowler.com/bliki/PageObject.html) you can put the interactions of Kakao inside the Page Objects.
 
-#### Create KNode
-`ComposeScreen` contains `KNode`, these are the Android Framework views where you want to do the interactions:
+Described way of Screen definition is very similar with the way that Kakao library offers.
+But usually, `Screen` in Jetpack Compose is a UI element (Node) too. That's why there is an additional option to declare `ComposeScreen`:
 ```Kotlin
-class MainActivityScreen(composeTestRule: AndroidComposeTestRule<*, *>) :
-    ComposeScreen<MainActivityScreen>(composeTestRule) {
+class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<MainActivityScreen>(
+        semanticsProvider = semanticsProvider,
+        viewBuilderAction = { hasTestTag("MainScreen") }
+)
+```
+So, `ComposeScreen` is a `BaseNode`'s inheritor in Kakao-Compose library.
+
+#### Create KNode
+`ComposeScreen` contains `KNode`, these are the Jetpack Compose nodes where you want to do the interactions:
+```Kotlin
+class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<MainActivityScreen>(
+        semanticsProvider = semanticsProvider,
+        viewBuilderAction = { hasTestTag("MainScreen") }
+) {
+
+    val myButton: KNode = child {
+        hasTestTag("myTestButton")
+    }
+}
+```
+
+`myButton` was declared as a child of `MainActivityScreen`.
+It means that `myButton` will be calculated using matchers specified in a lambda explicitly and a parent matcher implicitly (`MainActivityScreen`).
+Under the hood, the `SemanticMatcher` of `myButton` is equal to `hasTestTag("myTestButton") + hasParent(MainActivityScreen.matcher)`.
+
+Also, `KNode` can be declared as a child of another `KNode`:
+```Kotlin
+class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<MainActivityScreen>(
+        semanticsProvider = semanticsProvider,
+        viewBuilderAction = { hasTestTag("MainScreen") }
+) {
+
+    val myButton: KNode = child {
+        hasTestTag("myTestButton")
+    }
+
+    val myButton2: KNode = myButton.child {
+        hasTestTag("myTestButton2")
+    }
+}
+```
+`myButton2` will be calculated with the following
+`SemanticMatcher = hasTestTag("myTestButton") + hasParent(myButton.matcher) + hasParent(MainActivityScreen.matcher)`.
+But, we advise not to abuse inheritance and use only the following chain: "ComposeScreen" - "Element of ComposeScreen".
+
+The last, `KNode` can be declared without `child` function using only explicit matchers:
+```Kotlin
+class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+    ComposeScreen<MainActivityScreen>(
+        semanticsProvider = semanticsProvider,
+        viewBuilderAction = { hasTestTag("MainScreen") }
+) {
+
     val myButton = KNode(this) {
         hasTestTag("myTestButton")
     }
@@ -74,6 +136,68 @@ class ExampleInstrumentedTest {
     }
 }
 ```
+
+#### Intercepting
+
+If you need to add custom logic during the `Kakao-Compose -> Espresso(Compose)` call chain (for example, logging) or
+if you need to completely change the events/commands that are being sent to Espresso
+during runtime in some cases, you can use the intercepting mechanism.
+
+Interceptors are lambdas that you pass to a configuration DSL that will be invoked before calls happening from inside Kakao-Compose.
+
+You have the ability to provide interceptors at two main different levels: Kakao-Compose runtime and any individual `BaseNode` instance.
+Interceptors in Kakao-Compose support a parent-children concept too.
+It means that any `BaseNode` inherits interceptors of his parents.
+
+On each invocation of Espresso function that can be intercepted, Kakao-Compose will aggregate all available interceptors
+for this particular call and invoke them in descending order: `Active BaseNode interceptor -> Interceptor of the parent Active BaseNode ->
+... -> Kakao-Compose interceptor`.
+
+Each of the interceptors in the chain can break the chain call by setting `isOverride` to true during configuration.
+In that case Kakao-Compose will not only stop invoking remaining interceptors in the chain, **but will not perform the Espresso
+call**. It means that in such case, the responsibility to actually invoke Espresso lies on the shoulders
+of the developer.
+
+Here's the examples of intercepting configurations:
+```Kotlin
+class SomeTest {
+    @Before
+    fun setup() {
+        KakaoCompose { // KakaoCompose runtime
+            intercept {
+                onComposeInteraction {
+                    onAll { list.add("ALL") }
+                    onCheck { _, _ -> list.add("CHECK") }
+                    onPerform { _, _ -> list.add("PERFORM") }
+                }
+            }
+        }
+    }
+
+    @Test
+    fun test() {
+        onComposeScreen<MyScreen> {
+            intercept {
+                onCheck { interaction, assertion -> // Intercept check() call
+                    Log.d("KAKAO", "$interaction is checking $assertion")
+                }
+            }
+
+            myView {
+                intercept { // Intercepting ComposeInteraction calls on this individual Node
+                    onPerform(true) { interaction, action -> // Intercept perform() call and overriding the chain
+                        // When performing actions on this view, Kakao level interceptor will not be called
+                        // and we have to manually call Espresso now.
+                        Log.d("KAKAO_NODE", "$interaction is performing $action")
+                        interaction.perform(action)
+                    }
+                }
+            }
+        }
+    }
+}
+```
+For more detailed info please refer to the documentation.
 
 ### Setup
 Maven
