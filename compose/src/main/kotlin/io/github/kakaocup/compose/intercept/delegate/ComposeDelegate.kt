@@ -7,6 +7,9 @@ import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
 
+/**
+ * Compose implementation of Base delegate interface for Kakao-Compose
+ */
 class ComposeDelegate(
     private val nodeProvider: () -> SemanticsNodeInteraction,
     private val parentDelegate: ComposeDelegate?,
@@ -19,11 +22,11 @@ class ComposeDelegate(
         ComposeInteraction(semanticsInteraction)
     }
 
-    override fun nodeInterceptors(): Iterable<Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>> {
+    override val nodeInterceptors: () -> Iterable<Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>> = {
         val currentList = currentInterceptor?.let { listOf(it) } ?: emptyList()
-        val parentList = parentDelegate?.nodeInterceptors() ?: emptyList()
-        return currentList + parentList
+        val parentList = parentDelegate?.nodeInterceptors?.invoke() ?: emptyList()
+        currentList + parentList
     }
 
-    override fun globalInterceptor(): Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = KakaoCompose.composeInterceptor
+    override val globalInterceptor: () -> Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = { KakaoCompose.composeInterceptor }
 }

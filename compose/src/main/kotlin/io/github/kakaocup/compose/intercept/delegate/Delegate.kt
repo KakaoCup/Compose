@@ -11,24 +11,25 @@ import io.github.kakaocup.compose.intercept.interaction.Interaction
  *
  * @see Interceptor
  */
-interface Delegate<INTERACTION, ASSERTION, ACTION> where INTERACTION : Interaction<ASSERTION, ACTION> {
+interface Delegate<INTERACTION, ASSERTION, ACTION> : Interaction<ASSERTION, ACTION>
+        where INTERACTION : Interaction<ASSERTION, ACTION> {
+
     val interaction: INTERACTION
+    val nodeInterceptors: () -> Iterable<Interceptor<INTERACTION, ASSERTION, ACTION>>
+    val globalInterceptor: () -> Interceptor<INTERACTION, ASSERTION, ACTION>?
 
-    fun nodeInterceptors(): Iterable<Interceptor<INTERACTION, ASSERTION, ACTION>>
-    fun globalInterceptor(): Interceptor<INTERACTION, ASSERTION, ACTION>?
-
-    fun perform(action: ACTION) {
+    override fun perform(action: ACTION) {
         if (!interceptPerform(action)) interaction.perform(action)
     }
 
-    fun check(assertion: ASSERTION) {
+    override fun check(assertion: ASSERTION) {
         if (!interceptCheck(assertion)) interaction.check(assertion)
     }
 
     /**
      * Runs the interceptors available for the given delegate during the `check` operation.
      *
-     * @return `true` if the call chain has been interrupted and there is no need to do UiAutomator call,
+     * @return `true` if the call chain has been interrupted and there is no need to do Espresso call,
      *         false otherwise.
      */
     private fun interceptCheck(assertion: ASSERTION): Boolean {
@@ -43,7 +44,7 @@ interface Delegate<INTERACTION, ASSERTION, ACTION> where INTERACTION : Interacti
     /**
      * Runs the interceptors available for the given delegate during the `execute` operation.
      *
-     * @return `true` if the call chain has been interrupted and there is no need to do UiAutomator call,
+     * @return `true` if the call chain has been interrupted and there is no need to do Espresso call,
      *         false otherwise.
      */
     private fun interceptPerform(action: ACTION): Boolean {

@@ -11,7 +11,7 @@ interface ComposeInterceptable {
 
     /**
      * Sets the interceptors for the instance.
-     * Interceptors will be invoked on the interaction with the KView.
+     * Interceptors will be invoked on the interaction with the BaseNode.
      *
      * @param builder Builder of the interceptors
      *

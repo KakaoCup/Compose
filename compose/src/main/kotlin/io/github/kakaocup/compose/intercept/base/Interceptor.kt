@@ -6,20 +6,19 @@ import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
 
-// todo rewrite comments in this class
 /**
  * Base class for intercepting the call chain from Kakao-Compose to Compose.
  *
  * Interceptors can be provided through [KakaoCompose][io.github.kakaocup.compose.KakaoCompose] runtime and
- * different [Nodes][io.github.kakaocup.compose.node.BaseNode].
+ * different [Nodes][io.github.kakaocup.compose.node.core.BaseNode].
  *
  * Interceptors are stacked during the runtime for any Kakao-Compose `check` and `perform` operations.
- * The stack ordering is following: KView interceptor -> Screen interceptors -> Kakao interceptor.
+ * The stack ordering is following: current BaseNode interceptor -> current BaseNode parents' interceptors -> Kakao-Compose interceptor.
  *
  * Any of the interceptors in the chain can break the chain call by setting `isOverride` to true
  * in [onCheck][Builder.onCheck], [onPerform][Builder.onPerform] or [onAll][Builder.onAll] interception
  * functions during the configuration. Doing this will not only prevent underlying
- * interceptors from being invoked, but prevents Kakao from executing the operation. In that case,
+ * interceptors from being invoked, but prevents Kakao-Compose from executing the operation. In that case,
  * responsibility for actually making Espresso call lies on developer.
  *
  * For each operation the interceptor invocation cycle will be as follows:
@@ -33,9 +32,9 @@ import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
  * onPerform?.invoke()
  * ```
  *
- * @see io.github.kakaocup.kakao.Kakao
- * @see io.github.kakaocup.kakao.screen.Screen
- * @see io.github.kakaocup.kakao.common.views.KBaseView
+ * @see io.github.kakaocup.compose.KakaoCompose
+ * @see io.github.kakaocup.compose.node.core.BaseNode
+ * @see io.github.kakaocup.compose.intercept.delegate.ComposeInterceptable
  */
 class Interceptor<INTERACTION, ASSERTION, ACTION>(
     val onCheck: Interception<(INTERACTION, ASSERTION) -> Unit>?,

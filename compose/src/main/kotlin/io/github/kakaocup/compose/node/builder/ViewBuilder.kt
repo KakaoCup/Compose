@@ -354,8 +354,10 @@ class ViewBuilder {
     }
 
     fun build(): UserMatcher {
-        if (semanticsMatcherList.isEmpty()) throw IllegalStateException("Please set matchers for your Element!")
+        if (semanticsMatcherList.isEmpty()) throw ViewBuilderException("Please set matchers for your Element!")
         val matcher = semanticsMatcherList.reduce { finalMatcher, matcher -> finalMatcher and matcher }
         return UserMatcher(matcher, position, useUnmergedTree)
     }
 }
+
+private class ViewBuilderException(message: String) : RuntimeException(message)
