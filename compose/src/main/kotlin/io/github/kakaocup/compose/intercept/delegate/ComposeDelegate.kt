@@ -6,26 +6,24 @@ import io.github.kakaocup.compose.intercept.base.Interceptor
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
-import io.github.kakaocup.compose.node.core.BaseNode
 
 class ComposeDelegate(
-    private val nodeProvider: () -> SemanticsNodeInteraction
+    private val nodeProvider: () -> SemanticsNodeInteraction,
+    private val parentDelegate: ComposeDelegate?,
 ) : Delegate<ComposeInteraction, ComposeAssertion, ComposeAction> {
+
+    var currentInterceptor: Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = null
 
     override val interaction: ComposeInteraction by lazy(LazyThreadSafetyMode.NONE) {
         val semanticsInteraction = nodeProvider.invoke()
         ComposeInteraction(semanticsInteraction)
     }
 
-    fun perform(action: (SemanticsNodeInteraction) -> Unit) {
-        if (!interceptPerform(action)) interaction.perform(action)
+    override fun nodeInterceptors(): Iterable<Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>> {
+        val currentList = currentInterceptor?.let { listOf(it) } ?: emptyList()
+        val parentList = parentDelegate?.nodeInterceptors() ?: emptyList()
+        return currentList + parentList
     }
-
-    fun check(assertion: (SemanticsNodeInteraction) -> Unit) {
-        if (!interceptCheck(assertion)) interaction.check(assertion)
-    }
-
-    override fun nodeInterceptors(): Iterable<Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>> = BaseNode.composeInterceptors
 
     override fun globalInterceptor(): Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = KakaoCompose.composeInterceptor
 }

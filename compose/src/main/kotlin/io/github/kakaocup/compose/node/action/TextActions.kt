@@ -5,13 +5,13 @@ import androidx.compose.ui.text.TextRange
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 
 interface TextActions {
-    val node: ComposeDelegate
+    val delegate: ComposeDelegate
 
     /**
      * Clears the text in this node in similar way to IME.
      */
     fun performTextClearance() {
-        node.perform { it.performTextClearance() }
+        delegate.perform { it.performTextClearance() }
     }
 
     /**
@@ -20,7 +20,7 @@ interface TextActions {
      * @param text Text to send.
      */
     fun performTextInput(text: String) {
-        node.perform { it.performTextInput(text) }
+        delegate.perform { it.performTextInput(text) }
     }
 
     /**
@@ -30,7 +30,7 @@ interface TextActions {
      */
     @ExperimentalTestApi
     fun performTextInputSelection(selection: TextRange) {
-        node.perform { it.performTextInputSelection(selection) }
+        delegate.perform { it.performTextInputSelection(selection) }
     }
 
     /**
@@ -41,7 +41,7 @@ interface TextActions {
      * @param text Text to send.
      */
     fun performTextReplacement(text: String) {
-        node.perform { it.performTextReplacement(text) }
+        delegate.perform { it.performTextReplacement(text) }
     }
 
     /**
@@ -54,6 +54,6 @@ interface TextActions {
      * focused)
      */
     fun performImeAction() {
-        node.perform { it.performImeAction() }
+        delegate.perform { it.performImeAction() }
     }
 }

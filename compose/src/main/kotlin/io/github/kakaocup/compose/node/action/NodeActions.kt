@@ -9,14 +9,14 @@ import androidx.compose.ui.test.*
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 
 interface NodeActions {
-    val node: ComposeDelegate
+    val delegate: ComposeDelegate
 
 
     /**
      * Performs a click action on the element represented by the given semantics node.
      */
     fun performClick() {
-        node.perform { it.performClick() }
+        delegate.perform { it.performClick() }
     }
 
     /**
@@ -32,7 +32,7 @@ interface NodeActions {
      * Throws an [AssertionError] if there is no scroll parent.
      */
     fun performScrollTo() {
-        node.perform { it.performScrollTo() }
+        delegate.perform { it.performScrollTo() }
     }
 
     /**
@@ -52,7 +52,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToIndex(index: Int) {
-        node.perform { it.performScrollToIndex(index) }
+        delegate.perform { it.performScrollToIndex(index) }
     }
 
     /**
@@ -70,7 +70,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToKey(key: Any) {
-        node.perform { it.performScrollToKey(key) }
+        delegate.perform { it.performScrollToKey(key) }
     }
 
     /**
@@ -104,7 +104,7 @@ interface NodeActions {
     fun performGesture(
         block: GestureScope.() -> Unit
     ) {
-        node.perform { it.performGesture(block) }
+        delegate.perform { it.performGesture(block) }
     }
 
     /**
@@ -126,7 +126,7 @@ interface NodeActions {
         key: SemanticsPropertyKey<AccessibilityAction<T>>,
         invocation: (T) -> Unit
     ) {
-        node.perform { it.performSemanticsAction(key, invocation) }
+        delegate.perform { it.performSemanticsAction(key, invocation) }
     }
 
     /**
@@ -145,6 +145,6 @@ interface NodeActions {
     fun performSemanticsAction(
         key: SemanticsPropertyKey<AccessibilityAction<() -> Boolean>>
     ) {
-        node.perform { it.performSemanticsAction(key) }
+        delegate.perform { it.performSemanticsAction(key) }
     }
 }

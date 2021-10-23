@@ -1,6 +1,7 @@
 package io.github.kakaocup.compose.intercept.delegate
 
 import io.github.kakaocup.compose.intercept.base.Interceptor
+import io.github.kakaocup.compose.intercept.interaction.Interaction
 
 /**
  * Base delegate interface for Kakao-Compose.
@@ -10,11 +11,19 @@ import io.github.kakaocup.compose.intercept.base.Interceptor
  *
  * @see Interceptor
  */
-interface Delegate<INTERACTION, ASSERTION, ACTION> {
+interface Delegate<INTERACTION, ASSERTION, ACTION> where INTERACTION : Interaction<ASSERTION, ACTION> {
     val interaction: INTERACTION
 
     fun nodeInterceptors(): Iterable<Interceptor<INTERACTION, ASSERTION, ACTION>>
     fun globalInterceptor(): Interceptor<INTERACTION, ASSERTION, ACTION>?
+
+    fun perform(action: ACTION) {
+        if (!interceptPerform(action)) interaction.perform(action)
+    }
+
+    fun check(assertion: ASSERTION) {
+        if (!interceptCheck(assertion)) interaction.check(assertion)
+    }
 
     /**
      * Runs the interceptors available for the given delegate during the `check` operation.
@@ -22,7 +31,7 @@ interface Delegate<INTERACTION, ASSERTION, ACTION> {
      * @return `true` if the call chain has been interrupted and there is no need to do UiAutomator call,
      *         false otherwise.
      */
-    fun interceptCheck(assertion: ASSERTION): Boolean {
+    private fun interceptCheck(assertion: ASSERTION): Boolean {
         fun intercept(interceptor: Interceptor<INTERACTION, ASSERTION, ACTION>): Boolean {
             return interceptOnAll(interceptor) || interceptOnCheck(interceptor, assertion)
         }
@@ -37,7 +46,7 @@ interface Delegate<INTERACTION, ASSERTION, ACTION> {
      * @return `true` if the call chain has been interrupted and there is no need to do UiAutomator call,
      *         false otherwise.
      */
-    fun interceptPerform(action: ACTION): Boolean {
+    private fun interceptPerform(action: ACTION): Boolean {
         fun intercept(interceptor: Interceptor<INTERACTION, ASSERTION, ACTION>): Boolean {
             return interceptOnAll(interceptor) || interceptOnPerform(interceptor, action)
         }
