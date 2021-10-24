@@ -264,4 +264,18 @@ interface NodeAssertions {
     fun assertExists() {
         delegate.check { it.assertExists() }
     }
+
+    /**
+     * Asserts that the provided matcher is satisfied for this node.
+     * @param matcher Matcher to verify.
+     * @param messagePrefixOnError Prefix to be put in front of an error that gets thrown in case this assert fails.
+     * This can be helpful in situations where this assert fails as part of a bigger operation that used this assert as a precondition check.
+     * @throws [AssertionError] if the matcher does not match or the node can no longer be found.
+     */
+    fun assert(
+        matcher: SemanticsMatcher,
+        messagePrefixOnError: (() -> String)? = null
+    ) {
+        delegate.check { it.assert(matcher, messagePrefixOnError) }
+    }
 }
