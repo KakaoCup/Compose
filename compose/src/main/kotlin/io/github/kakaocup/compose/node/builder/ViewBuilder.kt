@@ -1,19 +1,18 @@
-package io.github.kakaocup.compose.node
+package io.github.kakaocup.compose.node.builder
 
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.text.input.ImeAction
+import io.github.kakaocup.compose.node.core.ComposeMarker
 
-class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
+@ComposeMarker
+class ViewBuilder {
 
-    private var semanticsNodeInteractionCollection: SemanticsNodeInteractionCollection =
-        composeTestRule.onRoot().onChildren()
-
-    val nodeInteraction: SemanticsNodeInteraction
-        get() = semanticsNodeInteractionCollection[position]
+    private val semanticsMatcherList = mutableListOf<SemanticsMatcher>()
 
     private var position = 0
+
+    var useUnmergedTree: Boolean = false
 
     fun isEnabled() = addFilter(androidx.compose.ui.test.isEnabled())
 
@@ -341,12 +340,24 @@ class ViewBuilder(composeTestRule: AndroidComposeTestRule<*, *>) {
      */
     fun hasAnyDescendant(matcher: SemanticsMatcher) = addFilter(androidx.compose.ui.test.hasAnyDescendant(matcher))
 
+    /**
+     * Returns whether the node matches exactly to the given custom matcher.
+     */
+    fun addSemanticsMatcher(matcher: SemanticsMatcher) = addFilter(matcher)
+
     fun hasPosition(position: Int) {
         this.position = position
     }
 
     private fun addFilter(semanticsMatcher: SemanticsMatcher) {
-        semanticsNodeInteractionCollection =
-            semanticsNodeInteractionCollection.filter(semanticsMatcher)
+        semanticsMatcherList.add(semanticsMatcher)
+    }
+
+    fun build(): UserMatcher {
+        if (semanticsMatcherList.isEmpty()) throw ViewBuilderException("Please set matchers for your Element!")
+        val matcher = semanticsMatcherList.reduce { finalMatcher, matcher -> finalMatcher and matcher }
+        return UserMatcher(matcher, position, useUnmergedTree)
     }
 }
+
+private class ViewBuilderException(message: String) : RuntimeException(message)

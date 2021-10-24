@@ -1,14 +1,15 @@
-package io.github.kakaocup.compose.node
+package io.github.kakaocup.compose.node.assertion
 
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.*
+import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 
 interface NodeAssertions {
-    val nodeInteraction: SemanticsNodeInteraction
+    val delegate: ComposeDelegate
 
     fun assertIsDisplayed() {
-        nodeInteraction.assertIsDisplayed()
+        delegate.check { it.assertIsDisplayed() }
     }
 
     /**
@@ -17,7 +18,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is displayed.
      */
     fun assertIsNotDisplayed() {
-        nodeInteraction.assertIsNotDisplayed()
+        delegate.check { it.assertIsNotDisplayed() }
     }
 
     /**
@@ -26,7 +27,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not enabled or does not define the property at all.
      */
     fun assertIsEnabled() {
-        nodeInteraction.assertIsEnabled()
+        delegate.check { it.assertIsEnabled() }
     }
 
     /**
@@ -34,8 +35,8 @@ interface NodeAssertions {
      *
      * Throws [AssertionError] if the node is enabled or does not defined the property at all.
      */
-    fun assertIsNotEnabled(){
-        nodeInteraction.assertIsNotEnabled()
+    fun assertIsNotEnabled() {
+        delegate.check { it.assertIsNotEnabled() }
     }
 
     /**
@@ -44,7 +45,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not unchecked, indeterminate, or not toggleable.
      */
     fun assertIsOn() {
-        nodeInteraction.assertIsOn()
+        delegate.check { it.assertIsOn() }
     }
 
     /**
@@ -53,7 +54,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is checked, indeterminate, or not toggleable.
      */
     fun assertIsOff() {
-        nodeInteraction.assertIsOff()
+        delegate.check { it.assertIsOff() }
     }
 
     /**
@@ -62,7 +63,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is unselected or not selectable.
      */
     fun assertIsSelected() {
-        nodeInteraction.assertIsSelected()
+        delegate.check { it.assertIsSelected() }
     }
 
     /**
@@ -71,7 +72,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is selected or not selectable.
      */
     fun assertIsNotSelected() {
-        nodeInteraction.assertIsNotSelected()
+        delegate.check { it.assertIsNotSelected() }
     }
     /**
      * Asserts that the current semantics node is toggleable.
@@ -79,7 +80,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not toggleable.
      */
     fun assertIsToggleable() {
-        nodeInteraction.assertIsToggleable()
+        delegate.check { it.assertIsToggleable() }
     }
 
     /**
@@ -88,7 +89,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not selectable.
      */
     fun assertIsSelectable() {
-        nodeInteraction.assertIsSelectable()
+        delegate.check { it.assertIsSelectable() }
     }
     /**
      * Asserts that the current semantics node has a focus.
@@ -96,7 +97,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not in the focus or does not defined the property at all.
      */
     fun assertIsFocused() {
-        nodeInteraction.assertIsFocused()
+        delegate.check { it.assertIsFocused() }
     }
 
     /**
@@ -105,7 +106,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is in the focus or does not defined the property at all.
      */
     fun assertIsNotFocused() {
-        nodeInteraction.assertIsNotFocused()
+        delegate.check { it.assertIsNotFocused() }
     }
 
     /**
@@ -124,7 +125,7 @@ interface NodeAssertions {
     fun assertContentDescriptionEquals(
         vararg values: String
     ) {
-        nodeInteraction.assertContentDescriptionEquals(values = values)
+        delegate.check { it.assertContentDescriptionEquals(values = values) }
     }
 
     /**
@@ -147,7 +148,7 @@ interface NodeAssertions {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) {
-        nodeInteraction.assertContentDescriptionContains(value, substring, ignoreCase)
+        delegate.check { it.assertContentDescriptionContains(value, substring, ignoreCase) }
     }
 
     /**
@@ -170,7 +171,7 @@ interface NodeAssertions {
         vararg values: String,
         includeEditableText: Boolean = true
     ) {
-        nodeInteraction.assertTextEquals(values = values, includeEditableText = includeEditableText)
+        delegate.check { it.assertTextEquals(values = values, includeEditableText = includeEditableText) }
     }
 
     /**
@@ -195,7 +196,7 @@ interface NodeAssertions {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) {
-        nodeInteraction.assertTextContains(value, substring, ignoreCase)
+        delegate.check { it.assertTextContains(value, substring, ignoreCase) }
     }
 
     /**
@@ -205,7 +206,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node's value is not equal to `value`, or if the node has no value
      */
     fun assertValueEquals(value: String) {
-        nodeInteraction.assertValueEquals(value)
+        delegate.check { it.assertValueEquals(value) }
     }
 
     /**
@@ -215,7 +216,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node's value is not equal to `value`, or if the node has no value
      */
     fun assertRangeInfoEquals(value: ProgressBarRangeInfo) {
-        nodeInteraction.assertRangeInfoEquals(value)
+        delegate.check { it.assertRangeInfoEquals(value) }
     }
 
     /**
@@ -224,7 +225,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is doesn't have a click action.
      */
     fun assertHasClickAction() {
-        nodeInteraction.assertHasClickAction()
+        delegate.check { it.assertHasClickAction() }
     }
 
     /**
@@ -233,7 +234,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node has a click action.
      */
     fun assertHasNoClickAction() {
-        nodeInteraction.assertHasNoClickAction()
+        delegate.check { it.assertHasNoClickAction() }
     }
 
     /**
@@ -244,7 +245,7 @@ interface NodeAssertions {
      * @throws [AssertionError] if the assert fails.
      */
     fun assertDoesNotExist() {
-        nodeInteraction.assertDoesNotExist()
+        delegate.check { it.assertDoesNotExist() }
     }
 
     /**
@@ -261,6 +262,20 @@ interface NodeAssertions {
      * @throws [AssertionError] if the assert fails.
      */
     fun assertExists() {
-        nodeInteraction.assertExists()
+        delegate.check { it.assertExists() }
+    }
+
+    /**
+     * Asserts that the provided matcher is satisfied for this node.
+     * @param matcher Matcher to verify.
+     * @param messagePrefixOnError Prefix to be put in front of an error that gets thrown in case this assert fails.
+     * This can be helpful in situations where this assert fails as part of a bigger operation that used this assert as a precondition check.
+     * @throws [AssertionError] if the matcher does not match or the node can no longer be found.
+     */
+    fun assert(
+        matcher: SemanticsMatcher,
+        messagePrefixOnError: (() -> String)? = null
+    ) {
+        delegate.check { it.assert(matcher, messagePrefixOnError) }
     }
 }

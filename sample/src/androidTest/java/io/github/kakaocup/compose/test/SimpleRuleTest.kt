@@ -1,19 +1,27 @@
-package io.github.kakaocup.compose
+package io.github.kakaocup.compose.test
 
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import io.github.kakaocup.compose.node.extensions.onNode
-import io.github.kakaocup.compose.screen.ComposeScreen.Companion.onComposeScreen
+import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.test.junit4.createComposeRule
+import io.github.kakaocup.compose.MainScreen
+import io.github.kakaocup.compose.node.element.ComposeScreen
+import io.github.kakaocup.compose.screen.MainActivityScreen
 import org.junit.Rule
 import org.junit.Test
 
-class ExampleInstrumentedTest {
-    @Rule
-    @JvmField
-    val composeTestRule = createAndroidComposeRule<MainActivity>()
+class SimpleRuleTest {
+
+    @get:Rule
+    val composeTestRule = createComposeRule()
 
     @Test
     fun simpleTest() {
-        onComposeScreen<MainActivityScreen>(composeTestRule) {
+        composeTestRule.setContent {
+            MaterialTheme {
+                MainScreen()
+            }
+        }
+
+        ComposeScreen.onComposeScreen<MainActivityScreen>(composeTestRule) {
             myButton {
                 assertIsDisplayed()
                 assertTextContains("Button 1")

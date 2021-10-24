@@ -1,7 +1,7 @@
 package io.github.kakaocup.compose.node.core
 
 @Suppress("UNCHECKED_CAST")
-interface KDSL<T> {
+interface KDSL<out T> {
 
     operator fun invoke(function: T.() -> Unit) {
         function(this as T)

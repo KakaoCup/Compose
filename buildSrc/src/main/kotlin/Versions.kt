@@ -40,6 +40,7 @@ object Libraries {
         val uiTooling = "androidx.compose.ui:ui-tooling:${Versions.Compose.compose}"
         val junit = "androidx.compose.ui:ui-test-junit4:${Versions.Compose.compose}"
         val material = "androidx.compose.material:material:${Versions.Compose.compose}"
+        val testManifest = "androidx.compose.ui:ui-test-manifest:${Versions.Compose.compose}"
     }
 
     val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"

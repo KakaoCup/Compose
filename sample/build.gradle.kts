@@ -61,6 +61,7 @@ dependencies {
     implementation(Libraries.Compose.activityCompose)
     implementation(Libraries.Compose.uiTooling)
     implementation(Libraries.Compose.material)
+    debugImplementation(Libraries.Compose.testManifest)
 
     implementation(Libraries.junit)
     implementation(Libraries.espresso_core)
