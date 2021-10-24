@@ -31,7 +31,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
 If you are using [Page Object pattern](https://martinfowler.com/bliki/PageObject.html) you can put the interactions of Kakao inside the Page Objects.
 
 Described way of Screen definition is very similar with the way that Kakao library offers.
-But usually, `Screen` in Jetpack Compose is a UI element (Node) too. That's why there is an additional option to declare `ComposeScreen`:
+But, usually, `Screen` in Jetpack Compose is a UI element (Node) too. That's why there is an additional option to declare `ComposeScreen`:
 ```Kotlin
 class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
@@ -39,7 +39,19 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
         viewBuilderAction = { hasTestTag("MainScreen") }
 )
 ```
-So, `ComposeScreen` is a `BaseNode`'s inheritor in Kakao-Compose library.
+So, `ComposeScreen` is a `BaseNode`'s inheritor in Kakao-Compose library. And, as you've seen above, there is a possibility to describe
+`ComposeScreen` without mandatory `viewBuilderAction` in cases when Screen is an abstraction without clear connection with any Node.
+
+**Recommendation**. We strongly recommend to define `ComposeScreen` using the following construction:
+```Kotlin
+@Test
+fun simpleTest() {
+    onComposeScreen<MainActivityScreen>(composeTestRule) {
+        //...
+    }
+}
+```
+`onComposeScreen` extension allows to avoid potential errors with stale elements of a Screen (elements were calculated but information is old).
 
 #### Create KNode
 `ComposeScreen` contains `KNode`, these are the Jetpack Compose nodes where you want to do the interactions:
