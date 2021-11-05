@@ -17,10 +17,11 @@ class ComposeDelegate(
 
     var currentInterceptor: Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = null
 
-    override val interaction: ComposeInteraction by lazy(LazyThreadSafetyMode.NONE) {
-        val semanticsInteraction = nodeProvider.invoke()
-        ComposeInteraction(semanticsInteraction)
-    }
+    override val interaction: ComposeInteraction
+        get() {
+            val semanticsInteraction = nodeProvider.invoke()
+            return ComposeInteraction(semanticsInteraction)
+        }
 
     override val nodeInterceptors: () -> Iterable<Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>> = {
         val currentList = currentInterceptor?.let { listOf(it) } ?: emptyList()
