@@ -6,6 +6,8 @@ import io.github.kakaocup.compose.intercept.base.Interceptor
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
+import io.github.kakaocup.compose.intercept.operation.ComposeOperationBaseImpl
+import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
 
 /**
  * Compose implementation of Base delegate interface for Kakao-Compose
@@ -30,4 +32,18 @@ class ComposeDelegate(
     }
 
     override val globalInterceptor: () -> Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = { KakaoCompose.composeInterceptor }
+
+    fun check(type: ComposeOperationType,
+              description: String? = null,
+              action: SemanticsNodeInteraction.() -> Unit) {
+        val composeAssertion = ComposeOperationBaseImpl(type, description, action)
+        check(composeAssertion)
+    }
+
+    fun perform(type: ComposeOperationType,
+                description: String? = null,
+                action: SemanticsNodeInteraction.() -> Unit) {
+        val composeAction = ComposeOperationBaseImpl(type, description, action)
+        perform(composeAction)
+    }
 }

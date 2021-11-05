@@ -2,6 +2,6 @@ package io.github.kakaocup.compose.intercept.operation
 
 import androidx.compose.ui.test.SemanticsNodeInteraction
 
-typealias ComposeAction = (SemanticsNodeInteraction) -> Unit
+typealias ComposeAction = ComposeOperation<SemanticsNodeInteraction>
 
-typealias ComposeAssertion = (SemanticsNodeInteraction) -> Unit
+typealias ComposeAssertion = ComposeOperation<SemanticsNodeInteraction>

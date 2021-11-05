@@ -3,6 +3,7 @@ package io.github.kakaocup.compose.node.action
 import androidx.compose.ui.test.*
 import androidx.compose.ui.text.TextRange
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
+import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
 
 interface TextActions {
     val delegate: ComposeDelegate
@@ -11,7 +12,7 @@ interface TextActions {
      * Clears the text in this node in similar way to IME.
      */
     fun performTextClearance() {
-        delegate.perform { it.performTextClearance() }
+        delegate.perform(ComposeTextActionType.PERFORM_TEXT_CLEARANCE) { performTextClearance() }
     }
 
     /**
@@ -20,7 +21,7 @@ interface TextActions {
      * @param text Text to send.
      */
     fun performTextInput(text: String) {
-        delegate.perform { it.performTextInput(text) }
+        delegate.perform(ComposeTextActionType.PERFORM_TEXT_INPUT) { performTextInput(text) }
     }
 
     /**
@@ -30,7 +31,7 @@ interface TextActions {
      */
     @ExperimentalTestApi
     fun performTextInputSelection(selection: TextRange) {
-        delegate.perform { it.performTextInputSelection(selection) }
+        delegate.perform(ComposeTextActionType.PERFORM_TEXT_INPUT_SELECTION) { performTextInputSelection(selection) }
     }
 
     /**
@@ -41,7 +42,7 @@ interface TextActions {
      * @param text Text to send.
      */
     fun performTextReplacement(text: String) {
-        delegate.perform { it.performTextReplacement(text) }
+        delegate.perform(ComposeTextActionType.PERFORM_TEXT_REPLACEMENT) { performTextReplacement(text) }
     }
 
     /**
@@ -54,6 +55,14 @@ interface TextActions {
      * focused)
      */
     fun performImeAction() {
-        delegate.perform { it.performImeAction() }
+        delegate.perform(ComposeTextActionType.PERFORM_IME_ACTION) { performImeAction() }
+    }
+
+    enum class ComposeTextActionType : ComposeOperationType {
+        PERFORM_TEXT_CLEARANCE,
+        PERFORM_TEXT_INPUT,
+        PERFORM_TEXT_INPUT_SELECTION,
+        PERFORM_TEXT_REPLACEMENT,
+        PERFORM_IME_ACTION,
     }
 }
