@@ -7,6 +7,7 @@ import androidx.compose.ui.semantics.SemanticsProperties.IndexForKey
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.test.*
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
+import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
 
 interface NodeActions {
     val delegate: ComposeDelegate
@@ -16,7 +17,7 @@ interface NodeActions {
      * Performs a click action on the element represented by the given semantics node.
      */
     fun performClick() {
-        delegate.perform { it.performClick() }
+        delegate.perform(ComposeBaseActionType.PERFORM_CLICK) { performClick() }
     }
 
     /**
@@ -32,7 +33,7 @@ interface NodeActions {
      * Throws an [AssertionError] if there is no scroll parent.
      */
     fun performScrollTo() {
-        delegate.perform { it.performScrollTo() }
+        delegate.perform(ComposeBaseActionType.PERFORM_SCROLL_TO) { performScrollTo() }
     }
 
     /**
@@ -52,7 +53,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToIndex(index: Int) {
-        delegate.perform { it.performScrollToIndex(index) }
+        delegate.perform(ComposeBaseActionType.PERFORM_SCROLL_TO_INDEX) { performScrollToIndex(index) }
     }
 
     /**
@@ -70,7 +71,7 @@ interface NodeActions {
      */
     @ExperimentalTestApi
     fun performScrollToKey(key: Any) {
-        delegate.perform { it.performScrollToKey(key) }
+        delegate.perform(ComposeBaseActionType.PERFORM_SCROLL_TO_KEY) { performScrollToKey(key) }
     }
 
     /**
@@ -104,7 +105,7 @@ interface NodeActions {
     fun performGesture(
         block: GestureScope.() -> Unit
     ) {
-        delegate.perform { it.performGesture(block) }
+        delegate.perform(ComposeBaseActionType.PERFORM_GESTURE) { performGesture(block) }
     }
 
     /**
@@ -126,7 +127,7 @@ interface NodeActions {
         key: SemanticsPropertyKey<AccessibilityAction<T>>,
         invocation: (T) -> Unit
     ) {
-        delegate.perform { it.performSemanticsAction(key, invocation) }
+        delegate.perform(ComposeBaseActionType.PERFORM_SEMANTICS_ACTION) { performSemanticsAction(key, invocation) }
     }
 
     /**
@@ -145,6 +146,15 @@ interface NodeActions {
     fun performSemanticsAction(
         key: SemanticsPropertyKey<AccessibilityAction<() -> Boolean>>
     ) {
-        delegate.perform { it.performSemanticsAction(key) }
+        delegate.perform(ComposeBaseActionType.PERFORM_SEMANTICS_ACTION) { performSemanticsAction(key) }
+    }
+
+    enum class ComposeBaseActionType : ComposeOperationType {
+        PERFORM_CLICK,
+        PERFORM_SCROLL_TO,
+        PERFORM_SCROLL_TO_INDEX,
+        PERFORM_SCROLL_TO_KEY,
+        PERFORM_GESTURE,
+        PERFORM_SEMANTICS_ACTION,
     }
 }

@@ -7,13 +7,14 @@ import io.github.kakaocup.compose.intercept.delegate.ComposeInterceptable
 import io.github.kakaocup.compose.node.action.NodeActions
 import io.github.kakaocup.compose.node.action.TextActions
 import io.github.kakaocup.compose.node.assertion.NodeAssertions
-import io.github.kakaocup.compose.node.builder.UserMatcher
+import io.github.kakaocup.compose.node.builder.NodeMatcher
+import io.github.kakaocup.compose.node.builder.NodeProvider
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 
 @ComposeMarker
 abstract class BaseNode<out T : BaseNode<T>> internal constructor(
     protected val semanticsProvider: SemanticsNodeInteractionsProvider,
-    private val userMatcher: UserMatcher,
+    private val nodeMatcher: NodeMatcher,
     parentNode: BaseNode<T>? = null,
 ) : KDSL<T>, NodeAssertions, NodeActions, TextActions, ComposeInterceptable {
 
@@ -22,31 +23,35 @@ abstract class BaseNode<out T : BaseNode<T>> internal constructor(
         viewBuilderAction: ViewBuilder.() -> Unit,
     ) : this(
         semanticsProvider = semanticsProvider,
-        userMatcher = ViewBuilder().apply(viewBuilderAction).build(),
+        nodeMatcher = ViewBuilder().apply(viewBuilderAction).build(),
         parentNode = null
     )
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
-        userMatcher: UserMatcher,
+        nodeMatcher: NodeMatcher,
     ) : this(
         semanticsProvider = semanticsProvider,
-        userMatcher = userMatcher,
+        nodeMatcher = nodeMatcher,
         parentNode = null
     )
 
     override val delegate: ComposeDelegate = ComposeDelegate(
-        nodeProvider = {
-            val finalMatcher = if (parentNode == null) userMatcher.matcher else hasParent(parentNode.userMatcher.matcher) and userMatcher.matcher
-            semanticsProvider.onAllNodes(finalMatcher, userMatcher.useUnmergedTree)[userMatcher.position]
-        },
+        nodeProvider = NodeProvider(
+            nodeMatcher = NodeMatcher(
+                matcher = if (parentNode == null) nodeMatcher.matcher else hasParent(parentNode.nodeMatcher.matcher) and nodeMatcher.matcher,
+                position = nodeMatcher.position,
+                useUnmergedTree = nodeMatcher.useUnmergedTree
+            ),
+            semanticsProvider = semanticsProvider
+        ),
         parentDelegate = parentNode?.delegate
     )
 
     protected inline fun <reified N> child(function: ViewBuilder.() -> Unit): N {
         return N::class.java.getConstructor(
             SemanticsNodeInteractionsProvider::class.java,
-            UserMatcher::class.java,
+            NodeMatcher::class.java,
             BaseNode::class.java,
         ).newInstance(
             semanticsProvider,

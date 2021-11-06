@@ -4,12 +4,13 @@ import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.*
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
+import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
 
 interface NodeAssertions {
     val delegate: ComposeDelegate
 
     fun assertIsDisplayed() {
-        delegate.check { it.assertIsDisplayed() }
+        delegate.check(ComposeBaseAssertionType.IS_DISPLAYED) { assertIsDisplayed() }
     }
 
     /**
@@ -18,7 +19,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is displayed.
      */
     fun assertIsNotDisplayed() {
-        delegate.check { it.assertIsNotDisplayed() }
+        delegate.check(ComposeBaseAssertionType.IS_NOT_DISPLAYED) { assertIsNotDisplayed() }
     }
 
     /**
@@ -27,7 +28,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not enabled or does not define the property at all.
      */
     fun assertIsEnabled() {
-        delegate.check { it.assertIsEnabled() }
+        delegate.check(ComposeBaseAssertionType.IS_ENABLED) { assertIsEnabled() }
     }
 
     /**
@@ -36,7 +37,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is enabled or does not defined the property at all.
      */
     fun assertIsNotEnabled() {
-        delegate.check { it.assertIsNotEnabled() }
+        delegate.check(ComposeBaseAssertionType.IS_NOT_ENABLED) { assertIsNotEnabled() }
     }
 
     /**
@@ -45,7 +46,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not unchecked, indeterminate, or not toggleable.
      */
     fun assertIsOn() {
-        delegate.check { it.assertIsOn() }
+        delegate.check(ComposeBaseAssertionType.IS_ON) { assertIsOn() }
     }
 
     /**
@@ -54,7 +55,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is checked, indeterminate, or not toggleable.
      */
     fun assertIsOff() {
-        delegate.check { it.assertIsOff() }
+        delegate.check(ComposeBaseAssertionType.IS_OFF) { assertIsOff() }
     }
 
     /**
@@ -63,7 +64,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is unselected or not selectable.
      */
     fun assertIsSelected() {
-        delegate.check { it.assertIsSelected() }
+        delegate.check(ComposeBaseAssertionType.IS_SELECTED) { assertIsSelected() }
     }
 
     /**
@@ -72,7 +73,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is selected or not selectable.
      */
     fun assertIsNotSelected() {
-        delegate.check { it.assertIsNotSelected() }
+        delegate.check(ComposeBaseAssertionType.IS_NOT_SELECTED) { assertIsNotSelected() }
     }
     /**
      * Asserts that the current semantics node is toggleable.
@@ -80,7 +81,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not toggleable.
      */
     fun assertIsToggleable() {
-        delegate.check { it.assertIsToggleable() }
+        delegate.check(ComposeBaseAssertionType.IS_TOGGLEABLE) { assertIsToggleable() }
     }
 
     /**
@@ -89,7 +90,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not selectable.
      */
     fun assertIsSelectable() {
-        delegate.check { it.assertIsSelectable() }
+        delegate.check(ComposeBaseAssertionType.IS_SELECTABLE) { assertIsSelectable() }
     }
     /**
      * Asserts that the current semantics node has a focus.
@@ -97,7 +98,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is not in the focus or does not defined the property at all.
      */
     fun assertIsFocused() {
-        delegate.check { it.assertIsFocused() }
+        delegate.check(ComposeBaseAssertionType.IS_FOCUSED) { assertIsFocused() }
     }
 
     /**
@@ -106,7 +107,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is in the focus or does not defined the property at all.
      */
     fun assertIsNotFocused() {
-        delegate.check { it.assertIsNotFocused() }
+        delegate.check(ComposeBaseAssertionType.IS_NOT_FOCUSED) { assertIsNotFocused() }
     }
 
     /**
@@ -125,7 +126,7 @@ interface NodeAssertions {
     fun assertContentDescriptionEquals(
         vararg values: String
     ) {
-        delegate.check { it.assertContentDescriptionEquals(values = values) }
+        delegate.check(ComposeBaseAssertionType.ASSERT_CONTENT_DESCRIPTION_EQUALS) { assertContentDescriptionEquals(values = values) }
     }
 
     /**
@@ -148,7 +149,7 @@ interface NodeAssertions {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) {
-        delegate.check { it.assertContentDescriptionContains(value, substring, ignoreCase) }
+        delegate.check(ComposeBaseAssertionType.ASSERT_CONTENT_DESCRIPTION_CONTAINS) { assertContentDescriptionContains(value, substring, ignoreCase) }
     }
 
     /**
@@ -171,7 +172,7 @@ interface NodeAssertions {
         vararg values: String,
         includeEditableText: Boolean = true
     ) {
-        delegate.check { it.assertTextEquals(values = values, includeEditableText = includeEditableText) }
+        delegate.check(ComposeBaseAssertionType.ASSERT_TEXT_EQUALS) { assertTextEquals(values = values, includeEditableText = includeEditableText) }
     }
 
     /**
@@ -196,7 +197,7 @@ interface NodeAssertions {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) {
-        delegate.check { it.assertTextContains(value, substring, ignoreCase) }
+        delegate.check(ComposeBaseAssertionType.ASSERT_TEXT_CONTAINS) { assertTextContains(value, substring, ignoreCase) }
     }
 
     /**
@@ -206,7 +207,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node's value is not equal to `value`, or if the node has no value
      */
     fun assertValueEquals(value: String) {
-        delegate.check { it.assertValueEquals(value) }
+        delegate.check(ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) { assertValueEquals(value) }
     }
 
     /**
@@ -216,7 +217,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node's value is not equal to `value`, or if the node has no value
      */
     fun assertRangeInfoEquals(value: ProgressBarRangeInfo) {
-        delegate.check { it.assertRangeInfoEquals(value) }
+        delegate.check(ComposeBaseAssertionType.ASSERT_RANGE_INFO_EQUALS) { assertRangeInfoEquals(value) }
     }
 
     /**
@@ -225,7 +226,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node is doesn't have a click action.
      */
     fun assertHasClickAction() {
-        delegate.check { it.assertHasClickAction() }
+        delegate.check(ComposeBaseAssertionType.ASSERT_HAS_CLICK_ACTION) { assertHasClickAction() }
     }
 
     /**
@@ -234,7 +235,7 @@ interface NodeAssertions {
      * Throws [AssertionError] if the node has a click action.
      */
     fun assertHasNoClickAction() {
-        delegate.check { it.assertHasNoClickAction() }
+        delegate.check(ComposeBaseAssertionType.ASSERT_HAS_NO_CLICK_ACTION) { assertHasNoClickAction() }
     }
 
     /**
@@ -245,7 +246,7 @@ interface NodeAssertions {
      * @throws [AssertionError] if the assert fails.
      */
     fun assertDoesNotExist() {
-        delegate.check { it.assertDoesNotExist() }
+        delegate.check(ComposeBaseAssertionType.ASSERT_DOES_NOT_EXIST) { assertDoesNotExist() }
     }
 
     /**
@@ -261,8 +262,8 @@ interface NodeAssertions {
      *
      * @throws [AssertionError] if the assert fails.
      */
-    fun assertExists() {
-        delegate.check { it.assertExists() }
+    fun assertExists(errorMessageOnFail: String? = null) {
+        delegate.check(ComposeBaseAssertionType.ASSERT_EXISTS) { assertExists(errorMessageOnFail) }
     }
 
     /**
@@ -276,6 +277,32 @@ interface NodeAssertions {
         matcher: SemanticsMatcher,
         messagePrefixOnError: (() -> String)? = null
     ) {
-        delegate.check { it.assert(matcher, messagePrefixOnError) }
+        delegate.check(ComposeBaseAssertionType.ASSERT) { assert(matcher, messagePrefixOnError) }
+    }
+
+    enum class ComposeBaseAssertionType : ComposeOperationType {
+        IS_DISPLAYED,
+        IS_NOT_DISPLAYED,
+        IS_ENABLED,
+        IS_NOT_ENABLED,
+        IS_ON,
+        IS_OFF,
+        IS_SELECTED,
+        IS_NOT_SELECTED,
+        IS_TOGGLEABLE,
+        IS_SELECTABLE,
+        IS_FOCUSED,
+        IS_NOT_FOCUSED,
+        ASSERT_CONTENT_DESCRIPTION_EQUALS,
+        ASSERT_CONTENT_DESCRIPTION_CONTAINS,
+        ASSERT_TEXT_EQUALS,
+        ASSERT_TEXT_CONTAINS,
+        ASSERT_VALUE_EQUALS,
+        ASSERT_RANGE_INFO_EQUALS,
+        ASSERT_HAS_CLICK_ACTION,
+        ASSERT_HAS_NO_CLICK_ACTION,
+        ASSERT_DOES_NOT_EXIST,
+        ASSERT_EXISTS,
+        ASSERT,
     }
 }
