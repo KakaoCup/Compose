@@ -6,7 +6,7 @@ import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
 import io.github.kakaocup.compose.node.builder.NodeProvider
 
 class ComposeInteraction(
-    private val nodeProvider: NodeProvider,
+    val nodeProvider: NodeProvider,
 ) : Interaction<ComposeAssertion, ComposeAction> {
 
     var semanticsNodeInteraction: SemanticsNodeInteraction = nodeProvider.provideSemanticsNodeInteraction()
