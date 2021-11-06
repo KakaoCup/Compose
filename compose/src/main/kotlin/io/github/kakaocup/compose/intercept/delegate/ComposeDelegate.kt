@@ -5,12 +5,13 @@ import io.github.kakaocup.compose.KakaoCompose
 import io.github.kakaocup.compose.intercept.base.Interceptor
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.*
+import io.github.kakaocup.compose.node.builder.NodeProvider
 
 /**
  * Compose implementation of Base delegate interface for Kakao-Compose
  */
 class ComposeDelegate(
-    nodeProvider: () -> SemanticsNodeInteraction,
+    nodeProvider: NodeProvider,
     private val parentDelegate: ComposeDelegate?,
 ) : Delegate<ComposeInteraction, ComposeAssertion, ComposeAction> {
 

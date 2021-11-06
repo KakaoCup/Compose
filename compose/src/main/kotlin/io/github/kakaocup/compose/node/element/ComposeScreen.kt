@@ -4,7 +4,7 @@ import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.node.core.ComposeMarker
 import io.github.kakaocup.compose.node.core.BaseNode
-import io.github.kakaocup.compose.node.builder.UserMatcher
+import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 
 @Suppress("UNCHECKED_CAST")
@@ -13,9 +13,9 @@ open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
 
     internal constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
-        userMatcher: UserMatcher,
+        nodeMatcher: NodeMatcher,
         parentNode: ComposeScreen<T>? = null,
-    ) : super(semanticsProvider, userMatcher, parentNode)
+    ) : super(semanticsProvider, nodeMatcher, parentNode)
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
@@ -24,13 +24,13 @@ open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
-        userMatcher: UserMatcher = UserMatcher(
+        nodeMatcher: NodeMatcher = NodeMatcher(
             matcher = SemanticsMatcher(
                 description = "Empty matcher",
                 matcher = { true}
             )
         ),
-    ) : super(semanticsProvider, userMatcher)
+    ) : super(semanticsProvider, nodeMatcher)
 
     fun onNode(viewBuilderAction: ViewBuilder.() -> Unit) = KNode(semanticsProvider, viewBuilderAction)
 

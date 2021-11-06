@@ -1,15 +1,16 @@
 package io.github.kakaocup.compose.intercept.interaction
 
 import androidx.compose.ui.test.SemanticsNodeInteraction
-import androidx.compose.ui.test.printToString
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
+import io.github.kakaocup.compose.node.builder.NodeProvider
 
 class ComposeInteraction(
-    private val nodeProvider: () -> SemanticsNodeInteraction
+    private val nodeProvider: NodeProvider,
 ) : Interaction<ComposeAssertion, ComposeAction> {
 
-    private var semanticsNodeInteraction: SemanticsNodeInteraction = nodeProvider.invoke()
+    var semanticsNodeInteraction: SemanticsNodeInteraction = nodeProvider.provideSemanticsNodeInteraction()
+        private set
 
     override fun check(assertion: ComposeAssertion) {
         assertion.execute(semanticsNodeInteraction)
@@ -20,10 +21,13 @@ class ComposeInteraction(
     }
 
     fun reFindNode() {
-        semanticsNodeInteraction = nodeProvider.invoke()
+        semanticsNodeInteraction = nodeProvider.provideSemanticsNodeInteraction()
     }
 
     override fun toString(): String {
-        return semanticsNodeInteraction.printToString(maxDepth = 1)
+        val nodeMatcher = nodeProvider.nodeMatcher
+        return "matcher: ${nodeMatcher.matcher.description}; " +
+                "position: ${nodeMatcher.position}; " +
+                "useUnmergedTree: ${nodeMatcher.useUnmergedTree}"
     }
 }

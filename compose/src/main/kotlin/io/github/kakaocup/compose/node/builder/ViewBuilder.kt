@@ -353,10 +353,10 @@ class ViewBuilder {
         semanticsMatcherList.add(semanticsMatcher)
     }
 
-    fun build(): UserMatcher {
+    fun build(): NodeMatcher {
         if (semanticsMatcherList.isEmpty()) throw ViewBuilderException("Please set matchers for your Element!")
         val matcher = semanticsMatcherList.reduce { finalMatcher, matcher -> finalMatcher and matcher }
-        return UserMatcher(matcher, position, useUnmergedTree)
+        return NodeMatcher(matcher, position, useUnmergedTree)
     }
 }
 
