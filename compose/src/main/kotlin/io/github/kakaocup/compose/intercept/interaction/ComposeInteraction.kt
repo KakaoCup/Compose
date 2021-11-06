@@ -6,8 +6,10 @@ import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
 
 class ComposeInteraction(
-    private val semanticsNodeInteraction: SemanticsNodeInteraction
+    private val nodeProvider: () -> SemanticsNodeInteraction
 ) : Interaction<ComposeAssertion, ComposeAction> {
+
+    private var semanticsNodeInteraction: SemanticsNodeInteraction = nodeProvider.invoke()
 
     override fun check(assertion: ComposeAssertion) {
         assertion.execute(semanticsNodeInteraction)
@@ -15,6 +17,10 @@ class ComposeInteraction(
 
     override fun perform(action: ComposeAction) {
         action.execute(semanticsNodeInteraction)
+    }
+
+    fun reFindNode() {
+        semanticsNodeInteraction = nodeProvider.invoke()
     }
 
     override fun toString(): String {

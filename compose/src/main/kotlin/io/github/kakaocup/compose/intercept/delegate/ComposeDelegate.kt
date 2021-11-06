@@ -4,26 +4,19 @@ import androidx.compose.ui.test.SemanticsNodeInteraction
 import io.github.kakaocup.compose.KakaoCompose
 import io.github.kakaocup.compose.intercept.base.Interceptor
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
-import io.github.kakaocup.compose.intercept.operation.ComposeAction
-import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
-import io.github.kakaocup.compose.intercept.operation.ComposeOperationBaseImpl
-import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
+import io.github.kakaocup.compose.intercept.operation.*
 
 /**
  * Compose implementation of Base delegate interface for Kakao-Compose
  */
 class ComposeDelegate(
-    private val nodeProvider: () -> SemanticsNodeInteraction,
+    nodeProvider: () -> SemanticsNodeInteraction,
     private val parentDelegate: ComposeDelegate?,
 ) : Delegate<ComposeInteraction, ComposeAssertion, ComposeAction> {
 
     var currentInterceptor: Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = null
 
-    override val interaction: ComposeInteraction
-        get() {
-            val semanticsInteraction = nodeProvider.invoke()
-            return ComposeInteraction(semanticsInteraction)
-        }
+    override val interaction = ComposeInteraction(nodeProvider)
 
     override val nodeInterceptors: () -> Iterable<Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>> = {
         val currentList = currentInterceptor?.let { listOf(it) } ?: emptyList()
@@ -36,14 +29,14 @@ class ComposeDelegate(
     fun check(type: ComposeOperationType,
               description: String? = null,
               action: SemanticsNodeInteraction.() -> Unit) {
-        val composeAssertion = ComposeOperationBaseImpl(type, description, action)
+        val composeAssertion = produceComposeAssertion(type, description, action)
         check(composeAssertion)
     }
 
     fun perform(type: ComposeOperationType,
                 description: String? = null,
                 action: SemanticsNodeInteraction.() -> Unit) {
-        val composeAction = ComposeOperationBaseImpl(type, description, action)
+        val composeAction = produceComposeAction(type, description, action)
         perform(composeAction)
     }
 }
