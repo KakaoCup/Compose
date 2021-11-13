@@ -12,10 +12,10 @@ import io.github.kakaocup.compose.node.builder.NodeProvider
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 
 @ComposeMarker
-abstract class BaseNode<out T : BaseNode<T>> internal constructor(
+abstract class BaseNode<out T : BaseNode<T>> constructor(
     @PublishedApi internal val semanticsProvider: SemanticsNodeInteractionsProvider,
     private val nodeMatcher: NodeMatcher,
-    parentNode: BaseNode<T>? = null,
+    parentNode: BaseNode<*>? = null,
 ) : KDSL<T>, NodeAssertions, NodeActions, TextActions, ComposeInterceptable {
 
     constructor(

@@ -9,6 +9,12 @@ open class KNode : BaseNode<KNode> {
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
+        nodeMatcher: NodeMatcher,
+        parentNode: BaseNode<*>? = null,
+    ) : super(semanticsProvider, nodeMatcher, parentNode)
+
+    constructor(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
         viewBuilderAction: ViewBuilder.() -> Unit,
     ) : super(semanticsProvider, viewBuilderAction)
 
