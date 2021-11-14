@@ -42,17 +42,6 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
 So, `ComposeScreen` is a `BaseNode`'s inheritor in Kakao-Compose library. And, as you've seen above, there is a possibility to describe
 `ComposeScreen` without mandatory `viewBuilderAction` in cases when Screen is an abstraction without clear connection with any Node.
 
-**Recommendation**. We strongly recommend to define `ComposeScreen` using the following construction:
-```Kotlin
-@Test
-fun simpleTest() {
-    onComposeScreen<MainActivityScreen>(composeTestRule) {
-        //...
-    }
-}
-```
-`onComposeScreen` extension allows to avoid potential errors with stale elements of a Screen (elements were calculated but information is old).
-
 #### Create KNode
 `ComposeScreen` contains `KNode`, these are the Jetpack Compose nodes where you want to do the interactions:
 ```Kotlin

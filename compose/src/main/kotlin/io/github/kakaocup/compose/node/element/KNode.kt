@@ -7,10 +7,10 @@ import io.github.kakaocup.compose.node.core.BaseNode
 
 open class KNode : BaseNode<KNode> {
 
-    internal constructor(
+    constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
         nodeMatcher: NodeMatcher,
-        parentNode: BaseNode<KNode>? = null,
+        parentNode: BaseNode<*>? = null,
     ) : super(semanticsProvider, nodeMatcher, parentNode)
 
     constructor(
