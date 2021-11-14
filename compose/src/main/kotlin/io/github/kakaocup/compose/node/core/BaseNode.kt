@@ -36,17 +36,19 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
         parentNode = null
     )
 
-    override val delegate: ComposeDelegate = ComposeDelegate(
-        nodeProvider = NodeProvider(
-            nodeMatcher = NodeMatcher(
-                matcher = if (parentNode == null) nodeMatcher.matcher else hasParent(parentNode.nodeMatcher.matcher) and nodeMatcher.matcher,
-                position = nodeMatcher.position,
-                useUnmergedTree = nodeMatcher.useUnmergedTree
+    override val delegate: ComposeDelegate by lazy(LazyThreadSafetyMode.NONE) {
+        ComposeDelegate(
+            nodeProvider = NodeProvider(
+                nodeMatcher = NodeMatcher(
+                    matcher = if (parentNode == null) nodeMatcher.matcher else hasParent(parentNode.nodeMatcher.matcher) and nodeMatcher.matcher,
+                    position = nodeMatcher.position,
+                    useUnmergedTree = nodeMatcher.useUnmergedTree
+                ),
+                semanticsProvider = semanticsProvider
             ),
-            semanticsProvider = semanticsProvider
-        ),
-        parentDelegate = parentNode?.delegate
-    )
+            parentDelegate = parentNode?.delegate
+        )
+    }
 
     inline fun <reified N> child(function: ViewBuilder.() -> Unit): N {
         return N::class.java.getConstructor(
