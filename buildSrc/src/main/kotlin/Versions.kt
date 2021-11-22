@@ -3,7 +3,7 @@ import java.io.File
 object Versions {
     val composeVersion = File("buildsystem/version").readText().trim()
 
-    val kotlin = "1.5.30"
+    val kotlin = "1.5.31"
     val detekt = "1.17.1"
     val dokka = "1.4.32"
     val android_gradle = "4.2.1"
@@ -28,8 +28,8 @@ object Versions {
     val testCore = "1.4.0"
 
     object Compose {
-        const val activity_compose = "1.3.1"
-        const val compose = "1.0.3"
+        const val activity_compose = "1.4.0"
+        const val compose = "1.0.5"
     }
 }
 
