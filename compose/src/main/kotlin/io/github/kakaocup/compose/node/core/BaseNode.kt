@@ -68,11 +68,11 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
      */
     private fun combineSemanticMatchers(): SemanticsMatcher {
         val semanticsMatcherList = mutableListOf<SemanticsMatcher>()
-        var currentParent = this.parentNode
+        var parent = this.parentNode
 
-        while (currentParent != null) {
-            semanticsMatcherList.add(hasAnyAncestor(currentParent.nodeMatcher.matcher))
-            currentParent = currentParent.parentNode
+        while (parent != null) {
+            semanticsMatcherList.add(hasAnyAncestor(parent.nodeMatcher.matcher))
+            parent = parent.parentNode
         }
         semanticsMatcherList.add(this.nodeMatcher.matcher)
 
