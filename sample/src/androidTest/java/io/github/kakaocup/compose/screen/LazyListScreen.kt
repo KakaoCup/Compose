@@ -6,8 +6,8 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.LazyListItemPosition
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.KNode
-import io.github.kakaocup.compose.node.element.lazy_list.KLazyListItemNode
-import io.github.kakaocup.compose.node.element.lazy_list.KLazyListNode
+import io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode
+import io.github.kakaocup.compose.node.element.lazylist.KLazyListNode
 
 class LazyListScreen(semanticsProvider: SemanticsNodeInteractionsProvider) : ComposeScreen<LazyListScreen>(
     semanticsProvider = semanticsProvider,

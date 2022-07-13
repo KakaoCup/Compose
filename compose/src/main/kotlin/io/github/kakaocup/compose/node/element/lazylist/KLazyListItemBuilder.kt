@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.node.element.lazy_list
+package io.github.kakaocup.compose.node.element.lazylist
 
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider

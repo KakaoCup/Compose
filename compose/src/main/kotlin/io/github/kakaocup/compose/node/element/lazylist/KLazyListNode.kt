@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.node.element.lazy_list
+package io.github.kakaocup.compose.node.element.lazylist
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.SemanticsMatcher
@@ -56,10 +56,10 @@ class KLazyListNode(
         function: T.() -> Unit
     ) {
         val provideItem = itemTypes.getOrElse(T::class) {
-            throw IllegalStateException("${T::class.java.simpleName} did not register to KLazyListNode")
+            throw LazyListItemProvisionException(T::class)
         }.provideItem
 
-        runCatching { performScrollToIndex(position) }
+        performScrollToIndex(position)
 
         val semanticNode = semanticsProvider
             .onNode(semanticsMatcher)

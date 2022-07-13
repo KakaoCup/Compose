@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.node.element.lazy_list
+package io.github.kakaocup.compose.node.element.lazylist
 
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsMatcher
@@ -21,7 +21,7 @@ abstract class KLazyListItemNode(
     semanticsProvider,
     NodeMatcher(
         matcher = SemanticsMatcher(
-            description = "Lazy list item matcher",
+            description = "Semantics node id = ${semanticNode.id}",
             matcher = { it.id == semanticNode.id },
         )
     ),
