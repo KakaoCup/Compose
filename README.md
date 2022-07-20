@@ -25,7 +25,7 @@ Create your entity `ComposeScreen` where you will add the views involved in the 
 class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
         semanticsProvider = semanticsProvider
-)
+    )
 ```
 `ComposeScreen` can represent the whole user interface or a portion of UI.
 If you are using [Page Object pattern](https://martinfowler.com/bliki/PageObject.html) you can put the interactions of Kakao inside the Page Objects.
@@ -37,7 +37,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("MainScreen") }
-)
+    )
 ```
 So, `ComposeScreen` is a `BaseNode`'s inheritor in Kakao-Compose library. And, as you've seen above, there is a possibility to describe
 `ComposeScreen` without mandatory `viewBuilderAction` in cases when Screen is an abstraction without clear connection with any Node.
@@ -105,15 +105,15 @@ Every `KNode` contains many matches. Some examples of matchers provided by Kakao
 Like in Espresso you can combine different matchers:
 ```Kotlin
 val myButton = KNode(this) {
-      hasTestTag("myTestButton")
-      hasText("Button 1")
- }
+    hasTestTag("myTestButton")
+    hasText("Button 1")
+}
 ```
 
-#### Write the interaction. 
+#### Write the interaction.
 
-The syntax of the test with Kakao is very easy, once you have the `ComposeScreen` and the `KNode` defined, you only have to apply 
-the actions or assertions like in Espresso: 
+The syntax of the test with Kakao is very easy, once you have the `ComposeScreen` and the `KNode` defined, you only have to apply
+the actions or assertions like in Espresso:
 ```Kotlin
 class ExampleInstrumentedTest {
     @Rule
@@ -137,6 +137,99 @@ class ExampleInstrumentedTest {
     }
 }
 ```
+
+#### Lazy lists testing
+
+:warning: This API is experimental and might change in future!
+
+To test lazy lists such as `LazyRow` or `LazyColumn` you should add `KLazyListNode` into your `ComposeScreen`:
+```Kotlin
+val list = KLazyListNode(
+    semanticsProvider = semanticsProvider,
+    viewBuilderAction = { hasTestTag("LazyList") },
+    itemTypeBuilder = {
+        itemType(::LazyListItemNode)
+        itemType(::LazyListHeaderNode)
+    },
+    positionMatcher = { position -> SemanticsMatcher.expectValue(LazyListItemPosition, position) }
+)
+```
+
+Inside `itemTypeBuilder` function you should register `KLazyListItemNode` types to differentiate elements in lazy list:
+```kotlin
+class LazyListItemNode(
+    semanticsNode: SemanticsNode,
+    semanticsProvider: SemanticsNodeInteractionsProvider,
+) : KLazyListItemNode(semanticsNode, semanticsProvider) {
+    val title: KNode = child {
+        hasTestTag("LazyListItemTitle")
+    }
+}
+
+class LazyListHeaderNode(
+    semanticsNode: SemanticsNode,
+    semanticsProvider: SemanticsNodeInteractionsProvider,
+) : KLazyListItemNode(semanticsNode, semanticsProvider) {
+    val title: KNode = child {
+        hasTestTag("LazyListHeaderTitle")
+    }
+}
+```
+
+Due to lazy list construction element's position might change during the scroll, so we should provide `positionMatcher` to correctly determine element position. This can be achieved in different ways, for example you can determine item position through `TestTag`:
+```kotlin
+LazyColumn(
+    Modifier
+        .fillMaxSize()
+        .testTag("LazyList")
+) {
+    itemsIndexed(items) { index, item ->
+        when (item) {
+            is LazyListItem.Header -> ListItemHeader(item, Modifier.testTag("position=$index"))
+            is LazyListItem.Item -> ListItemCell(item, Modifier.testTag("position=$index"))
+        }
+    }
+}
+```
+
+And then check this position inside `positionMatcher` lambda:
+```kotlin
+positionMatcher = { position -> hasTestTag("position=$position") }
+```
+
+But it will be more convenient and less error prone to create custom semantics property and custom modifier:
+```kotlin
+val LazyListItemPosition = SemanticsPropertyKey<Int>("LazyListItemPosition")
+var SemanticsPropertyReceiver.lazyListItemPosition by LazyListItemPosition
+
+fun Modifier.lazyListItemPosition(position: Int): Modifier {
+    return semantics { lazyListItemPosition = position }
+}
+```
+
+And check item position with `SemanticsMatcher`:
+```kotlin
+positionMatcher = { position -> SemanticsMatcher.expectValue(LazyListItemPosition, position) }
+```
+
+So typical lazy list test would be look like this:
+```kotlin
+ @Test
+fun lazyListTest() {
+    onComposeScreen<LazyListScreen>(composeTestRule) {
+        list {
+            childAt<LazyListHeaderNode>(0) {
+                title.assertTextEquals("Items from 1 to 10")
+            }
+            childAt<LazyListItemNode>(1) {
+                title.assertTextEquals("Item 1")
+            }
+        }
+    }
+}
+```
+
+Check lazy list test [example](sample/src/androidTest/java/io/github/kakaocup/compose/test/LazyListTest.kt) for more information.
 
 #### Intercepting
 
@@ -230,5 +323,3 @@ Please refer to [Code of Conduct](https://github.com/kakaocup/compose/blob/maste
 ### License
 
 Kakao Compose is open source and available under the [Apache License, Version 2.0](https://github.com/kakaocup/compose/blob/master/LICENSE).
-
-
