@@ -49,7 +49,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("MainScreen") }
-) {
+    ) {
 
     val myButton: KNode = child {
         hasTestTag("myTestButton")
@@ -67,7 +67,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("MainScreen") }
-) {
+    ) {
 
     val myButton: KNode = child {
         hasTestTag("myTestButton")
@@ -88,7 +88,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("MainScreen") }
-) {
+    ) {
 
     val myButton = KNode(this) {
         hasTestTag("myTestButton")
@@ -176,7 +176,7 @@ class LazyListHeaderNode(
 }
 ```
 
-Due to lazy list construction element's position might change during the scroll, so we should provide `positionMatcher` to correctly determine element position. This can be achieved in different ways, for example you can determine item position through `TestTag`:
+The element position might be changed during the scroll due to lazy list construction, that’s why we should provide `positionMatcher` to determine the element position correctly. It could be achieved in different ways, for example you can determine item position through `TestTag`:
 ```kotlin
 LazyColumn(
     Modifier
@@ -207,12 +207,12 @@ fun Modifier.lazyListItemPosition(position: Int): Modifier {
 }
 ```
 
-And check item position with `SemanticsMatcher`:
+And check an item position with `SemanticsMatcher`:
 ```kotlin
 positionMatcher = { position -> SemanticsMatcher.expectValue(LazyListItemPosition, position) }
 ```
 
-So typical lazy list test would be look like this:
+So the typical lazy list test may look like this:
 ```kotlin
  @Test
 fun lazyListTest() {
@@ -229,7 +229,7 @@ fun lazyListTest() {
 }
 ```
 
-Check lazy list test [example](sample/src/androidTest/java/io/github/kakaocup/compose/test/LazyListTest.kt) for more information.
+Check the lazy list test [example](sample/src/androidTest/java/io/github/kakaocup/compose/test/LazyListTest.kt) for more information.
 
 #### Intercepting
 
@@ -297,10 +297,10 @@ For more detailed info please refer to the documentation.
 Maven
 ```xml
 <dependency>
-  <groupId>io.github.kakaocup</groupId>
-  <artifactId>compose</artifactId>
-  <version><latest version></version>
-  <type>pom</type>
+    <groupId>io.github.kakaocup</groupId>
+    <artifactId>compose</artifactId>
+    <version><latest version></version>
+    <type>pom</type>
 </dependency>
 ```
 or Gradle:
