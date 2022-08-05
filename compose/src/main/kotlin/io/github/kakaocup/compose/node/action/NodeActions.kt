@@ -2,8 +2,11 @@ package io.github.kakaocup.compose.node.action
 
 import androidx.compose.ui.semantics.AccessibilityAction
 import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.semantics.SemanticsActions.ScrollBy
 import androidx.compose.ui.semantics.SemanticsActions.ScrollToIndex
+import androidx.compose.ui.semantics.SemanticsProperties.HorizontalScrollAxisRange
 import androidx.compose.ui.semantics.SemanticsProperties.IndexForKey
+import androidx.compose.ui.semantics.SemanticsProperties.VerticalScrollAxisRange
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.test.*
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
@@ -72,6 +75,40 @@ interface NodeActions {
     @ExperimentalTestApi
     fun performScrollToKey(key: Any) {
         delegate.perform(ComposeBaseActionType.PERFORM_SCROLL_TO_KEY) { performScrollToKey(key) }
+    }
+
+    /**
+     * Scrolls a scrollable container to the content that matches the given [matcher]. If the content
+     * isn't yet visible, the scrollable container will be scrolled from the start till the end till
+     * it finds the content we're looking for. It is not defined where in the viewport the content
+     * will be on success of this function, but it will be either fully within the viewport if it is
+     * smaller than the viewport, or it will cover the whole viewport if it is larger than the
+     * viewport. If it doesn't find the content, the scrollable will be left at the end of the
+     * content and an [AssertionError] is thrown.
+     *
+     * This action should be performed on a [node][SemanticsNodeInteraction] that is a scrollable
+     * container, not on a node that is part of the content of that container. If the container is a
+     * lazy container, it must support the semantics actions [ScrollToIndex], [ScrollBy], and either
+     * [HorizontalScrollAxisRange] or [VerticalScrollAxisRange], for example
+     * [LazyColumn][androidx.compose.foundation.lazy.LazyColumn] and
+     * [LazyRow][androidx.compose.foundation.lazy.LazyRow]. If the container is not lazy, it must
+     * support the semantics action [ScrollBy], for example,
+     * [Row][androidx.compose.foundation.layout.Row] or
+     * [Column][androidx.compose.foundation.layout.Column].
+     *
+     * Throws an [AssertionError] if the scrollable node doesn't support the necessary semantics
+     * actions.
+     *
+     * @param matcher A matcher that identifies the content where the scrollable container needs to
+     * scroll to
+     * @return The [SemanticsNodeInteraction] that is the receiver of this method. Note that this is
+     * _not_ an interaction for the node that is identified by the [matcher].
+     *
+     * @see hasScrollToNodeAction
+     */
+    @ExperimentalTestApi
+    fun performScrollToNode(matcher: SemanticsMatcher) {
+        delegate.perform(ComposeBaseActionType.PERFORM_SCROLL_TO_NODE) { performScrollToNode(matcher) }
     }
 
     /**
@@ -154,6 +191,7 @@ interface NodeActions {
         PERFORM_SCROLL_TO,
         PERFORM_SCROLL_TO_INDEX,
         PERFORM_SCROLL_TO_KEY,
+        PERFORM_SCROLL_TO_NODE,
         PERFORM_GESTURE,
         PERFORM_SEMANTICS_ACTION,
     }

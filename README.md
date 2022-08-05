@@ -160,16 +160,12 @@ Inside `itemTypeBuilder` function you should register `KLazyListItemNode` types 
 class LazyListItemNode(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode(semanticsNode, semanticsProvider) {
-    val title: KNode = child {
-        hasTestTag("LazyListItemTitle")
-    }
-}
+) : KLazyListItemNode<LazyListItemNode>(semanticsNode, semanticsProvider)
 
 class LazyListHeaderNode(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode(semanticsNode, semanticsProvider) {
+) : KLazyListItemNode<LazyListHeaderNode>(semanticsNode, semanticsProvider) {
     val title: KNode = child {
         hasTestTag("LazyListHeaderTitle")
     }
@@ -218,11 +214,16 @@ So the typical lazy list test may look like this:
 fun lazyListTest() {
     onComposeScreen<LazyListScreen>(composeTestRule) {
         list {
-            childAt<LazyListHeaderNode>(0) {
+            firstChild<LazyListHeaderNode> {
                 title.assertTextEquals("Items from 1 to 10")
             }
-            childAt<LazyListItemNode>(1) {
-                title.assertTextEquals("Item 1")
+            childWith<LazyListItemNode> {
+                hasText("Item 1")
+            } perform {
+                assertTextEquals("Item 1")
+            }
+            childAt<LazyListItemNode>(10) {
+                assertTextEquals("Item 10")
             }
         }
     }
