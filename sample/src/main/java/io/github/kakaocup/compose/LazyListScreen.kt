@@ -55,25 +55,20 @@ private fun ListItemHeader(item: LazyListItem.Header, modifier: Modifier = Modif
             Modifier
                 .padding(8.dp)
                 .testTag("LazyListHeaderTitle")
-
         )
     }
 }
 
 @Composable
 private fun ListItemCell(item: LazyListItem.Item, modifier: Modifier = Modifier) {
-    Box(
+    Text(
+        item.title,
         Modifier
             .fillMaxWidth()
+            .padding(16.dp)
+            .testTag("LazyListItemTitle")
             .then(modifier)
-    ) {
-        Text(
-            item.title,
-            Modifier
-                .padding(16.dp)
-                .testTag("LazyListItemTitle")
-        )
-    }
+    )
 }
 
 private fun getItems(): List<LazyListItem> {

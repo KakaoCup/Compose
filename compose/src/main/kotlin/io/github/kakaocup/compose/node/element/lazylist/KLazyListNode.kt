@@ -3,6 +3,7 @@ package io.github.kakaocup.compose.node.element.lazylist
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
 import androidx.compose.ui.test.onChildren
 import io.github.kakaocup.compose.node.builder.NodeMatcher
@@ -51,7 +52,7 @@ class KLazyListNode(
      * @param function Tail lambda which receiver will be matched item with given type T
      */
     @ExperimentalTestApi
-    inline fun <reified T : KLazyListItemNode> childAt(
+    inline fun <reified T : KLazyListItemNode<*>> childAt(
         position: Int,
         function: T.() -> Unit
     ) {
@@ -61,13 +62,39 @@ class KLazyListNode(
 
         performScrollToIndex(position)
 
-        val semanticNode = semanticsProvider
+        val semanticsNode = semanticsProvider
             .onNode(semanticsMatcher)
             .onChildren()
             .filterToOne(positionMatcher(position))
             .fetchSemanticsNode()
 
-        function(provideItem(semanticNode, semanticsProvider) as T)
+        function(provideItem(semanticsNode, semanticsProvider) as T)
+    }
+
+    /**
+     * Performs given actions/assertion on child that matches given matcher
+     *
+     * @param T Type of item at given position. Must be registered via constructor.
+     * @param childMatcher Matcher for item in lazy list
+     * @return Item with type T. To make actions/assertions on it immediately, use perform() infix function.
+     */
+    @ExperimentalTestApi
+    inline fun <reified T : KLazyListItemNode<*>> childWith(noinline childMatcher: ViewBuilder.() -> Unit): T {
+        val provideItem = itemTypes.getOrElse(T::class) {
+            throw LazyListItemProvisionException(T::class)
+        }.provideItem
+
+        val nodeMatcher = ViewBuilder().apply(childMatcher).build()
+
+        performScrollToNode(nodeMatcher.matcher)
+
+        val semanticsNode = semanticsProvider
+            .onNode(semanticsMatcher)
+            .onChildren()
+            .filter(nodeMatcher.matcher)[nodeMatcher.position]
+            .fetchSemanticsNode()
+
+        return provideItem(semanticsNode, semanticsProvider) as T
     }
 
     /**
@@ -77,7 +104,7 @@ class KLazyListNode(
      * @param function Tail lambda which receiver will be matched item with given type T
      */
     @ExperimentalTestApi
-    inline fun <reified T : KLazyListItemNode> firstChild(function: T.() -> Unit) {
+    inline fun <reified T : KLazyListItemNode<*>> firstChild(function: T.() -> Unit) {
         childAt(0, function)
     }
 }

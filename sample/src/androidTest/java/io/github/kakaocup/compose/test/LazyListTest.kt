@@ -27,23 +27,27 @@ class LazyListTest {
 
         onComposeScreen<LazyListScreen>(composeTestRule) {
             list {
-                childAt<LazyListHeaderNode>(0) {
+                firstChild<LazyListHeaderNode> {
                     title.assertTextEquals("Items from 1 to 10")
                 }
-                childAt<LazyListItemNode>(1) {
-                    title.assertTextEquals("Item 1")
+                childWith<LazyListItemNode> {
+                    hasText("Item 1")
+                } perform {
+                    assertTextEquals("Item 1")
                 }
                 childAt<LazyListItemNode>(10) {
-                    title.assertTextEquals("Item 10")
+                    assertTextEquals("Item 10")
                 }
-                childAt<LazyListHeaderNode>(22) {
+                childWith<LazyListHeaderNode> {
+                    hasAnyChild(androidx.compose.ui.test.hasText("Items from 21 to 30"))
+                } perform {
                     title.assertTextEquals("Items from 21 to 30")
                 }
                 childAt<LazyListItemNode>(23) {
-                    title.assertTextEquals("Item 21")
+                    assertTextEquals("Item 21")
                 }
                 childAt<LazyListItemNode>(32) {
-                    title.assertTextEquals("Item 30")
+                    assertTextEquals("Item 30")
                 }
             }
         }

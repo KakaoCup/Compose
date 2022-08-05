@@ -27,16 +27,12 @@ class LazyListScreen(semanticsProvider: SemanticsNodeInteractionsProvider) : Com
 class LazyListItemNode(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode(semanticsNode, semanticsProvider) {
-    val title: KNode = child {
-        hasTestTag("LazyListItemTitle")
-    }
-}
+) : KLazyListItemNode<LazyListItemNode>(semanticsNode, semanticsProvider)
 
 class LazyListHeaderNode(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode(semanticsNode, semanticsProvider) {
+) : KLazyListItemNode<LazyListHeaderNode>(semanticsNode, semanticsProvider) {
     val title: KNode = child {
         hasTestTag("LazyListHeaderTitle")
     }

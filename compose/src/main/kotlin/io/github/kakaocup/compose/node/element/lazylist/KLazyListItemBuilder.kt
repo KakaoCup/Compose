@@ -13,16 +13,16 @@ import kotlin.reflect.KClass
  * @see itemType
  */
 class KLazyListItemBuilder {
-    val itemTypes = mutableMapOf<KClass<out KLazyListItemNode>, KListItemType<KLazyListItemNode>>()
+    val itemTypes = mutableMapOf<KClass<out KLazyListItemNode<*>>, KListItemType<KLazyListItemNode<*>>>()
 
     /**
      * Adds entry that helps KLazyListNode to automatically build child nodes
      *
      * @param provideItem Function that takes params and returns instance of item node
      */
-    inline fun <reified T : KLazyListItemNode> itemType(noinline provideItem: (SemanticsNode, SemanticsNodeInteractionsProvider) -> T) {
+    inline fun <reified T : KLazyListItemNode<*>> itemType(noinline provideItem: (SemanticsNode, SemanticsNodeInteractionsProvider) -> T) {
         itemTypes[T::class] = KListItemType(provideItem)
     }
 }
 
-class KListItemType<out T : KLazyListItemNode>(val provideItem: (SemanticsNode, SemanticsNodeInteractionsProvider) -> T)
+class KListItemType<out T : KLazyListItemNode<*>>(val provideItem: (SemanticsNode, SemanticsNodeInteractionsProvider) -> T)

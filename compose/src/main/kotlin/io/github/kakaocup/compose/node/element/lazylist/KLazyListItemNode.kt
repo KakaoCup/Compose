@@ -14,10 +14,10 @@ import io.github.kakaocup.compose.node.core.BaseNode
  * @param semanticNode A list of key/value pairs associated with a layout node or its subtree
  * @param semanticsProvider Provides main entry point into testing
  */
-abstract class KLazyListItemNode(
+abstract class KLazyListItemNode<out T : KLazyListItemNode<T>>(
     semanticNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : BaseNode<KLazyListItemNode>(
+) : BaseNode<T>(
     semanticsProvider,
     NodeMatcher(
         matcher = SemanticsMatcher(
