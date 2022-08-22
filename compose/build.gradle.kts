@@ -1,17 +1,14 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    kotlin ("android")
     id("org.jetbrains.dokka")
 }
 
 android {
-    compileSdkVersion(31)
-
-    defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(31)
-        versionCode(1)
-        versionName(Versions.composeVersion)
+    compileSdkVersion(32)
+    defaultConfig.apply {
+        minSdk = 21
+        targetSdk = 32
     }
 
     packagingOptions {
@@ -31,7 +28,6 @@ android {
 
 dependencies {
     implementation(Libraries.espresso_core)
-    implementation(Libraries.kotlin_stdlib)
     implementation(Libraries.Compose.junit)
     implementation(Libraries.junit_ext)
 

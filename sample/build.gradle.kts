@@ -1,18 +1,17 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    kotlin("android")
 }
 
 android {
-    compileSdkVersion(31)
-
-    defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(31)
-        versionCode(1)
-        versionName("1.0.0")
-        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+    compileSdk = 32
+    defaultConfig.apply {
+        minSdk = 21
+        targetSdk = 32
+        versionCode = 1
+        versionName = "1.0.0"
         multiDexEnabled = true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -34,7 +33,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     testOptions {
@@ -53,7 +52,6 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.kotlin_stdlib)
     implementation(Libraries.appcompat)
     implementation(Libraries.material)
     implementation(Libraries.multidex)
@@ -69,6 +67,5 @@ dependencies {
     androidTestImplementation(project(":compose"))
     implementation(Libraries.Compose.junit)
 
-    //Remove this dependency after androidx.compose.ui:ui-test-junit4:1.1.0
     implementation(Libraries.junit_ext)
 }
