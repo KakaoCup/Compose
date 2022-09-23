@@ -15,7 +15,6 @@ import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
 interface NodeActions {
     val delegate: ComposeDelegate
 
-
     /**
      * Performs a click action on the element represented by the given semantics node.
      */
@@ -139,10 +138,23 @@ interface NodeActions {
      *     .performGesture { up(topLeft) }
      * ```
      */
+    @Deprecated(
+        message = "Replaced by performTouchInput",
+        replaceWith = ReplaceWith(
+            "performTouchInput(block)",
+            "import io.github.kakaocup.compose.node.action.performTouchInput"
+        )
+    )
     fun performGesture(
         block: GestureScope.() -> Unit
     ) {
         delegate.perform(ComposeBaseActionType.PERFORM_GESTURE) { performGesture(block) }
+    }
+
+    fun performTouchInput(
+        block: TouchInjectionScope.() -> Unit
+    ) {
+        delegate.perform(ComposeBaseActionType.PERFORM_TOUCH_INPUT) { performTouchInput(block) }
     }
 
     /**
@@ -193,6 +205,7 @@ interface NodeActions {
         PERFORM_SCROLL_TO_KEY,
         PERFORM_SCROLL_TO_NODE,
         PERFORM_GESTURE,
+        PERFORM_TOUCH_INPUT,
         PERFORM_SEMANTICS_ACTION,
     }
 }
