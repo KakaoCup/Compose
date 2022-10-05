@@ -19,8 +19,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
-        kotlinCompilerExtensionVersion = Versions.Compose.compose
+        kotlinCompilerVersion = libs.versions.kotlinVersion.get()
+        kotlinCompilerExtensionVersion = libs.versions.composeVersion.get()
     }
 
     packagingOptions {
@@ -52,20 +52,20 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.appcompat)
-    implementation(Libraries.material)
-    implementation(Libraries.multidex)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.multidex)
 
-    implementation(Libraries.Compose.activityCompose)
-    implementation(Libraries.Compose.uiTooling)
-    implementation(Libraries.Compose.material)
-    debugImplementation(Libraries.Compose.testManifest)
+    implementation(libs.composeActivityCompose)
+    implementation(libs.composeUiTooling)
+    implementation(libs.composeMaterial)
+    debugImplementation(libs.composeTestManifest)
 
-    implementation(Libraries.junit)
-    implementation(Libraries.espresso_core)
+    implementation(libs.junit)
+    implementation(libs.espressoCore)
 
     androidTestImplementation(project(":compose"))
-    implementation(Libraries.Compose.junit)
+    implementation(libs.composeJunit)
 
-    implementation(Libraries.junit_ext)
+    implementation(libs.junitExt)
 }

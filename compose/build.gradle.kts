@@ -27,11 +27,11 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.espresso_core)
-    implementation(Libraries.Compose.junit)
-    implementation(Libraries.junit_ext)
+    implementation(libs.espressoCore)
+    implementation(libs.composeJunit)
+    implementation(libs.junitExt)
 
-    dokkaHtmlPlugin(Libraries.dokka)
+    dokkaHtmlPlugin(libs.dokka)
 }
 
 tasks.dokkaGfm {
