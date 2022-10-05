@@ -54,7 +54,7 @@ object Deployment {
     }
 
     private fun initializePublishing(project: Project) {
-        project.version = Versions.composeVersion + versionSuffix
+        project.version = PackageInfo.version + versionSuffix
 
         project.plugins.apply("maven-publish")
 
@@ -98,7 +98,7 @@ object Deployment {
         project.configure<PublishingExtension> {
             publications {
                 create("default", MavenPublication::class.java) {
-                    groupId = Description.mavenGroup
+                    groupId = PackageInfo.groupId
                     customizePom(pom)
                     additionalArtifacts.forEach {
                         artifact(it)
