@@ -1,14 +1,14 @@
 [versions]
-kotlinVersion = "1.7.0"
-dokkaVersion = "1.4.32"
-appcompatVersion = "1.3.0"
+kotlinVersion = "1.7.20"
+dokkaVersion = "1.7.10"
+appcompatVersion = "1.5.1"
 espressoVersion = "3.4.0"
 junitVersion = "4.13.2"
 junitExtVersion = "1.1.3"
 multidexVersion = "2.0.1"
 materialVersion = "1.4.0"
-activityComposeVersion = "1.5.1"
-composeVersion = "1.2.0"
+activityComposeVersion = "1.6.0"
+composeVersion = "1.2.1"
 
 [libraries]
 composeActivityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
@@ -26,4 +26,3 @@ multidex = { module = "androidx.multidex:multidex", version.ref = "multidexVersi
 material = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 
 [plugins]
-dokkaPlugin = { id = "org.jetbrains.dokka" }
