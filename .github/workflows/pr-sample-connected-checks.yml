@@ -11,7 +11,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api: [ 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 ]
+        api: [ 24, 25, 26, 28, 29, 30, 31, 32, 33 ]
+        abi: [x86_64]
+        include:
+          - api: 27
+            abi: x86
     steps:
       - uses: actions/checkout@v1
       - name: Set up JDK 11
@@ -27,4 +31,4 @@ jobs:
           cmdOptions: -no-snapshot-save -noaudio -no-boot-anim -cores 2 -memory 3072 -no-window -gpu swiftshader_indirect
           api: ${{ matrix.api }}
           tag: google_apis
-          abi: x86_64
+          abi: ${{ matrix.abi }}
