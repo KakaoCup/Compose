@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion(33)
+    compileSdk = 33
     defaultConfig.apply {
         minSdk = 21
         targetSdk = 33

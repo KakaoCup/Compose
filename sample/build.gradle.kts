@@ -19,17 +19,11 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = libs.versions.kotlinVersion.get()
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
     }
 
     packagingOptions {
         resources.excludes.add("META-INF/*")
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
