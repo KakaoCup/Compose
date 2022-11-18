@@ -24,4 +24,8 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
         hasTestTag("myTestButton")
         hasText("Button 1")
     }
+
+    val clickCounter: KNode = child {
+        hasTestTag("clickCounter")
+    }
 }

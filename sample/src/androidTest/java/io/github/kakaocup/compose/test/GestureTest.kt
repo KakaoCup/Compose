@@ -16,11 +16,12 @@ class GestureTest {
     @Test
     fun gestureTest() {
         onComposeScreen<MainActivityScreen>(composeTestRule) {
-            myButton {
+            clickCounter {
+                assertTextEquals("0")
                 performGesture {
                     click()
                 }
-                assertTextContains("Button 1")
+                assertTextEquals("1")
             }
         }
     }
