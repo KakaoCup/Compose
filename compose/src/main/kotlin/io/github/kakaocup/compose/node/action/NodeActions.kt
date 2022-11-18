@@ -15,7 +15,6 @@ import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
 interface NodeActions {
     val delegate: ComposeDelegate
 
-
     /**
      * Performs a click action on the element represented by the given semantics node.
      */
@@ -139,10 +138,77 @@ interface NodeActions {
      *     .performGesture { up(topLeft) }
      * ```
      */
+    @Deprecated(
+        message = "Replaced by performTouchInput",
+        replaceWith = ReplaceWith(
+            "performTouchInput(block)",
+            "import io.github.kakaocup.compose.node.action.performTouchInput"
+        )
+    )
     fun performGesture(
         block: GestureScope.() -> Unit
     ) {
         delegate.perform(ComposeBaseActionType.PERFORM_GESTURE) { performGesture(block) }
+    }
+
+    /**
+     * Executes the touch gesture specified in the given [block]. The gesture doesn't need to be
+     * complete and can be resumed in a later invocation of one of the `perform.*Input` methods. The
+     * event time is initialized to the current time of the [MainTestClock].
+     *
+     * Be aware that if you split a gesture over multiple invocations of `perform.*Input`, everything
+     * that happens in between will run as if the gesture is still ongoing (imagine a finger still
+     * touching the screen).
+     *
+     * All events that are injected from the [block] are batched together and sent after [block] is
+     * complete. This method blocks while the events are injected. If an error occurs during
+     * execution of [block] or injection of the events, all (subsequent) events are dropped and the
+     * error is thrown here.
+     *
+     * Due to the batching of events, all events in a block are sent together and no recomposition will
+     * take place in between events. Additionally all events will be generated before any of the events
+     * take effect. This means that the screen coordinates of all events are resolved before any of
+     * the events can cause the position of the node being injected into to change. This has certain
+     * advantages, for example, in the cases of nested scrolling or dragging an element around, it
+     * prevents the injection of events into a moving target since all events are enqueued before any
+     * of them has taken effect.
+     *
+     * Example of performing a swipe up:
+     * ```
+     * onNodeWithTag("myComponent")
+     *     .performTouchInput { swipeUp() }
+     * ```
+     * Example of performing an off-center click:
+     * ```
+     * onNodeWithTag("myComponent")
+     *     .performTouchInput { click(percentOffset(.2f, .5f)) }
+     * ```
+     * Example of doing an assertion during a click:
+     * ```
+     * onNodeWithTag("myComponent")
+     *     .performTouchInput { down(topLeft) }
+     *     .assertHasClickAction()
+     *     .performTouchInput { up() }
+     * ```
+     * Example of performing a click-and-drag:
+     * ```
+     * onNodeWithTag("myComponent").performTouchInput {
+     *     click()
+     *     advanceEventTime(100)
+     *     swipeUp()
+     * }
+     * ```
+     *
+     * @param block A lambda with [TouchInjectionScope] as receiver that describes the gesture by
+     * sending all touch events.
+     * @return The [SemanticsNodeInteraction] that is the receiver of this method
+     *
+     * @see TouchInjectionScope
+     */
+    fun performTouchInput(
+        block: TouchInjectionScope.() -> Unit
+    ) {
+        delegate.perform(ComposeBaseActionType.PERFORM_TOUCH_INPUT) { performTouchInput(block) }
     }
 
     /**
@@ -193,6 +259,7 @@ interface NodeActions {
         PERFORM_SCROLL_TO_KEY,
         PERFORM_SCROLL_TO_NODE,
         PERFORM_GESTURE,
+        PERFORM_TOUCH_INPUT,
         PERFORM_SEMANTICS_ACTION,
     }
 }
