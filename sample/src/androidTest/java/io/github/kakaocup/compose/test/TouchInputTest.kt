@@ -16,11 +16,12 @@ class TouchInputTest {
     @Test
     fun touchInputTest() {
         onComposeScreen<MainActivityScreen>(composeTestRule) {
-            myButton {
+            clickCounter {
+                assertTextEquals("0")
                 performTouchInput {
                     click()
                 }
-                assertTextContains("Button 1")
+                assertTextEquals("1")
             }
         }
     }
