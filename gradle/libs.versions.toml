@@ -1,6 +1,6 @@
 [versions]
-kotlinVersion = "1.7.20"
-dokkaVersion = "1.7.10"
+kotlinVersion = "1.8.0"
+dokkaVersion = "1.7.20"
 appcompatVersion = "1.5.1"
 espressoVersion = "3.5.0"
 
@@ -9,13 +9,14 @@ junitExtVersion = "1.1.3"
 multidexVersion = "2.0.1"
 materialVersion = "1.4.0"
 activityComposeVersion = "1.6.0"
-composeVersion = "1.3.1"
+composeVersion = "1.3.3"
+composeMaterialVersion = "1.3.1"
 composeCompilerVersion = "1.3.2"
 
 [libraries]
 composeActivityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
 composeUiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeVersion" }
-composeMaterial = { module = "androidx.compose.material:material", version.ref = "composeVersion" }
+composeMaterial = { module = "androidx.compose.material:material", version.ref = "composeMaterialVersion" }
 composeJunit = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeVersion" }
 composeTestManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeVersion" }
 kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
