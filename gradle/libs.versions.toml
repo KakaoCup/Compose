@@ -2,7 +2,7 @@
 kotlinVersion = "1.8.0"
 dokkaVersion = "1.7.20"
 appcompatVersion = "1.5.1"
-espressoVersion = "3.5.0"
+espressoVersion = "3.5.1"
 
 junitVersion = "4.13.2"
 junitExtVersion = "1.1.3"
