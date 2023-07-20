@@ -18,6 +18,19 @@ android {
         compose = true
     }
 
+    signingConfigs {
+        create("kakao") {
+            storeFile = File("${project.rootDir}/buildsystem/debug.keystore")
+            storePassword = "android"
+            keyAlias = "kakaodebugkey"
+            keyPassword = "android"
+        }
+    }
+
+    buildTypes {
+        debug { signingConfig = signingConfigs.getByName("kakao") }
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
     }
