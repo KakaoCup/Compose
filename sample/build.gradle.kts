@@ -4,10 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
+    namespace = "io.github.kakaocup.compose"
     defaultConfig.apply {
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
         multiDexEnabled = true
@@ -35,12 +36,15 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
     }
 
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
-    }
+    packaging.resources.excludes.add("META-INF/*")
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     testOptions {
@@ -59,20 +63,22 @@ android {
 }
 
 dependencies {
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.multidex)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.com.google.android.material)
+    implementation(libs.androidx.multidex.multidex)
 
-    implementation(libs.composeActivityCompose)
-    implementation(libs.composeUiTooling)
-    implementation(libs.composeMaterial)
-    debugImplementation(libs.composeTestManifest)
+    implementation(libs.androidx.activity.activityCompose)
 
-    implementation(libs.junit)
-    implementation(libs.espressoCore)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui.uiTooling)
+    implementation(libs.androidx.compose.material)
+    debugImplementation(libs.androidx.compose.ui.uiTestManifest)
+
+    implementation(libs.junit.junit)
+    implementation(libs.androidx.test.espresso.espressoCore)
 
     androidTestImplementation(project(":compose"))
-    implementation(libs.composeJunit)
+    implementation(libs.androidx.compose.ui.uiTestJunit4)
 
-    implementation(libs.junitExt)
+    implementation(libs.androidx.test.ext.junit)
 }

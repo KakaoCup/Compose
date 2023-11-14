@@ -63,11 +63,11 @@ object Deployment {
                 val android = project.extensions.findByType(LibraryExtension::class)!!
                 val main = android.sourceSets.getByName("main")
                 val sourcesJar by project.tasks.creating(Jar::class) {
-                    classifier = "sources"
+                    archiveClassifier.set("sources")
                     from(main.java.srcDirs)
                 }
                 val javadocJar by project.tasks.creating(Jar::class) {
-                    classifier = "javadoc"
+                    archiveClassifier.set("javadoc")
                     val dokka = project.tasks.findByName("dokkaJavadoc") as DokkaTask
                     from(dokka.outputDirectory)
                     dependsOn(dokka)
@@ -79,11 +79,11 @@ object Deployment {
                 val javaPlugin = project.the(JavaPluginConvention::class)
 
                 val sourcesJar by project.tasks.creating(Jar::class) {
-                    classifier = "sources"
+                    archiveClassifier.set("sources")
                     from(javaPlugin.sourceSets["main"].allSource)
                 }
                 val javadocJar by project.tasks.creating(Jar::class) {
-                    classifier = "javadoc"
+                    archiveClassifier.set("javadoc")
                     from(javaPlugin.docsDir)
                     dependsOn("javadoc")
                 }
