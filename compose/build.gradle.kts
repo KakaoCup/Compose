@@ -5,15 +5,14 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    namespace = "io.github.kakaocup.compose"
+    compileSdk = 34
     defaultConfig.apply {
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
     }
 
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
-    }
+    packaging.resources.excludes.add("META-INF/*")
 
     sourceSets {
         getByName("main") {
@@ -27,11 +26,13 @@ android {
 }
 
 dependencies {
-    implementation(libs.espressoCore)
-    implementation(libs.composeJunit)
-    implementation(libs.junitExt)
+    implementation(libs.androidx.test.espresso.espressoCore)
+    implementation(libs.androidx.test.ext.junit)
 
-    dokkaHtmlPlugin(libs.dokka)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui.uiTestJunit4)
+
+    dokkaHtmlPlugin(libs.org.jetbrains.dokka.kotlinAsJavaPlugin)
 }
 
 tasks.dokkaGfm {
