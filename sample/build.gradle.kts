@@ -28,25 +28,7 @@ android {
         }
     }
 
-    buildTypes {
-        debug { signingConfig = signingConfigs.getByName("kakao") }
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
-    }
-
     packaging.resources.excludes.add("META-INF/*")
-
-    compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
-        sourceCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget =  "1.8"
-    }
-
 
     testOptions {
         animationsDisabled = true
@@ -62,6 +44,8 @@ android {
         }
     }
 }
+
+kotlin.jvmToolchain(17)
 
 dependencies {
     implementation(libs.androidx.appcompat)

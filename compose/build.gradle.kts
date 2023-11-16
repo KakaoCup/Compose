@@ -12,14 +12,7 @@ android {
         targetSdk = 34
     }
 
-    compileOptions {
-        targetCompatibility = JavaVersion.VERSION_1_8
-        sourceCompatibility = JavaVersion.VERSION_1_8
-    }
 
-    kotlinOptions {
-        jvmTarget =  "1.8"
-    }
 
     packaging.resources.excludes.add("META-INF/*")
 
@@ -51,6 +44,11 @@ tasks.dokkaGfm {
 tasks.dokkaHtml.configure {
     moduleName.set("compose")
     outputDirectory.set(File("$rootDir/html"))
+}
+
+kotlin.jvmToolchain(17)
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile>().configureEach {
+    jvmTargetValidationMode.set(org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode.WARNING)
 }
 
 afterEvaluate {
