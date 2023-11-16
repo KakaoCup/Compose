@@ -6,6 +6,19 @@ on:
       - '.github/workflows/master-github-pages.yaml'
       - '.github/workflows/release-deploy.yaml'
 jobs:
+  assemble-library:
+    name: Assemble Compose Library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: 17
+      - name: Assemble Compose library
+        run: bash ./gradlew compose:assembleDebug
+        
   assemble-debug-apk:
     name: Assemble Debug APK
     runs-on: ubuntu-latest
