@@ -38,14 +38,15 @@ android {
 
     packaging.resources.excludes.add("META-INF/*")
 
-    kotlinOptions {
-        jvmTarget = "17"
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+    kotlinOptions {
+        jvmTarget =  "1.8"
     }
+
 
     testOptions {
         animationsDisabled = true

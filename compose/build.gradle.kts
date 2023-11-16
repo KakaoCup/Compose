@@ -12,6 +12,15 @@ android {
         targetSdk = 34
     }
 
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget =  "1.8"
+    }
+
     packaging.resources.excludes.add("META-INF/*")
 
     sourceSets {
