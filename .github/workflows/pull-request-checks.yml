@@ -1,6 +1,13 @@
-name: Pull Request assemble artifacts
+name: Pull Request Checks
 on:
   pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - 'README.md'
+      - '.github/workflows/master-github-pages.yaml'
+      - '.github/workflows/release-deploy.yaml'
+  push:
+    branches: [ master ]
     paths-ignore:
       - 'README.md'
       - '.github/workflows/master-github-pages.yaml'
@@ -41,3 +48,27 @@ jobs:
         with:
           name: apk
           path: sample/build/outputs/apk/androidTest/debug/sample-debug-androidTest.apk
+
+  firebase-lab-test:
+    needs: [ assemble-debug-apk, assemble-debug-android-test-apk ]
+    name: Firebase Instrumental API
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [ 26, 27, 28, 29, 30, 31, 32, 33 ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download APKs
+        uses: actions/download-artifact@v3
+        with:
+          name: apk
+      - name: Run tests on Firebase Test Lab for API ${{ matrix.api }}
+        uses: vacxe/firebase-test-lab-action@0.0.6
+        with:
+          service-account: ${{ secrets.FIREBASE_TESTLAB_JSON }}
+          app: apk/sample-debug.apk
+          test: apk/sample-debug-androidTest.apk
+          device-id: MediumPhone.arm
+          os-version-id: ${{ matrix.api }}
+          num-flaky-test-attempts: 4
