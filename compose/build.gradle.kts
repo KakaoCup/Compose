@@ -23,6 +23,10 @@ android {
             java.srcDir("src/test/kotlin")
         }
     }
+
+    kotlin {
+        jvmToolchain(17)
+    }
 }
 
 dependencies {

@@ -38,8 +38,8 @@ android {
 
     packaging.resources.excludes.add("META-INF/*")
 
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        jvmToolchain(17)
     }
 
     compileOptions {
