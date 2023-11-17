@@ -1,6 +1,6 @@
 name: Pull Request Checks
 on:
-  pull_request_target:
+  pull_request:
     paths-ignore:
       - 'README.md'
       - '.github/workflows/master-github-pages.yaml'
