@@ -8,6 +8,7 @@ import io.github.kakaocup.compose.intercept.delegate.ComposeInterceptable
 import io.github.kakaocup.compose.node.action.NodeActions
 import io.github.kakaocup.compose.node.action.TextActions
 import io.github.kakaocup.compose.node.assertion.NodeAssertions
+import io.github.kakaocup.compose.node.assertion.TextResourcesNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.NodeProvider
 import io.github.kakaocup.compose.node.builder.ViewBuilder
@@ -17,7 +18,12 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     @PublishedApi internal val semanticsProvider: SemanticsNodeInteractionsProvider,
     private val nodeMatcher: NodeMatcher,
     private val parentNode: BaseNode<*>? = null,
-) : KDSL<T>, NodeAssertions, NodeActions, TextActions, ComposeInterceptable {
+) : KDSL<T>,
+    NodeAssertions,
+    TextResourcesNodeAssertions,
+    NodeActions,
+    TextActions,
+    ComposeInterceptable {
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,

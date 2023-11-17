@@ -1,5 +1,6 @@
-package io.github.kakaocup.compose
+package io.github.kakaocup.compose.sample
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,11 +22,13 @@ import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun LazyListScreen() {
     val items = remember { getItems() }
 
-    Scaffold(Modifier.testTag("LazyListScreen")) {
+    Scaffold(
+        Modifier.testTag("LazyListScreen")) { _ ->
         LazyColumn(
             Modifier
                 .fillMaxSize()

@@ -23,6 +23,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     val myButton: KNode = child {
         hasTestTag("myTestButton")
         hasText("Button 1")
+        hasText(io.github.kakaocup.compose.sample.R.string.button_1)
     }
 
     val clickCounter: KNode = child {

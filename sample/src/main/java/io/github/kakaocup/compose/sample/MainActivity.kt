@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose
+package io.github.kakaocup.compose.sample
 
 import android.os.Bundle
 import androidx.activity.compose.setContent

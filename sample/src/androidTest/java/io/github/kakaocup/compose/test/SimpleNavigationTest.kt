@@ -2,7 +2,7 @@ package io.github.kakaocup.compose.test
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.junit4.createComposeRule
-import io.github.kakaocup.compose.SimpleNavigationScreen
+import io.github.kakaocup.compose.sample.SimpleNavigationScreen
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.screen.navigation.FirstNavigationScreen
 import io.github.kakaocup.compose.screen.navigation.SecondNavigationScreen

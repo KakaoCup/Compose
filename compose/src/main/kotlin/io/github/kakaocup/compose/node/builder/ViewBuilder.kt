@@ -1,9 +1,11 @@
 package io.github.kakaocup.compose.node.builder
 
+import androidx.annotation.StringRes
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
 import androidx.compose.ui.text.input.ImeAction
 import io.github.kakaocup.compose.node.core.ComposeMarker
+import io.github.kakaocup.compose.utilities.getResourceString
 
 @ComposeMarker
 class ViewBuilder {
@@ -139,6 +141,25 @@ class ViewBuilder {
     ) = addFilter(androidx.compose.ui.test.hasContentDescription(value, substring, ignoreCase))
 
     /**
+     * Returns whether the node's content description contains the given [value].
+     *
+     * Note that in merged semantics tree there can be a list of content descriptions that got merged
+     * from the child nodes. Typically an accessibility tooling will decide based on its heuristics
+     * which ones to announce.
+     *
+     * @param resId String resource id to match as one of the items in the list of content descriptions.
+     * @param substring Whether to use substring matching.
+     * @param ignoreCase Whether case should be ignored.
+     *
+     * @see SemanticsProperties.ContentDescription
+     */
+    fun hasContentDescription(
+        @StringRes resId: Int,
+        substring: Boolean = false,
+        ignoreCase: Boolean = false
+    ) = hasContentDescription(getResourceString(resId), substring, ignoreCase)
+
+    /**
      * Returns whether the node's content description contains exactly the given [values] and nothing
      * else.
      *
@@ -153,6 +174,23 @@ class ViewBuilder {
     fun hasContentDescriptionExactly(
         vararg values: String
     ) = addFilter(androidx.compose.ui.test.hasContentDescriptionExactly(values = values))
+
+    /**
+     * Returns whether the node's content description contains exactly the given [values] and nothing
+     * else.
+     *
+     * Note that in merged semantics tree there can be a list of content descriptions that got merged
+     * from the child nodes. Typically an accessibility tooling will decide based on its heuristics
+     * which ones to announce.
+     *
+     * @param resIds List of string resources id's values to match (the order does not matter)
+     *
+     * @see SemanticsProperties.ContentDescription
+     */
+    fun hasContentDescriptionExactly(
+        @StringRes vararg resIds: Int
+    ) = hasContentDescriptionExactly(values = resIds.map(::getResourceString).toTypedArray())
+
     /**
      * Returns whether the node's text contains the given [text].
      *
@@ -174,6 +212,28 @@ class ViewBuilder {
         substring: Boolean = false,
         ignoreCase: Boolean = false
     ) = addFilter(androidx.compose.ui.test.hasText(text, substring, ignoreCase))
+
+    /**
+     * Returns whether the node's text contains the given [text].
+     *
+     * This will also search in [SemanticsProperties.EditableText].
+     *
+     * Note that in merged semantics tree there can be a list of text items that got merged from
+     * the child nodes. Typically an accessibility tooling will decide based on its heuristics which
+     * ones to use.
+     *
+     * @param resId String resource id value to match as one of the items in the list of text values.
+     * @param substring Whether to use substring matching.
+     * @param ignoreCase Whether case should be ignored.
+     *
+     * @see SemanticsProperties.Text
+     * @see SemanticsProperties.EditableText
+     */
+    fun hasText(
+        @StringRes resId: Int,
+        substring: Boolean = false,
+        ignoreCase: Boolean = false
+    ) = hasText(getResourceString(resId), substring, ignoreCase)
 
     /**
      * Returns whether the node's text contains exactly the given [values] and nothing else.
@@ -198,6 +258,29 @@ class ViewBuilder {
         includeEditableText = includeEditableText))
 
     /**
+     * Returns whether the node's text contains exactly the given [values] and nothing else.
+     *
+     * This will also search in [SemanticsProperties.EditableText] by default.
+     *
+     * Note that in merged semantics tree there can be a list of text items that got merged from
+     * the child nodes. Typically an accessibility tooling will decide based on its heuristics which
+     * ones to use.
+     *
+     * @param resIds Values List of string resources id's to match (the order does not matter)
+     * @param includeEditableText Whether to also assert against the editable text.
+     *
+     * @see SemanticsProperties.Text
+     * @see SemanticsProperties.EditableText
+     */
+    fun hasTextExactly(
+        @StringRes vararg resIds: Int,
+        includeEditableText: Boolean = true
+    ) = hasTextExactly(
+        textValues = resIds.map(::getResourceString).toTypedArray(),
+        includeEditableText = includeEditableText
+    )
+
+    /**
      * Returns whether the node's value matches exactly to the given accessibility value.
      *
      * @param value Value to match.
@@ -206,6 +289,15 @@ class ViewBuilder {
      */
     fun hasStateDescription(value: String) =
         addFilter(androidx.compose.ui.test.hasStateDescription(value))
+
+    /**
+     * Returns whether the node's value matches exactly to the given accessibility value.
+     *
+     * @param resId String resource id value to match.
+     *
+     * @see SemanticsProperties.StateDescription
+     */
+    fun hasStateDescription(@StringRes resId: Int) = hasStateDescription(getResourceString(resId))
 
     /**
      * Returns whether the node is marked as an accessibility header.
@@ -232,6 +324,15 @@ class ViewBuilder {
      * @see SemanticsProperties.TestTag
      */
     fun hasTestTag(testTag: String) = addFilter(androidx.compose.ui.test.hasTestTag(testTag))
+
+    /**
+     * Returns whether the node is annotated by the given test tag.
+     *
+     * @param resId String resource id to match.
+     *
+     * @see SemanticsProperties.TestTag
+     */
+    fun hasTestTag(@StringRes resId: Int) = hasTestTag(getResourceString(resId))
 
     /**
      * Returns whether the node is a dialog.
