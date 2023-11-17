@@ -1,5 +1,6 @@
-package io.github.kakaocup.compose
+package io.github.kakaocup.compose.sample
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,9 +36,10 @@ fun SimpleNavigationScreen() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 private fun FirstNavigationScreen(onNavigateSecondScreen: () -> Unit) {
-    Scaffold(Modifier.testTag("FirstNavigationScreen")) {
+    Scaffold(Modifier.testTag("FirstNavigationScreen")) { _ ->
         Card(Modifier.padding(64.dp)) {
             Box(
                 Modifier
@@ -61,9 +63,10 @@ private fun FirstNavigationScreen(onNavigateSecondScreen: () -> Unit) {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 private fun SecondNavigationScreen() {
-    Scaffold(Modifier.testTag("SecondNavigationScreen")) {
+    Scaffold(Modifier.testTag("SecondNavigationScreen")) { _ ->
         Card(Modifier.padding(64.dp)) {
             Box(
                 Modifier

@@ -3,7 +3,7 @@ package io.github.kakaocup.compose.test
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createComposeRule
-import io.github.kakaocup.compose.LazyListScreen
+import io.github.kakaocup.compose.sample.LazyListScreen
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.screen.LazyListHeaderNode
 import io.github.kakaocup.compose.screen.LazyListItemNode

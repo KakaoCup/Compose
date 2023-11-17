@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose
+package io.github.kakaocup.compose.sample
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun MainScreen() {
@@ -40,7 +41,7 @@ fun MainScreen() {
 
         Button(
             content = {
-                Text(text = "Button 1")
+                Text(text = stringResource(R.string.button_1))
             },
             onClick = {
                 // nothing
