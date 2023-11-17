@@ -1,0 +1,30 @@
+name: Run Instrument test on Firebase
+on:
+  workflow_run:
+    workflows: ["Pull Request assemble artifacts"]
+    types:
+      - completed
+
+jobs:
+  firebase-lab-test:
+    name: Firebase Instrumental API
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [ 26, 27, 28, 29, 30, 31, 32, 33 ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download APKs
+        uses: actions/download-artifact@v3
+        with:
+          name: apk
+      - name: Run tests on Firebase Test Lab for API ${{ matrix.api }}
+        uses: vacxe/firebase-test-lab-action@0.0.6
+        with:
+          service-account: ${{ secrets.FIREBASE_TESTLAB_JSON }}
+          app: apk/sample-debug.apk
+          test: apk/sample-debug-androidTest.apk
+          device-id: MediumPhone.arm
+          os-version-id: ${{ matrix.api }}
+          num-flaky-test-attempts: 4
