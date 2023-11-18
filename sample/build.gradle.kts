@@ -5,7 +5,7 @@ plugins {
 
 android {
     compileSdk = 34
-    namespace = "io.github.kakaocup.compose"
+    namespace = "io.github.kakaocup.compose.sample"
     defaultConfig.apply {
         minSdk = 21
         targetSdk = 34
@@ -63,6 +63,8 @@ android {
 }
 
 dependencies {
+    androidTestImplementation(project(":compose"))
+
     implementation(libs.androidx.appcompat)
     implementation(libs.com.google.android.material)
     implementation(libs.androidx.multidex.multidex)
@@ -77,8 +79,6 @@ dependencies {
     implementation(libs.junit.junit)
     implementation(libs.androidx.test.espresso.espressoCore)
 
-    androidTestImplementation(project(":compose"))
     implementation(libs.androidx.compose.ui.uiTestJunit4)
-
     implementation(libs.androidx.test.ext.junit)
 }

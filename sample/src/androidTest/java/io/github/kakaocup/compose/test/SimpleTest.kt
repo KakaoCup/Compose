@@ -1,7 +1,7 @@
 package io.github.kakaocup.compose.test
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import io.github.kakaocup.compose.MainActivity
+import io.github.kakaocup.compose.sample.MainActivity
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.screen.MainActivityScreen
 import org.junit.Rule
@@ -18,6 +18,7 @@ class SimpleTest {
             myButton {
                 assertIsDisplayed()
                 assertTextContains("Button 1")
+                assertTextContains(io.github.kakaocup.compose.sample.R.string.button_1)
             }
 
             myText1 {

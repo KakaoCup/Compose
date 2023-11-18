@@ -2,7 +2,7 @@ package io.github.kakaocup.compose.test
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import io.github.kakaocup.compose.KakaoCompose
-import io.github.kakaocup.compose.MainActivity
+import io.github.kakaocup.compose.sample.MainActivity
 import io.github.kakaocup.compose.extensions.screens
 import org.junit.Assert
 import org.junit.Rule
