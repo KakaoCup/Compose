@@ -1,6 +1,7 @@
 @file:Suppress("DEPRECATION")
 
 import com.android.build.gradle.LibraryExtension
+import com.android.build.gradle.internal.api.DefaultAndroidSourceDirectorySet
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginConvention
@@ -64,7 +65,7 @@ object Deployment {
                 val main = android.sourceSets.getByName("main")
                 val sourcesJar by project.tasks.creating(Jar::class) {
                     archiveClassifier.set("sources")
-                    from(main.java.srcDirs)
+                    from((main.kotlin as DefaultAndroidSourceDirectorySet).srcDirs)
                 }
                 val javadocJar by project.tasks.creating(Jar::class) {
                     archiveClassifier.set("javadoc")
