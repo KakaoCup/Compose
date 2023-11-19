@@ -37,7 +37,7 @@ jobs:
       - name: Assemble Instrumental APK
         run: bash ./gradlew sample:assembleDebugAndroidTest
       - name: Upload app APK
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: apk
           path: sample/build/outputs/apk/androidTest/debug/sample-debug-androidTest.apk
