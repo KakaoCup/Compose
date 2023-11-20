@@ -1,7 +1,7 @@
 @file:Suppress("DEPRECATION")
 
 import com.android.build.gradle.LibraryExtension
-import com.android.build.gradle.internal.api.DefaultAndroidSourceDirectorySet
+import com.android.build.gradle.internal.tasks.factory.dependsOn
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPluginConvention
@@ -59,52 +59,12 @@ object Deployment {
 
         project.plugins.apply("maven-publish")
 
-        val (component, additionalArtifacts) = when {
-            project.extensions.findByType(LibraryExtension::class) != null -> {
-                val android = project.extensions.findByType(LibraryExtension::class)!!
-                val main = android.sourceSets.getByName("main")
-                val sourcesJar by project.tasks.creating(Jar::class) {
-                    archiveClassifier.set("sources")
-                    from((main.kotlin as DefaultAndroidSourceDirectorySet).srcDirs)
-                }
-                val javadocJar by project.tasks.creating(Jar::class) {
-                    archiveClassifier.set("javadoc")
-                    val dokka = project.tasks.findByName("dokkaJavadoc") as DokkaTask
-                    from(dokka.outputDirectory)
-                    dependsOn(dokka)
-                }
-
-                Pair(project.components["release"], listOf(sourcesJar, javadocJar))
-            }
-            project.the(JavaPluginConvention::class) != null -> {
-                val javaPlugin = project.the(JavaPluginConvention::class)
-
-                val sourcesJar by project.tasks.creating(Jar::class) {
-                    archiveClassifier.set("sources")
-                    from(javaPlugin.sourceSets["main"].allSource)
-                }
-                val javadocJar by project.tasks.creating(Jar::class) {
-                    archiveClassifier.set("javadoc")
-                    from(javaPlugin.docsDir)
-                    dependsOn("javadoc")
-                }
-
-                Pair(project.components["java"], listOf(sourcesJar, javadocJar))
-            }
-            else -> {
-                throw RuntimeException("Unknown plugin")
-            }
-        }
-
         project.configure<PublishingExtension> {
             publications {
                 create("default", MavenPublication::class.java) {
                     groupId = PackageInfo.groupId
                     customizePom(pom)
-                    additionalArtifacts.forEach {
-                        artifact(it)
-                    }
-                    from(component)
+                    from(project.components["release"])
                 }
             }
             repositories {
