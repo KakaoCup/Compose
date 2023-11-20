@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>performTouchInput</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            compose
+                    </a>
+            </div>
+            <div class="library-version">
+0.3.0-SNAPSHOT            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":compose:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageIds="compose::io.github.kakaocup.compose.node.action/NodeActions/performTouchInput/#kotlin.Function1[androidx.compose.ui.test.TouchInjectionScope,kotlin.Unit]/PointingToDeclaration//901554290">
+  <div class="breadcrumbs"><a href="../../../index.html">compose</a><span class="delimiter">/</span><a href="../index.html">io.github.kakaocup.compose.node.action</a><span class="delimiter">/</span><a href="index.html">NodeActions</a><span class="delimiter">/</span><span class="current">performTouchInput</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>perform</span><wbr></wbr><span>Touch</span><wbr></wbr><span><span>Input</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="perform-touch-input.html"><span class="token function">performTouchInput</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/TouchInjectionScope.html">TouchInjectionScope</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> block</span></span><span class="token punctuation">)</span></div><p class="paragraph">Executes the touch gesture specified in the given <a href="perform-touch-input.html">block</a>. The gesture doesn't need to be complete and can be resumed in a later invocation of one of the <code class="lang-kotlin">perform.*Input</code> methods. The event time is initialized to the current time of the <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/MainTestClock.html">MainTestClock</a>.</p><p class="paragraph">Be aware that if you split a gesture over multiple invocations of <code class="lang-kotlin">perform.*Input</code>, everything that happens in between will run as if the gesture is still ongoing (imagine a finger still touching the screen).</p><p class="paragraph">All events that are injected from the <a href="perform-touch-input.html">block</a> are batched together and sent after <a href="perform-touch-input.html">block</a> is complete. This method blocks while the events are injected. If an error occurs during execution of <a href="perform-touch-input.html">block</a> or injection of the events, all (subsequent) events are dropped and the error is thrown here.</p><p class="paragraph">Due to the batching of events, all events in a block are sent together and no recomposition will take place in between events. Additionally all events will be generated before any of the events take effect. This means that the screen coordinates of all events are resolved before any of the events can cause the position of the node being injected into to change. This has certain advantages, for example, in the cases of nested scrolling or dragging an element around, it prevents the injection of events into a moving target since all events are enqueued before any of them has taken effect.</p><p class="paragraph">Example of performing a swipe up:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">onNodeWithTag(&quot;myComponent&quot;)<br>    .performTouchInput { swipeUp() }</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Example of performing an off-center click:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">onNodeWithTag(&quot;myComponent&quot;)<br>    .performTouchInput { click(percentOffset(.2f, .5f)) }</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Example of doing an assertion during a click:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">onNodeWithTag(&quot;myComponent&quot;)<br>    .performTouchInput { down(topLeft) }<br>    .assertHasClickAction()<br>    .performTouchInput { up() }</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Example of performing a click-and-drag:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">onNodeWithTag(&quot;myComponent&quot;).performTouchInput {<br>    click()<br>    advanceEventTime(100)<br>    swipeUp()<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><span class="kdoc-tag"><h4 class="">Return</h4><p class="paragraph">The <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/SemanticsNodeInteraction.html">SemanticsNodeInteraction</a> that is the receiver of this method</p></span><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>block</span></span></u></div></span></div><div><div class="title"><p class="paragraph">A lambda with <a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/TouchInjectionScope.html">TouchInjectionScope</a> as receiver that describes the gesture by sending all touch events.</p></div></div></div></div></div><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/TouchInjectionScope.html"><span>Touch</span><wbr></wbr><span>Injection</span><wbr></wbr><span><span>Scope</span></span></a></div></span></div><div></div></div></div></div></div></div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
