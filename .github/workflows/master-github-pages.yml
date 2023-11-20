@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-    paths:
-      - compose/**
+#    paths:
+#      - compose/**
 
 jobs:
   github-pages:
@@ -19,8 +19,13 @@ jobs:
       - name: dokkaHtml
         run: |
           ./gradlew clean dokkaHtml
-      - uses: helaili/jekyll-action@v2
+      - name: Build Page
+        uses: actions/jekyll-build-pages@v1
         with:
-          jekyll_src: 'html'
-          target_branch: 'gh-pages'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          source: "./html"
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+
