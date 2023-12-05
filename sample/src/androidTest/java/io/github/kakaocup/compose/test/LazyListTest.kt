@@ -3,6 +3,7 @@ package io.github.kakaocup.compose.test
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.swipeDown
 import io.github.kakaocup.compose.sample.LazyListScreen
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.screen.LazyListHeaderNode
@@ -26,7 +27,12 @@ class LazyListTest {
         }
 
         onComposeScreen<LazyListScreen>(composeTestRule) {
+            list.assertLengthEquals(0)
+            pullToRefresh.performTouchInput {
+                swipeDown(startY = 200f)
+            }
             list {
+                assertLengthEquals(33)
                 firstChild<LazyListHeaderNode> {
                     title.assertTextEquals("Items from 1 to 10")
                 }
@@ -50,6 +56,11 @@ class LazyListTest {
                     assertTextEquals("Item 30")
                 }
             }
+            list.performScrollToIndex(0)
+            pullToRefresh.performTouchInput {
+                swipeDown(startY = 200f)
+            }
+            list.assertLengthEquals(34)
         }
     }
 }
