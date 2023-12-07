@@ -1,6 +1,7 @@
 package io.github.kakaocup.compose.screen
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import io.github.kakaocup.compose.node.KAppIconNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.KNode
 
@@ -18,6 +19,18 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     val myText2: KNode = child {
         hasTestTag("mySimpleText")
         hasPosition(1)
+    }
+
+    val changeIconsButton: KNode = child {
+        hasTestTag("changeIconButton")
+    }
+
+    val iconDrawableRes: KAppIconNode = child {
+        hasTestTag("iconDrawableRes")
+    }
+
+    val iconImageVector: KAppIconNode = child {
+        hasTestTag("iconImageVector")
     }
 
     val myButton: KNode = child {
