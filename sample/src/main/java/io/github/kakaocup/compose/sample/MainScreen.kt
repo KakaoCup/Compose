@@ -27,11 +27,13 @@ import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.kakaocup.compose.sample.semantics.imageContentSemantic
+import io.github.kakaocup.compose.sample.semantics.textColorSemantic
 import io.github.kakaocup.compose.sample.semantics.tintColorSemantic
 
 @Composable
 fun MainScreen() {
     var tintColor by remember { mutableStateOf(Color.Black) }
+    var textColor by remember { mutableStateOf(Color.Black) }
     var iconRes by remember { mutableIntStateOf(R.drawable.ic_android) }
     var iconImageVector by remember { mutableStateOf(Icons.Filled.AccountCircle) }
 
@@ -87,6 +89,45 @@ fun MainScreen() {
             modifier = Modifier
                 .padding(8.dp)
                 .semantics { testTag = "changeIconButton" }
+        )
+
+        Text(
+            text = "Text without style",
+            modifier = Modifier
+                .padding(8.dp)
+                .semantics { testTag = "textWithoutStyle" }
+        )
+
+        Text(
+            text = "Text with style",
+            modifier = Modifier
+                .padding(8.dp)
+                .semantics { testTag = "textWithStyle" }
+                .textColorSemantic(textColor),
+            style = MaterialTheme.typography.body1.copy(
+                color = textColor
+            )
+        )
+
+        Text(
+            text = "Text with semantic property",
+            color = textColor,
+            modifier = Modifier
+                .padding(8.dp)
+                .semantics { testTag = "textWithSemantic" }
+                .textColorSemantic(textColor)
+        )
+
+        Button(
+            content = {
+                Text(text = stringResource(R.string.button_change_text_color))
+            },
+            onClick = {
+                textColor = Color.Blue
+            },
+            modifier = Modifier
+                .padding(8.dp)
+                .semantics { testTag = "changeTextColorButton" }
         )
 
         Button(
