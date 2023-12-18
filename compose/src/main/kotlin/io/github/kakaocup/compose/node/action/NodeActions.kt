@@ -1,6 +1,5 @@
 package io.github.kakaocup.compose.node.action
 
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.semantics.AccessibilityAction
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsActions.ScrollBy
@@ -12,8 +11,11 @@ import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.test.*
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
-import io.github.kakaocup.compose.node.action.options.DoubleClickConfig
-import io.github.kakaocup.compose.node.action.options.LongClickConfig
+import io.github.kakaocup.compose.node.action.extension.createOffset
+import io.github.kakaocup.compose.node.action.option.ClickConfig
+import io.github.kakaocup.compose.node.action.option.DoubleClickConfig
+import io.github.kakaocup.compose.node.action.option.LongClickConfig
+import io.github.kakaocup.compose.node.action.option.Offsets
 
 interface NodeActions {
     val delegate: ComposeDelegate
@@ -21,19 +23,24 @@ interface NodeActions {
     /**
      * Performs a click action on the element represented by the given semantics node.
      */
-    fun performClick() {
-        delegate.perform(ComposeBaseActionType.PERFORM_CLICK) { performClick() }
+    fun performClick(offset: Offsets = Offsets.CENTER, config: ClickConfig? = null) {
+        delegate.perform(ComposeBaseActionType.PERFORM_CLICK) {
+            performTouchInput {
+                click(position = createOffset(offset, config?.xOffset, config?.yOffset))
+            }
+        }
     }
 
     /**
      * Performs a double click action on the element represented by the given semantics node.
      */
-    fun performDoubleClick(doubleClickConfig: DoubleClickConfig? = null) {
+    fun performDoubleClick(offset: Offsets = Offsets.CENTER, config: DoubleClickConfig? = null) {
         delegate.perform(ComposeBaseActionType.PERFORM_DOUBLE_CLICK) {
             performTouchInput {
                 doubleClick(
-                    position = Offset(doubleClickConfig?.xOffset ?: centerX, doubleClickConfig?.yOffset ?: centerY),
-                    delayMillis = doubleClickConfig?.delayMs ?: ((viewConfiguration.doubleTapMinTimeMillis + viewConfiguration.doubleTapTimeoutMillis) / 2)
+                    delayMillis = config?.delayMs
+                        ?: ((viewConfiguration.doubleTapMinTimeMillis + viewConfiguration.doubleTapTimeoutMillis) / 2),
+                    position = createOffset(offset, config?.xOffset, config?.yOffset)
                 )
             }
         }
@@ -42,12 +49,12 @@ interface NodeActions {
     /**
      * Performs a long click action on the element represented by the given semantics node.
      */
-    fun performLongClick(longClickConfig: LongClickConfig? = null) {
+    fun performLongClick(offset: Offsets = Offsets.CENTER, config: LongClickConfig? = null) {
         delegate.perform(ComposeBaseActionType.PERFORM_LONG_CLICK) {
             performTouchInput {
                 longClick(
-                    position = Offset(longClickConfig?.xOffset ?: centerX, longClickConfig?.yOffset ?: centerY),
-                    durationMillis = longClickConfig?.durationMs ?: ((viewConfiguration.doubleTapMinTimeMillis + viewConfiguration.doubleTapTimeoutMillis) / 2)
+                    position = createOffset(offset, config?.xOffset, config?.yOffset),
+                    durationMillis = config?.durationMs ?: viewConfiguration.longPressTimeoutMillis
                 )
             }
         }

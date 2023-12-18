@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.node.action.options
+package io.github.kakaocup.compose.node.action.option
 
 data class DoubleClickConfig(
     val xOffset: Float = 0F,
