@@ -1,5 +1,6 @@
 package io.github.kakaocup.compose.node.action
 
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.semantics.AccessibilityAction
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsActions.ScrollBy
@@ -11,6 +12,8 @@ import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.test.*
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
+import io.github.kakaocup.compose.node.action.options.DoubleClickConfig
+import io.github.kakaocup.compose.node.action.options.LongClickConfig
 
 interface NodeActions {
     val delegate: ComposeDelegate
@@ -20,6 +23,34 @@ interface NodeActions {
      */
     fun performClick() {
         delegate.perform(ComposeBaseActionType.PERFORM_CLICK) { performClick() }
+    }
+
+    /**
+     * Performs a double click action on the element represented by the given semantics node.
+     */
+    fun performDoubleClick(doubleClickConfig: DoubleClickConfig? = null) {
+        delegate.perform(ComposeBaseActionType.PERFORM_DOUBLE_CLICK) {
+            performTouchInput {
+                doubleClick(
+                    position = Offset(doubleClickConfig?.xOffset ?: centerX, doubleClickConfig?.yOffset ?: centerY),
+                    delayMillis = doubleClickConfig?.delayMs ?: ((viewConfiguration.doubleTapMinTimeMillis + viewConfiguration.doubleTapTimeoutMillis) / 2)
+                )
+            }
+        }
+    }
+
+    /**
+     * Performs a long click action on the element represented by the given semantics node.
+     */
+    fun performLongClick(longClickConfig: LongClickConfig? = null) {
+        delegate.perform(ComposeBaseActionType.PERFORM_LONG_CLICK) {
+            performTouchInput {
+                longClick(
+                    position = Offset(longClickConfig?.xOffset ?: centerX, longClickConfig?.yOffset ?: centerY),
+                    durationMillis = longClickConfig?.durationMs ?: ((viewConfiguration.doubleTapMinTimeMillis + viewConfiguration.doubleTapTimeoutMillis) / 2)
+                )
+            }
+        }
     }
 
     /**
@@ -254,6 +285,8 @@ interface NodeActions {
 
     enum class ComposeBaseActionType : ComposeOperationType {
         PERFORM_CLICK,
+        PERFORM_DOUBLE_CLICK,
+        PERFORM_LONG_CLICK,
         PERFORM_SCROLL_TO,
         PERFORM_SCROLL_TO_INDEX,
         PERFORM_SCROLL_TO_KEY,
