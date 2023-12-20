@@ -290,6 +290,12 @@ interface NodeActions {
         delegate.perform(ComposeBaseActionType.PERFORM_SEMANTICS_ACTION) { performSemanticsAction(key) }
     }
 
+    fun performImeAction() {
+        delegate.perform(ComposeBaseActionType.PERFORM_IME_ACTION) {
+            performImeAction()
+        }
+    }
+
     enum class ComposeBaseActionType : ComposeOperationType {
         PERFORM_CLICK,
         PERFORM_DOUBLE_CLICK,
@@ -301,5 +307,6 @@ interface NodeActions {
         PERFORM_GESTURE,
         PERFORM_TOUCH_INPUT,
         PERFORM_SEMANTICS_ACTION,
+        PERFORM_IME_ACTION
     }
 }
