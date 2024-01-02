@@ -1,11 +1,13 @@
 package io.github.kakaocup.compose.node.element.lazylist
 
+import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
 import androidx.compose.ui.test.onChildren
+import io.github.kakaocup.compose.node.assertion.LazyListNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
@@ -17,8 +19,10 @@ class KLazyListNode(
     semanticsProvider: SemanticsNodeInteractionsProvider,
     nodeMatcher: NodeMatcher,
     itemTypeBuilder: KLazyListItemBuilder.() -> Unit,
-    val positionMatcher: (position: Int) -> SemanticsMatcher
-) : BaseNode<KLazyListNode>(semanticsProvider, nodeMatcher) {
+    val positionMatcher: (position: Int) -> SemanticsMatcher,
+    override val lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>,
+) : BaseNode<KLazyListNode>(semanticsProvider, nodeMatcher),
+    LazyListNodeAssertions {
     val semanticsMatcher = nodeMatcher.matcher
     val itemTypes = KLazyListItemBuilder().apply(itemTypeBuilder).itemTypes
 
@@ -36,12 +40,14 @@ class KLazyListNode(
         semanticsProvider: SemanticsNodeInteractionsProvider,
         viewBuilderAction: ViewBuilder.() -> Unit,
         itemTypeBuilder: KLazyListItemBuilder.() -> Unit,
-        positionMatcher: (position: Int) -> SemanticsMatcher
+        positionMatcher: (position: Int) -> SemanticsMatcher,
+        lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>
     ) : this(
         semanticsProvider = semanticsProvider,
         nodeMatcher = ViewBuilder().apply(viewBuilderAction).build(),
         itemTypeBuilder = itemTypeBuilder,
-        positionMatcher = positionMatcher
+        positionMatcher = positionMatcher,
+        lengthSemanticsPropertyKey = lengthSemanticsPropertyKey
     )
 
     /**

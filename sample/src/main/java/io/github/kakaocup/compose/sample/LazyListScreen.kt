@@ -9,10 +9,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -22,24 +30,51 @@ import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalMaterialApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun LazyListScreen() {
-    val items = remember { getItems() }
-
+    var items by remember { mutableStateOf(listOf<LazyListItem>()) }
+    var isRefreshing by remember { mutableStateOf(false) }
     Scaffold(
-        Modifier.testTag("LazyListScreen")) { _ ->
-        LazyColumn(
-            Modifier
-                .fillMaxSize()
-                .testTag("LazyList")
+        Modifier.testTag("LazyListScreen")
+    ) { scaffoldPadding ->
+        val pullRefreshState = rememberPullRefreshState(
+            refreshing = isRefreshing,
+            onRefresh = {
+                if (items.isEmpty()) {
+                    items = getItems()
+                } else {
+                    items += LazyListItem.Item("Item ${items.size + 1}")
+                }
+                isRefreshing = false
+            }
+        )
+
+        Box(
+            modifier = Modifier
+                .padding(scaffoldPadding)
+                .testTag("PullToRefresh")
+                .pullRefresh(pullRefreshState)
         ) {
-            itemsIndexed(items) { index, item ->
-                when (item) {
-                    is LazyListItem.Header -> ListItemHeader(item, Modifier.lazyListItemPosition(index))
-                    is LazyListItem.Item -> ListItemCell(item, Modifier.lazyListItemPosition(index))
+            LazyColumn(
+                Modifier
+                    .fillMaxSize()
+                    .testTag("LazyList")
+                    .lazyListLength(items.size)
+            ) {
+                itemsIndexed(items) { index, item ->
+                    when (item) {
+                        is LazyListItem.Header -> ListItemHeader(item, Modifier.lazyListItemPosition(index))
+                        is LazyListItem.Item -> ListItemCell(item, Modifier.lazyListItemPosition(index))
+                    }
                 }
             }
+            PullRefreshIndicator(
+                state = pullRefreshState,
+                refreshing = isRefreshing,
+                modifier = Modifier.align(Alignment.TopCenter),
+            )
         }
     }
 }
@@ -92,9 +127,15 @@ private sealed class LazyListItem {
     data class Item(val title: String) : LazyListItem()
 }
 
-val LazyListItemPosition = SemanticsPropertyKey<Int>("LazyListItemPosition")
-var SemanticsPropertyReceiver.lazyListItemPosition by LazyListItemPosition
+val LazyListItemPositionSemantics = SemanticsPropertyKey<Int>("LazyListItemPosition")
+var SemanticsPropertyReceiver.lazyListItemPosition by LazyListItemPositionSemantics
 
 fun Modifier.lazyListItemPosition(position: Int): Modifier {
     return semantics { lazyListItemPosition = position }
+}
+
+val LazyListLengthSemantics = SemanticsPropertyKey<Int>("LazyListLength")
+var SemanticsPropertyReceiver.lazyListLength by LazyListLengthSemantics
+fun Modifier.lazyListLength(length: Int): Modifier {
+    return semantics { lazyListLength = length }
 }
