@@ -2,6 +2,7 @@ package io.github.kakaocup.compose.screen
 
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.node.KAppIconNode
+import io.github.kakaocup.compose.node.KAppNode
 import io.github.kakaocup.compose.node.KAppTextNode
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.KNode
@@ -10,7 +11,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
     ComposeScreen<MainActivityScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("MainScreen") }
-) {
+    ) {
 
     val myText1: KNode = child {
         hasTestTag("mySimpleText")
@@ -48,6 +49,14 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
 
     val textWithSemantic: KAppTextNode = child {
         hasTestTag("textWithSemantic")
+    }
+
+    val boxColorAndShape: KAppNode = child {
+        hasTestTag("backgroundColorAndShapeBox")
+    }
+
+    val changeBackgroundColorAndShapeButton: KAppNode = child {
+        hasTestTag("backgroundColorAndShapeButton")
     }
 
     val myButton: KNode = child {
