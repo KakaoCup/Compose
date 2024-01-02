@@ -89,4 +89,63 @@ class SimpleTest {
             }
         }
     }
+
+    @Test
+    fun textColorTest() {
+        onComposeScreen<MainActivityScreen>(composeTestRule) {
+            changeTextColorButton {
+                assertIsDisplayed()
+            }
+
+            textWithoutStyle {
+                assertIsDisplayed()
+                assertTextColorEquals(Color.Black)
+                assertTextColorEquals("000000")
+                assertTextColorEquals("#000000")
+                assertTextColorEquals(0xFF000000)
+            }
+
+            textWithStyle {
+                assertIsDisplayed()
+                assertTextColorEquals(Color.Black)
+                assertTextColorEquals("000000")
+                assertTextColorEquals("#000000")
+                assertTextColorEquals(0xFF000000)
+            }
+
+            textWithSemantic {
+                assertIsDisplayed()
+                assertTextColorEquals(Color.Black)
+                assertTextColorEquals("000000")
+                assertTextColorEquals("#000000")
+                assertTextColorEquals(0xFF000000)
+            }
+
+            changeTextColorButton.performClick()
+
+            textWithoutStyle {
+                assertIsDisplayed()
+                assertTextColorEquals(Color.Black)
+                assertTextColorEquals("000000")
+                assertTextColorEquals("#000000")
+                assertTextColorEquals(0xFF000000)
+            }
+
+            textWithStyle {
+                assertIsDisplayed()
+                assertTextColorEquals(Color.Blue)
+                assertTextColorEquals("0000FF")
+                assertTextColorEquals("#0000FF")
+                assertTextColorEquals(0xFF0000FF)
+            }
+
+            textWithSemantic {
+                assertIsDisplayed()
+                assertTextColorEquals(Color.Blue)
+                assertTextColorEquals("0000FF")
+                assertTextColorEquals("#0000FF")
+                assertTextColorEquals(0xFF0000FF)
+            }
+        }
+    }
 }

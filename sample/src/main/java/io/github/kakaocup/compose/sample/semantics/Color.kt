@@ -11,3 +11,9 @@ var SemanticsPropertyReceiver.tintColor by TintColorSemanticKey
 fun Modifier.tintColorSemantic(color: Color): Modifier {
     return semantics { tintColor = color }
 }
+
+val TextColorSemanticKey = SemanticsPropertyKey<Color>("TextColor")
+var SemanticsPropertyReceiver.textColor by TextColorSemanticKey
+fun Modifier.textColorSemantic(color: Color): Modifier {
+    return semantics { textColor = color }
+}

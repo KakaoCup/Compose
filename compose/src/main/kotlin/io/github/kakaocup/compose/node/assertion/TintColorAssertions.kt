@@ -2,10 +2,8 @@ package io.github.kakaocup.compose.node.assertion
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.SemanticsPropertyKey
-import androidx.compose.ui.semantics.getOrNull
-import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assert
-import io.github.kakaocup.compose.utilities.getComposeColor
+import io.github.kakaocup.compose.utilities.ColorAssertionsUtils
 
 interface TintColorAssertions : NodeAssertions {
     val tintColorSemanticsPropertyKey: SemanticsPropertyKey<Color>
@@ -17,7 +15,9 @@ interface TintColorAssertions : NodeAssertions {
      * Throws [IllegalStateException] if the compose view does not contain the [tintColorSemanticsPropertyKey] modifier.
      */
     fun assertTintColorEquals(color: Color) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) { assert(hasColor(color)) }
+        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
+            assert(ColorAssertionsUtils.hasColor(color, tintColorSemanticsPropertyKey))
+        }
     }
 
     /**
@@ -28,7 +28,9 @@ interface TintColorAssertions : NodeAssertions {
      * Throws [IllegalArgumentException] if the color value is incorrect.
      */
     fun assertTintColorEquals(color: String) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) { assert(hasColor(color)) }
+        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
+            assert(ColorAssertionsUtils.hasColor(color, tintColorSemanticsPropertyKey))
+        }
     }
 
     /**
@@ -38,33 +40,8 @@ interface TintColorAssertions : NodeAssertions {
      * Throws [IllegalStateException] if the compose view does not contain the [tintColorSemanticsPropertyKey] modifier.
      */
     fun assertTintColorEquals(color: Long) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) { assert(hasColor(color)) }
-    }
-
-    private fun hasColor(expectedColor: Color): SemanticsMatcher = SemanticsMatcher(
-        "The color is expected to be $expectedColor, but the actual color is different"
-    ) { node ->
-        val actualColor = node.config.getOrNull(tintColorSemanticsPropertyKey)
-            ?: error("Compose view does not contain $tintColorSemanticsPropertyKey modifier")
-
-        return@SemanticsMatcher actualColor == expectedColor
-    }
-
-    private fun hasColor(expectedColor: String): SemanticsMatcher = SemanticsMatcher(
-        "The color is expected to be $expectedColor, but the actual color is different"
-    ) { node ->
-        val actualColor = node.config.getOrNull(tintColorSemanticsPropertyKey)
-            ?: error("Compose view does not contain $tintColorSemanticsPropertyKey modifier")
-
-        return@SemanticsMatcher actualColor == getComposeColor(expectedColor)
-    }
-
-    private fun hasColor(expectedColor: Long): SemanticsMatcher = SemanticsMatcher(
-        "The color is expected to be $expectedColor, but the actual color is different"
-    ) { node ->
-        val actualColor = node.config.getOrNull(tintColorSemanticsPropertyKey)
-            ?: error("Compose view does not contain $tintColorSemanticsPropertyKey modifier")
-
-        return@SemanticsMatcher actualColor == Color(expectedColor)
+        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
+            assert(ColorAssertionsUtils.hasColor(color, tintColorSemanticsPropertyKey))
+        }
     }
 }
