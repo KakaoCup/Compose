@@ -1,6 +1,6 @@
 [versions]
-gradleVersion = "8.1.4"
-kotlinVersion = "1.9.20"
+gradleVersion = "8.2.1"
+kotlinVersion = "1.9.21"
 
 dokkaVersion = "1.9.10"
 appcompatVersion = "1.6.1"
@@ -9,10 +9,10 @@ espressoVersion = "3.5.1"
 junitVersion = "4.13.2"
 junitExtVersion = "1.1.5"
 multidexVersion = "2.0.1"
-materialVersion = "1.10.0"
-activityComposeVersion = "1.8.0"
-composeMaterialVersion = "1.3.1"
-composeCompilerVersion = "1.5.4"
+materialVersion = "1.11.0"
+activityComposeVersion = "1.8.2"
+composeMaterialVersion = "1.5.4"
+composeCompilerVersion = "1.5.7"
 
 androidxComposeBom = "2023.10.01"
 
