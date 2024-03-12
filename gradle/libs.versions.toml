@@ -1,8 +1,8 @@
 [versions]
-gradleVersion = "8.2.1"
-kotlinVersion = "1.9.21"
+gradleVersion = "8.3.0"
+kotlinVersion = "1.9.22"
 
-dokkaVersion = "1.9.10"
+dokkaVersion = "1.9.20"
 appcompatVersion = "1.6.1"
 espressoVersion = "3.5.1"
 
@@ -11,10 +11,10 @@ junitExtVersion = "1.1.5"
 multidexVersion = "2.0.1"
 materialVersion = "1.11.0"
 activityComposeVersion = "1.8.2"
-composeMaterialVersion = "1.5.4"
-composeCompilerVersion = "1.5.7"
+composeMaterialVersion = "1.6.3"
+composeCompilerVersion = "1.5.10"
 
-androidxComposeBom = "2023.10.01"
+androidxComposeBom = "2024.02.02"
 
 [libraries]
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradleVersion" }
