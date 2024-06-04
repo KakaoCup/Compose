@@ -292,6 +292,9 @@ $dokka.location:io.github.kakaocup.compose.utilities////PointingToDeclaration/c
 $dokka.location:io.github.kakaocup.compose.utilities/ContextUtilsKt///PointingToDeclaration/compose/io.github.kakaocup.compose.utilities/-context-utils-kt/index.html
 $dokka.location:io.github.kakaocup.compose.utilities/ContextUtilsKt/getResourceString/#kotlin.Int/PointingToDeclaration/compose/io.github.kakaocup.compose.utilities/-context-utils-kt/get-resource-string.html
 $dokka.location:io.github.kakaocup.compose////PointingToDeclaration/compose/io.github.kakaocup.compose/index.html
+$dokka.location:io.github.kakaocup.compose/KakaoCompose.Override///PointingToDeclaration/compose/io.github.kakaocup.compose/-kakao-compose/-override/index.html
+$dokka.location:io.github.kakaocup.compose/KakaoCompose.Override/getUseUnmergedTree/#/PointingToDeclaration/compose/io.github.kakaocup.compose/-kakao-compose/-override/get-use-unmerged-tree.html
+$dokka.location:io.github.kakaocup.compose/KakaoCompose.Override/setUseUnmergedTree/#kotlin.Boolean?/PointingToDeclaration/compose/io.github.kakaocup.compose/-kakao-compose/-override/set-use-unmerged-tree.html
 $dokka.location:io.github.kakaocup.compose/KakaoCompose///PointingToDeclaration/compose/io.github.kakaocup.compose/-kakao-compose/index.html
 $dokka.location:io.github.kakaocup.compose/KakaoCompose/intercept/#kotlin.Function1[io.github.kakaocup.compose.intercept.base.Interceptor.Configurator,kotlin.Unit]/PointingToDeclaration/compose/io.github.kakaocup.compose/-kakao-compose/intercept.html
 $dokka.location:io.github.kakaocup.compose/KakaoCompose/invoke/#kotlin.Function1[io.github.kakaocup.compose.KakaoCompose,kotlin.Unit]/PointingToDeclaration/compose/io.github.kakaocup.compose/-kakao-compose/invoke.html
