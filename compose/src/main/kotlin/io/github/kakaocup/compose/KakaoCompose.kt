@@ -6,7 +6,8 @@ import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
 
 object KakaoCompose {
-    internal var composeInterceptor: Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? = null
+    internal var composeInterceptor: Interceptor<ComposeInteraction, ComposeAssertion, ComposeAction>? =
+        null
 
     /**
      * Operator that allows usage of DSL style
@@ -37,6 +38,14 @@ object KakaoCompose {
      * @see intercept
      * @see Interceptor
      */
+
+    /**
+     * Global overrides for default Espresso behaviour
+     */
+    object Override {
+        var useUnmergedTree: Boolean? = null
+    }
+
     fun reset() {
         composeInterceptor = null
     }
