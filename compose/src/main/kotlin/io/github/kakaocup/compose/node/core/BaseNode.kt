@@ -13,6 +13,8 @@ import io.github.kakaocup.compose.node.assertion.TextResourcesNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.NodeProvider
 import io.github.kakaocup.compose.node.builder.ViewBuilder
+import io.github.kakaocup.compose.utilities.checkNotNull
+import io.github.kakaocup.compose.utilities.orGlobal
 
 @ComposeMarker
 abstract class BaseNode<out T : BaseNode<T>> constructor(
@@ -46,7 +48,6 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     )
 
     override val delegate: ComposeDelegate by lazy(LazyThreadSafetyMode.NONE) {
-        val semanticsProvider = requireNotNull(semanticsProvider ?: KakaoCompose.Global.semanticsProvider) { "SemanticsProvider not is null: Provide via constructor or use KakaoComposeTestRule" }
         ComposeDelegate(
             nodeProvider = NodeProvider(
                 nodeMatcher = NodeMatcher(
@@ -54,7 +55,7 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
                     position = nodeMatcher.position,
                     useUnmergedTree = nodeMatcher.useUnmergedTree
                 ),
-                semanticsProvider = semanticsProvider
+                semanticsProvider = semanticsProvider.orGlobal().checkNotNull()
             ),
             parentDelegate = parentNode?.delegate
         )

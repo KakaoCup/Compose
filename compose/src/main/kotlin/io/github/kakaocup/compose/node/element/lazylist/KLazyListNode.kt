@@ -8,10 +8,13 @@ import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
 import androidx.compose.ui.test.onChildren
 import io.github.kakaocup.compose.KakaoCompose
+import io.github.kakaocup.compose.exception.KakaoComposeException
 import io.github.kakaocup.compose.node.assertion.LazyListNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
+import io.github.kakaocup.compose.utilities.checkNotNull
+import io.github.kakaocup.compose.utilities.orGlobal
 
 /**
  * Node class with special api to test Lazy List (LazyColumn or LazyRow)
@@ -68,10 +71,9 @@ class KLazyListNode(
         }.provideItem
 
         performScrollToIndex(position)
-
-        val semanticsProvider = requireNotNull(semanticsProvider ?: KakaoCompose.Global.semanticsProvider) { "SemanticsProvider not is null: Provide via constructor or use KakaoComposeTestRule" }
-
         val semanticsNode = semanticsProvider
+            .orGlobal()
+            .checkNotNull()
             .onNode(semanticsMatcher)
             .onChildren()
             .filterToOne(positionMatcher(position))
@@ -80,6 +82,8 @@ class KLazyListNode(
         function(provideItem(
             semanticsNode,
             semanticsProvider
+                .orGlobal()
+                .checkNotNull()
         ) as T)
     }
 
@@ -100,9 +104,9 @@ class KLazyListNode(
 
         performScrollToNode(nodeMatcher.matcher)
 
-        val semanticsProvider = requireNotNull(semanticsProvider ?: KakaoCompose.Global.semanticsProvider) { "SemanticsProvider not is null: Provide via constructor or use KakaoComposeTestRule" }
-
         val semanticsNode = semanticsProvider
+            .orGlobal()
+            .checkNotNull()
             .onNode(semanticsMatcher)
             .onChildren()
             .filter(nodeMatcher.matcher)[nodeMatcher.position]
@@ -111,6 +115,8 @@ class KLazyListNode(
         return provideItem(
             semanticsNode,
             semanticsProvider
+                .orGlobal()
+                .checkNotNull()
         ) as T
     }
 
