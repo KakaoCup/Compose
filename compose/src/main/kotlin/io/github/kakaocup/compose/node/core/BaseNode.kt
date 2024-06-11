@@ -3,6 +3,7 @@ package io.github.kakaocup.compose.node.core
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.hasAnyAncestor
+import io.github.kakaocup.compose.KakaoCompose
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.delegate.ComposeInterceptable
 import io.github.kakaocup.compose.node.action.NodeActions
@@ -15,7 +16,7 @@ import io.github.kakaocup.compose.node.builder.ViewBuilder
 
 @ComposeMarker
 abstract class BaseNode<out T : BaseNode<T>> constructor(
-    @PublishedApi internal val semanticsProvider: SemanticsNodeInteractionsProvider,
+    @PublishedApi internal val semanticsProvider: SemanticsNodeInteractionsProvider? = null,
     private val nodeMatcher: NodeMatcher,
     private val parentNode: BaseNode<*>? = null,
 ) : KDSL<T>,
@@ -25,8 +26,9 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     TextActions,
     ComposeInterceptable {
 
+
     constructor(
-        semanticsProvider: SemanticsNodeInteractionsProvider,
+        semanticsProvider: SemanticsNodeInteractionsProvider? = null,
         viewBuilderAction: ViewBuilder.() -> Unit,
     ) : this(
         semanticsProvider = semanticsProvider,
@@ -35,7 +37,7 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     )
 
     constructor(
-        semanticsProvider: SemanticsNodeInteractionsProvider,
+        semanticsProvider: SemanticsNodeInteractionsProvider? = null,
         nodeMatcher: NodeMatcher,
     ) : this(
         semanticsProvider = semanticsProvider,
@@ -44,6 +46,7 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     )
 
     override val delegate: ComposeDelegate by lazy(LazyThreadSafetyMode.NONE) {
+        val semanticsProvider = requireNotNull(semanticsProvider ?: KakaoCompose.Global.semanticsProvider) { "SemanticsProvider not is null: Provide via constructor or use KakaoComposeTestRule" }
         ComposeDelegate(
             nodeProvider = NodeProvider(
                 nodeMatcher = NodeMatcher(
