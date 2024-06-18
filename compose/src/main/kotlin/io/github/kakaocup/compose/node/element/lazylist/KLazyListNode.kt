@@ -7,16 +7,20 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
 import androidx.compose.ui.test.onChildren
+import io.github.kakaocup.compose.KakaoCompose
+import io.github.kakaocup.compose.exception.KakaoComposeException
 import io.github.kakaocup.compose.node.assertion.LazyListNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
+import io.github.kakaocup.compose.utilities.checkNotNull
+import io.github.kakaocup.compose.utilities.orGlobal
 
 /**
  * Node class with special api to test Lazy List (LazyColumn or LazyRow)
  */
 class KLazyListNode(
-    semanticsProvider: SemanticsNodeInteractionsProvider,
+    semanticsProvider: SemanticsNodeInteractionsProvider? = null,
     nodeMatcher: NodeMatcher,
     itemTypeBuilder: KLazyListItemBuilder.() -> Unit,
     val positionMatcher: (position: Int) -> SemanticsMatcher,
@@ -37,7 +41,7 @@ class KLazyListNode(
      * @see ViewBuilder
      */
     constructor(
-        semanticsProvider: SemanticsNodeInteractionsProvider,
+        semanticsProvider: SemanticsNodeInteractionsProvider? = null,
         viewBuilderAction: ViewBuilder.() -> Unit,
         itemTypeBuilder: KLazyListItemBuilder.() -> Unit,
         positionMatcher: (position: Int) -> SemanticsMatcher,
@@ -67,14 +71,20 @@ class KLazyListNode(
         }.provideItem
 
         performScrollToIndex(position)
-
         val semanticsNode = semanticsProvider
+            .orGlobal()
+            .checkNotNull()
             .onNode(semanticsMatcher)
             .onChildren()
             .filterToOne(positionMatcher(position))
             .fetchSemanticsNode()
 
-        function(provideItem(semanticsNode, semanticsProvider) as T)
+        function(provideItem(
+            semanticsNode,
+            semanticsProvider
+                .orGlobal()
+                .checkNotNull()
+        ) as T)
     }
 
     /**
@@ -95,12 +105,19 @@ class KLazyListNode(
         performScrollToNode(nodeMatcher.matcher)
 
         val semanticsNode = semanticsProvider
+            .orGlobal()
+            .checkNotNull()
             .onNode(semanticsMatcher)
             .onChildren()
             .filter(nodeMatcher.matcher)[nodeMatcher.position]
             .fetchSemanticsNode()
 
-        return provideItem(semanticsNode, semanticsProvider) as T
+        return provideItem(
+            semanticsNode,
+            semanticsProvider
+                .orGlobal()
+                .checkNotNull()
+        ) as T
     }
 
     /**

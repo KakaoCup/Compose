@@ -8,7 +8,7 @@ import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.core.BaseNode
 
 abstract class KIconNode(
-    semanticsProvider: SemanticsNodeInteractionsProvider,
+    semanticsProvider: SemanticsNodeInteractionsProvider? = null,
     nodeMatcher: NodeMatcher,
     parentNode: BaseNode<*>?,
     useUnmergedTree: Boolean = KakaoCompose.Override.useUnmergedTree ?: false

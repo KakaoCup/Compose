@@ -1,6 +1,8 @@
 package io.github.kakaocup.compose
 
+import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.intercept.base.Interceptor
+import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import io.github.kakaocup.compose.intercept.interaction.ComposeInteraction
 import io.github.kakaocup.compose.intercept.operation.ComposeAction
 import io.github.kakaocup.compose.intercept.operation.ComposeAssertion
@@ -44,6 +46,19 @@ object KakaoCompose {
      */
     object Override {
         var useUnmergedTree: Boolean? = null
+    }
+
+    /**
+     * Global parameters
+     */
+
+    object Global {
+        /**
+         * Global SemanticsNodeInteractionsProvider can be set via KakaoComposeTestRule
+         * to avoid injection boilerplate into each ComposeScreen
+         * @see KakaoComposeTestRule
+         */
+        var semanticsProvider: SemanticsNodeInteractionsProvider? = null
     }
 
     fun reset() {
