@@ -13,8 +13,6 @@ import io.github.kakaocup.compose.node.assertion.LazyListNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
-import io.github.kakaocup.compose.utilities.checkNotNull
-import io.github.kakaocup.compose.utilities.orGlobal
 
 /**
  * Node class with special api to test Lazy List (LazyColumn or LazyRow)
@@ -71,9 +69,7 @@ class KLazyListNode(
         }.provideItem
 
         performScrollToIndex(position)
-        val semanticsNode = semanticsProvider
-            .orGlobal()
-            .checkNotNull()
+        val semanticsNode = getSemanticsProvider()
             .onNode(semanticsMatcher)
             .onChildren()
             .filterToOne(positionMatcher(position))
@@ -81,9 +77,7 @@ class KLazyListNode(
 
         function(provideItem(
             semanticsNode,
-            semanticsProvider
-                .orGlobal()
-                .checkNotNull()
+            getSemanticsProvider()
         ) as T)
     }
 
@@ -104,9 +98,7 @@ class KLazyListNode(
 
         performScrollToNode(nodeMatcher.matcher)
 
-        val semanticsNode = semanticsProvider
-            .orGlobal()
-            .checkNotNull()
+        val semanticsNode = getSemanticsProvider()
             .onNode(semanticsMatcher)
             .onChildren()
             .filter(nodeMatcher.matcher)[nodeMatcher.position]
@@ -114,9 +106,7 @@ class KLazyListNode(
 
         return provideItem(
             semanticsNode,
-            semanticsProvider
-                .orGlobal()
-                .checkNotNull()
+            getSemanticsProvider()
         ) as T
     }
 

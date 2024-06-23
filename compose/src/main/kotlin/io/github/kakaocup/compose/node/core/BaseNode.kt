@@ -3,7 +3,6 @@ package io.github.kakaocup.compose.node.core
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.hasAnyAncestor
-import io.github.kakaocup.compose.KakaoCompose
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.delegate.ComposeInterceptable
 import io.github.kakaocup.compose.node.action.NodeActions
@@ -27,7 +26,6 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     NodeActions,
     TextActions,
     ComposeInterceptable {
-
 
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider? = null,
@@ -55,7 +53,7 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
                     position = nodeMatcher.position,
                     useUnmergedTree = nodeMatcher.useUnmergedTree
                 ),
-                semanticsProvider = semanticsProvider.orGlobal().checkNotNull()
+                semanticsProvider = getSemanticsProvider()
             ),
             parentDelegate = parentNode?.delegate
         )
@@ -71,6 +69,14 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
             ViewBuilder().apply(function).build(),
             this,
         )
+    }
+
+    /**
+     * Allowed getter for [semanticsProvider].
+     * Any [SemanticsNodeInteractionsProvider] must be initialized before use.
+     */
+    fun getSemanticsProvider(): SemanticsNodeInteractionsProvider {
+        return this.semanticsProvider.orGlobal().checkNotNull()
     }
 
     /***
