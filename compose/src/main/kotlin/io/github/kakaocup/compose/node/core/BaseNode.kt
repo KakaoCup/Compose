@@ -3,6 +3,7 @@ package io.github.kakaocup.compose.node.core
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.hasAnyAncestor
+import io.github.kakaocup.compose.exception.KakaoComposeException
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.delegate.ComposeInterceptable
 import io.github.kakaocup.compose.node.action.NodeActions
@@ -18,7 +19,7 @@ import io.github.kakaocup.compose.utilities.orGlobal
 @ComposeMarker
 abstract class BaseNode<out T : BaseNode<T>> constructor(
     @PublishedApi internal val semanticsProvider: SemanticsNodeInteractionsProvider? = null,
-    private val nodeMatcher: NodeMatcher,
+    private val nodeMatcher: NodeMatcher? = null,
     private val parentNode: BaseNode<*>? = null,
 ) : KDSL<T>,
     NodeAssertions,
@@ -50,8 +51,8 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
             nodeProvider = NodeProvider(
                 nodeMatcher = NodeMatcher(
                     matcher = combineSemanticMatchers(),
-                    position = nodeMatcher.position,
-                    useUnmergedTree = nodeMatcher.useUnmergedTree
+                    position = getNodeMatcher().position,
+                    useUnmergedTree = getNodeMatcher().useUnmergedTree
                 ),
                 semanticsProvider = getSemanticsProvider()
             ),
@@ -72,6 +73,15 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     }
 
     /**
+     * Allowed getter for [nodeMatcher].
+     * Any [NodeMatcher] must be initialized before use.
+     */
+    fun getNodeMatcher(): NodeMatcher {
+        return this.nodeMatcher
+            ?: throw KakaoComposeException("NodeMatcher is null: Provide via constructor or use `initSemantics` method`")
+    }
+
+    /**
      * Allowed getter for [semanticsProvider].
      * Any [SemanticsNodeInteractionsProvider] must be initialized before use.
      */
@@ -87,10 +97,10 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
         var parent = this.parentNode
 
         while (parent != null) {
-            semanticsMatcherList.add(hasAnyAncestor(parent.nodeMatcher.matcher))
+            semanticsMatcherList.add(hasAnyAncestor(parent.getNodeMatcher().matcher))
             parent = parent.parentNode
         }
-        semanticsMatcherList.add(this.nodeMatcher.matcher)
+        semanticsMatcherList.add(this.getNodeMatcher().matcher)
 
         return semanticsMatcherList.reduce { finalMatcher, matcher -> finalMatcher and matcher }
     }
