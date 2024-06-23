@@ -72,7 +72,6 @@ class KListNode(
      * @param itemIndexSemanticsPropertyKey Semantic property key for the list item index.
      * @param lengthSemanticsPropertyKey Semantic property key for the list length.
      */
-    @Suppress("detekt.LongParameterList")
     constructor(
         semanticsProvider: SemanticsNodeInteractionsProvider,
         viewBuilderAction: ViewBuilder.() -> Unit,
