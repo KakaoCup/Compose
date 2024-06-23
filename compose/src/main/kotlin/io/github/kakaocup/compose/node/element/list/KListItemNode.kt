@@ -33,7 +33,7 @@ open class KListItemNode<out T : KListItemNode<T>> protected constructor() : Bas
             val instance = T::class.java.getDeclaredConstructor().newInstance()
 
             instance.initSemantics(
-                semanticsProvider = listNode.getSemanticsProvider(),
+                semanticsProvider = listNode.requireSemanticsProvider(),
                 nodeMatcher = NodeMatcher(
                     matcher = SemanticsMatcher(
                         description = "Semantics node id = ${semanticsNode.id}",

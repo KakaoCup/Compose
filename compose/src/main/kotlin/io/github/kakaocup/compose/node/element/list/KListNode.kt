@@ -15,8 +15,6 @@ import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
 import io.github.kakaocup.compose.node.element.KNode
-import io.github.kakaocup.compose.utilities.checkNotNull
-import io.github.kakaocup.compose.utilities.orGlobal
 
 /**
  * A slightly modified copy of [io.github.kakaocup.compose.node.element.lazylist.KLazyListNode].
@@ -111,7 +109,7 @@ class KListNode(
                 performScrollToNode(childMatcher.matcher)
             }
         } else {
-            getSemanticsProvider()
+            requireSemanticsProvider()
                 .onNode(rootNodeMatcher, this.useUnmergedTree)
                 .onChildren()
                 .filter(childMatcher.matcher)[childMatcher.position]
@@ -144,7 +142,7 @@ class KListNode(
                 }
             }
         } else {
-            getSemanticsProvider()
+            requireSemanticsProvider()
                 .onNode(rootNodeMatcher, this.useUnmergedTree)
                 .onChildren()
                 .filter(childMatcher.matcher)[childMatcher.position]
@@ -364,7 +362,7 @@ class KListNode(
             performScrollToNode(childMatcher.matcher)
         }
 
-        val semanticsNode = getSemanticsProvider()
+        val semanticsNode = requireSemanticsProvider()
             .onNode(rootNodeMatcher, this.useUnmergedTree)
             .onChildren()
             .filter(childMatcher.matcher)[childMatcher.position]
@@ -412,7 +410,7 @@ class KListNode(
         // Warning!
         // Within lazy collections, `filterToOne` cannot be used on child nodes.
         // In Compose version 1.5.5, the semantic tree of lazy collections MAY CONTAIN DUPLICATES.
-        val semanticsNode = getSemanticsProvider()
+        val semanticsNode = requireSemanticsProvider()
             .onNode(rootNodeMatcher, this.useUnmergedTree)
             .onChildren()
             .filter(childMatcher.matcher)[childMatcher.position]

@@ -7,8 +7,6 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
 import androidx.compose.ui.test.onChildren
-import io.github.kakaocup.compose.KakaoCompose
-import io.github.kakaocup.compose.exception.KakaoComposeException
 import io.github.kakaocup.compose.node.assertion.LazyListNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
@@ -69,7 +67,7 @@ class KLazyListNode(
         }.provideItem
 
         performScrollToIndex(position)
-        val semanticsNode = getSemanticsProvider()
+        val semanticsNode = requireSemanticsProvider()
             .onNode(semanticsMatcher)
             .onChildren()
             .filterToOne(positionMatcher(position))
@@ -77,7 +75,7 @@ class KLazyListNode(
 
         function(provideItem(
             semanticsNode,
-            getSemanticsProvider()
+            requireSemanticsProvider()
         ) as T)
     }
 
@@ -98,7 +96,7 @@ class KLazyListNode(
 
         performScrollToNode(nodeMatcher.matcher)
 
-        val semanticsNode = getSemanticsProvider()
+        val semanticsNode = requireSemanticsProvider()
             .onNode(semanticsMatcher)
             .onChildren()
             .filter(nodeMatcher.matcher)[nodeMatcher.position]
@@ -106,7 +104,7 @@ class KLazyListNode(
 
         return provideItem(
             semanticsNode,
-            getSemanticsProvider()
+            requireSemanticsProvider()
         ) as T
     }
 

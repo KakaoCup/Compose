@@ -2,7 +2,6 @@ package io.github.kakaocup.compose.node.element
 
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import io.github.kakaocup.compose.KakaoCompose
 import io.github.kakaocup.compose.node.core.ComposeMarker
 import io.github.kakaocup.compose.node.core.BaseNode
 import io.github.kakaocup.compose.node.builder.NodeMatcher
@@ -34,7 +33,7 @@ open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
     ) : super(semanticsProvider, nodeMatcher)
 
     fun onNode(viewBuilderAction: ViewBuilder.() -> Unit) = KNode(
-        getSemanticsProvider(),
+        requireSemanticsProvider(),
         viewBuilderAction,
     )
 
