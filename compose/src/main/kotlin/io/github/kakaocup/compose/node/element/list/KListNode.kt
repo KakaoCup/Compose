@@ -91,6 +91,28 @@ class KListNode(
         lengthSemanticsPropertyKey = lengthSemanticsPropertyKey,
     )
 
+    // region Overriding base node actions
+
+    /**
+     * Performs scroll to position with [index].
+     *
+     * We have to override this action from [io.github.kakaocup.compose.node.action.NodeActions], because not every
+     * scrollable container has [androidx.compose.ui.semantics.SemanticsActions.ScrollToIndex] action.
+     * Using [androidx.compose.ui.semantics.SemanticsActions.ScrollBy] action is a more reliable solution
+     * with child Matcher on item index.
+     *
+     * @throws NullPointerException if [itemIndexSemanticsPropertyKey] is `null`.
+     * @throws [IllegalStateException] if this node marked as not scrollable (see [isScrollable]).
+     * @throws [AssertionError] if node doesn't have [androidx.compose.ui.semantics.SemanticsActions.ScrollBy] action.
+     */
+    @OptIn(ExperimentalTestApi::class)
+    override fun performScrollToIndex(index: Int) {
+        check(isScrollable)
+        getItemAt(0)
+    }
+
+    // endregion
+
     // region Methods for checking the existence / non-existence of items in the list
 
     /**
