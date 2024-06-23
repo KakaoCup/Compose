@@ -475,3 +475,70 @@ class KListNode(
     }
 
 }
+
+// region Additional factory methods
+
+/**
+ * Simplified builder for creating [KListNode].
+ *
+ * @param useUnmergedTree If true, the unmerged semantic tree is used; otherwise, the merged tree is used.
+ * @param isScrollable If true, the [KListNode] is considered scrollable and allows scrolling by default
+ * when searching for individual items. If false, no scrolling will occur. By default, it is assumed that the list can
+ * scroll itself.
+ * @param itemIndexSemanticsPropertyKey Semantic property key for the list item index.
+ * @param lengthSemanticsPropertyKey Semantic property key for the list length.
+ * @param viewBuilderAction Lambda for building the node matcher using [ViewBuilder].
+ */
+fun BaseNode<*>.KListNode(
+    useUnmergedTree: Boolean = KakaoCompose.Override.useUnmergedTree ?: false,
+    isScrollable: Boolean = true,
+    itemIndexSemanticsPropertyKey: SemanticsPropertyKey<Int>? = null,
+    lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>,
+    viewBuilderAction: ViewBuilder.() -> Unit,
+): KListNode {
+    val nodeMatcher = ViewBuilder()
+        .apply {
+            this.useUnmergedTree = useUnmergedTree
+        }
+        .apply(viewBuilderAction)
+        .build()
+
+    return KListNode(
+        semanticsProvider = requireSemanticsProvider(),
+        nodeMatcher = nodeMatcher,
+        parentNode = this,
+        useUnmergedTree = useUnmergedTree,
+        isScrollable = isScrollable,
+        itemIndexSemanticsPropertyKey = itemIndexSemanticsPropertyKey,
+        lengthSemanticsPropertyKey = lengthSemanticsPropertyKey,
+    )
+}
+
+/**
+ * Simplified builder for creating [KListNode] with tesgTag.
+ *
+ * @param testTag Tag for searching the node.
+ * @param useUnmergedTree If true, the unmerged semantic tree is used; otherwise, the merged tree is used.
+ * @param isScrollable If true, the [KListNode] is considered scrollable and allows scrolling by default
+ * when searching for individual items. If false, no scrolling will occur. By default, it is assumed that the list can
+ * scroll itself.
+ * @param itemIndexSemanticsPropertyKey Semantic property key for the list item index.
+ * @param lengthSemanticsPropertyKey Semantic property key for the list length.
+ */
+fun BaseNode<*>.KListNode(
+    testTag: String,
+    useUnmergedTree: Boolean = KakaoCompose.Override.useUnmergedTree ?: false,
+    isScrollable: Boolean = true,
+    itemIndexSemanticsPropertyKey: SemanticsPropertyKey<Int>? = null,
+    lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>,
+): KListNode = KListNode(
+    useUnmergedTree = useUnmergedTree,
+    isScrollable = isScrollable,
+    itemIndexSemanticsPropertyKey = itemIndexSemanticsPropertyKey,
+    lengthSemanticsPropertyKey = lengthSemanticsPropertyKey,
+) {
+    hasTestTag(testTag)
+    this.useUnmergedTree = useUnmergedTree
+}
+
+// endregion
