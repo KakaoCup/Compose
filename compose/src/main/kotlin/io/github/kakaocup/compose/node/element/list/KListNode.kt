@@ -107,7 +107,7 @@ class KListNode(
     @OptIn(ExperimentalTestApi::class)
     override fun performScrollToIndex(index: Int) {
         check(isScrollable)
-        getItemAt(0)
+        getItemAt(index)
     }
 
     // endregion
