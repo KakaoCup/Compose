@@ -9,6 +9,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.onChildren
+import io.github.kakaocup.compose.KakaoCompose
 import io.github.kakaocup.compose.node.action.NodeActions.ComposeBaseActionType
 import io.github.kakaocup.compose.node.assertion.ListNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
@@ -42,7 +43,7 @@ class KListNode(
     semanticsProvider: SemanticsNodeInteractionsProvider,
     nodeMatcher: NodeMatcher,
     parentNode: BaseNode<*>?,
-    val useUnmergedTree: Boolean = true,
+    val useUnmergedTree: Boolean = KakaoCompose.Override.useUnmergedTree ?: false,
     val isScrollable: Boolean = true,
     val itemIndexSemanticsPropertyKey: SemanticsPropertyKey<Int>?,
     override val lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>,
