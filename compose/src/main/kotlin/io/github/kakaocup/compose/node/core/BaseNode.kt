@@ -18,9 +18,9 @@ import io.github.kakaocup.compose.utilities.orGlobal
 
 @ComposeMarker
 abstract class BaseNode<out T : BaseNode<T>> constructor(
-    @PublishedApi internal val semanticsProvider: SemanticsNodeInteractionsProvider? = null,
-    private val nodeMatcher: NodeMatcher? = null,
-    private val parentNode: BaseNode<*>? = null,
+    @PublishedApi internal var semanticsProvider: SemanticsNodeInteractionsProvider? = null,
+    private var nodeMatcher: NodeMatcher? = null,
+    private var parentNode: BaseNode<*>? = null,
 ) : KDSL<T>,
     NodeAssertions,
     TextResourcesNodeAssertions,
@@ -87,6 +87,20 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
      */
     fun getSemanticsProvider(): SemanticsNodeInteractionsProvider {
         return this.semanticsProvider.orGlobal().checkNotNull()
+    }
+
+    /**
+     * Method for deferred initialization of [BaseNode] constructor parameters.
+     * Simplifies the description of child nodes in list nodes.
+     */
+    fun initSemantics(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
+        nodeMatcher: NodeMatcher,
+        parentNode: BaseNode<*>? = null,
+    ) {
+        this.semanticsProvider = semanticsProvider
+        this.nodeMatcher = nodeMatcher
+        this.parentNode = parentNode
     }
 
     /***
