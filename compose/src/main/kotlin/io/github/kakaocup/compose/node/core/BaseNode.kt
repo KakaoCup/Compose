@@ -54,7 +54,7 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
                     position = requireNodeMatcher().position,
                     useUnmergedTree = requireNodeMatcher().useUnmergedTree
                 ),
-                semanticsProvider = requireSemanticsProvider()
+                semanticsProvider = semanticsProvider.orGlobal().checkNotNull()
             ),
             parentDelegate = parentNode?.delegate
         )
@@ -66,7 +66,7 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
             NodeMatcher::class.java,
             BaseNode::class.java,
         ).newInstance(
-            requireSemanticsProvider(),
+            semanticsProvider.orGlobal().checkNotNull(),
             ViewBuilder().apply(function).build(),
             this,
         )
@@ -79,14 +79,6 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     fun requireNodeMatcher(): NodeMatcher {
         return this.nodeMatcher
             ?: throw KakaoComposeException("NodeMatcher is null: Provide via constructor or use `initSemantics` method`")
-    }
-
-    /**
-     * Allowed getter for [requireSemanticsProvider].
-     * Any [SemanticsNodeInteractionsProvider] must be initialized before use.
-     */
-    fun requireSemanticsProvider(): SemanticsNodeInteractionsProvider {
-        return this.semanticsProvider.orGlobal().checkNotNull()
     }
 
     /**

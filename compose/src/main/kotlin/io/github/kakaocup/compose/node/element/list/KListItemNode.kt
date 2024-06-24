@@ -4,6 +4,8 @@ import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.test.SemanticsMatcher
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.core.BaseNode
+import io.github.kakaocup.compose.utilities.checkNotNull
+import io.github.kakaocup.compose.utilities.orGlobal
 
 /**
  * Base class for all child nodes within [KListNode].
@@ -33,7 +35,7 @@ open class KListItemNode<out T : KListItemNode<T>> protected constructor() : Bas
             val instance = T::class.java.getDeclaredConstructor().newInstance()
 
             instance.initSemantics(
-                semanticsProvider = listNode.requireSemanticsProvider(),
+                semanticsProvider = listNode.semanticsProvider.orGlobal().checkNotNull(),
                 nodeMatcher = NodeMatcher(
                     matcher = SemanticsMatcher(
                         description = "Semantics node id = ${semanticsNode.id}",

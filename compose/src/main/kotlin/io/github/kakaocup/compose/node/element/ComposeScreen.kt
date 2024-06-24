@@ -6,6 +6,8 @@ import io.github.kakaocup.compose.node.core.ComposeMarker
 import io.github.kakaocup.compose.node.core.BaseNode
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
+import io.github.kakaocup.compose.utilities.checkNotNull
+import io.github.kakaocup.compose.utilities.orGlobal
 
 @Suppress("UNCHECKED_CAST")
 @ComposeMarker
@@ -33,7 +35,7 @@ open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
     ) : super(semanticsProvider, nodeMatcher)
 
     fun onNode(viewBuilderAction: ViewBuilder.() -> Unit) = KNode(
-        requireSemanticsProvider(),
+        semanticsProvider.orGlobal().checkNotNull(),
         viewBuilderAction,
     )
 
