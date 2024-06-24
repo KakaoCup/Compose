@@ -3,7 +3,6 @@ package io.github.kakaocup.compose.node.core
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.hasAnyAncestor
-import io.github.kakaocup.compose.exception.KakaoComposeException
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.delegate.ComposeInterceptable
 import io.github.kakaocup.compose.node.action.NodeActions
@@ -51,8 +50,8 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
             nodeProvider = NodeProvider(
                 nodeMatcher = NodeMatcher(
                     matcher = combineSemanticMatchers(),
-                    position = requireNodeMatcher().position,
-                    useUnmergedTree = requireNodeMatcher().useUnmergedTree
+                    position = nodeMatcher.checkNotNull().position,
+                    useUnmergedTree = nodeMatcher.checkNotNull().useUnmergedTree
                 ),
                 semanticsProvider = semanticsProvider.orGlobal().checkNotNull()
             ),
@@ -70,15 +69,6 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
             ViewBuilder().apply(function).build(),
             this,
         )
-    }
-
-    /**
-     * Allowed getter for [nodeMatcher].
-     * Any [NodeMatcher] must be initialized before use.
-     */
-    fun requireNodeMatcher(): NodeMatcher {
-        return this.nodeMatcher
-            ?: throw KakaoComposeException("NodeMatcher is null: Provide via constructor or use `initSemantics` method`")
     }
 
     /**
@@ -103,10 +93,10 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
         var parent = this.parentNode
 
         while (parent != null) {
-            semanticsMatcherList.add(hasAnyAncestor(parent.requireNodeMatcher().matcher))
+            semanticsMatcherList.add(hasAnyAncestor(parent.nodeMatcher.checkNotNull().matcher))
             parent = parent.parentNode
         }
-        semanticsMatcherList.add(this.requireNodeMatcher().matcher)
+        semanticsMatcherList.add(this.nodeMatcher.checkNotNull().matcher)
 
         return semanticsMatcherList.reduce { finalMatcher, matcher -> finalMatcher and matcher }
     }
