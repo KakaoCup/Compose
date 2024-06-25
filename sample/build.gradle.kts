@@ -36,7 +36,12 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
     }
 
-    packaging.resources.excludes.add("META-INF/*")
+    packaging {
+        resources {
+            pickFirsts += "META-INF/androidx.compose.*.version"
+            excludes += "META-INF/*"
+        }
+    }
 
     kotlin {
         jvmToolchain(17)

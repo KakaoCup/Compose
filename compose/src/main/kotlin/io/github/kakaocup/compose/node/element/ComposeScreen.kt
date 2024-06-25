@@ -2,7 +2,6 @@ package io.github.kakaocup.compose.node.element
 
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import io.github.kakaocup.compose.KakaoCompose
 import io.github.kakaocup.compose.node.core.ComposeMarker
 import io.github.kakaocup.compose.node.core.BaseNode
 import io.github.kakaocup.compose.node.builder.NodeMatcher
@@ -43,7 +42,7 @@ open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
     companion object {
         inline fun <reified T : ComposeScreen<T>> onComposeScreen(
             semanticsProvider: SemanticsNodeInteractionsProvider,
-            noinline function: T.() -> Unit
+            noinline function: T.() -> Unit,
         ): T = T::class.java
             .getDeclaredConstructor(
                 SemanticsNodeInteractionsProvider::class.java
@@ -52,7 +51,7 @@ open class ComposeScreen<out T : ComposeScreen<T>> : BaseNode<T> {
             .apply { this(function) }
 
         inline fun <reified T : ComposeScreen<T>> onComposeScreen(
-            noinline function: T.() -> Unit
+            noinline function: T.() -> Unit,
         ): T =
             T::class.java.getDeclaredConstructor()
                 .newInstance()

@@ -7,8 +7,6 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
 import androidx.compose.ui.test.onChildren
-import io.github.kakaocup.compose.KakaoCompose
-import io.github.kakaocup.compose.exception.KakaoComposeException
 import io.github.kakaocup.compose.node.assertion.LazyListNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
@@ -81,9 +79,7 @@ class KLazyListNode(
 
         function(provideItem(
             semanticsNode,
-            semanticsProvider
-                .orGlobal()
-                .checkNotNull()
+            semanticsProvider.orGlobal().checkNotNull()
         ) as T)
     }
 
@@ -114,9 +110,7 @@ class KLazyListNode(
 
         return provideItem(
             semanticsNode,
-            semanticsProvider
-                .orGlobal()
-                .checkNotNull()
+            semanticsProvider.orGlobal().checkNotNull()
         ) as T
     }
 
