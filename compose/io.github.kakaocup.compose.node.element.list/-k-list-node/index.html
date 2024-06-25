@@ -2,7 +2,7 @@
 <html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <title>KLazyListItemNode</title>
+    <title>KListNode</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
     <script>document.documentElement.classList.replace("no-js","js");</script>
@@ -61,28 +61,47 @@
                 <div class="sidebar--inner" id="sideMenu"></div>
             </div>
             <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageIds="compose::io.github.kakaocup.compose.node.element.lazylist/KLazyListItemNode///PointingToDeclaration//901554290">
-  <div class="breadcrumbs"><a href="../../../index.html">compose</a><span class="delimiter">/</span><a href="../index.html">io.github.kakaocup.compose.node.element.lazylist</a><span class="delimiter">/</span><span class="current">KLazyListItemNode</span></div>
+<div class="main-content" data-page-type="classlike" id="content" pageIds="compose::io.github.kakaocup.compose.node.element.list/KListNode///PointingToDeclaration//901554290">
+  <div class="breadcrumbs"><a href="../../../index.html">compose</a><span class="delimiter">/</span><a href="../index.html">io.github.kakaocup.compose.node.element.list</a><span class="delimiter">/</span><span class="current">KListNode</span></div>
   <div class="cover ">
-    <h1 class="cover"><span>KLazy</span><wbr></wbr><span>List</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>Node</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">public </span><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">class </span><a href="index.html">KLazyListItemNode</a><span class="token operator">&lt;</span>T<span class="token keyword"> extends </span><a href="index.html">KLazyListItemNode</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token keyword"> extends </span><a href="../../io.github.kakaocup.compose.node.core/-base-node/index.html">BaseNode</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator">&gt;</span></div><p class="paragraph">Base class for KLazyListNode items</p><p class="paragraph">Matches LazyList children by given semantics node id</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>semantic</span><wbr></wbr><span><span>Node</span></span></u></div></span></div><div><div class="title"><p class="paragraph">A list of key/value pairs associated with a layout node or its subtree</p></div></div></div></div><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>semantics</span><wbr></wbr><span><span>Provider</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Provides main entry point into testing</p></div></div></div></div></div></div></div>
+    <h1 class="cover"><span>KList</span><wbr></wbr><span><span>Node</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><span class="token keyword">class </span><a href="index.html">KListNode</a><span class="token keyword"> extends </span><a href="../../io.github.kakaocup.compose.node.core/-base-node/index.html">BaseNode</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">KListNode</a><span class="token operator">&gt;</span><span class="token keyword"> implements </span><a href="../../io.github.kakaocup.compose.node.assertion/-list-node-assertions/index.html">ListNodeAssertions</a></div><p class="paragraph">A slightly modified copy of <a href="../../io.github.kakaocup.compose.node.element.lazylist/-k-lazy-list-node/index.html">io.github.kakaocup.compose.node.element.lazylist.KLazyListNode</a>.</p><p class="paragraph"><a href="index.html">KListNode</a> is intended for testing any lists.</p><p class="paragraph">It can be used with both lazy and non-lazy containers containing any elements.</p><ul><li><p class="paragraph">androidx.compose.foundation.lazy.LazyColumn.</p></li><li><p class="paragraph">androidx.compose.foundation.lazy.LazyRow.</p></li><li><p class="paragraph">androidx.compose.foundation.layout.Row + Modifier.androidx.compose.foundation.horizontalScroll (or without it).</p></li><li><p class="paragraph">androidx.compose.foundation.layout.Column + Modifier.androidx.compose.foundation.verticalScroll (or without it).</p></li></ul><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>semantics</span><wbr></wbr><span><span>Provider</span></span></u></div></span></div><div><div class="title"><p class="paragraph">ComposeRule for finding and interacting with semantic tree nodes.</p></div></div></div></div><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>node</span><wbr></wbr><span><span>Matcher</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Node matcher.</p></div></div></div></div><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>parent</span><wbr></wbr><span><span>Node</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Parent node (if any).</p></div></div></div></div><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>use</span><wbr></wbr><span>Unmerged</span><wbr></wbr><span><span>Tree</span></span></u></div></span></div><div><div class="title"><p class="paragraph">If true, use the unmerged semantic tree; otherwise, use the merged tree.</p></div></div></div></div><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>is</span><wbr></wbr><span><span>Scrollable</span></span></u></div></span></div><div><div class="title"><p class="paragraph">If true, the <a href="index.html">KListNode</a> is considered scrollable and allows scrolling by default when searching for individual items. If false, no scrolling will occur. By default, it is assumed that the list can scroll itself.</p></div></div></div></div><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>item</span><wbr></wbr><span>Index</span><wbr></wbr><span>Semantics</span><wbr></wbr><span>Property</span><wbr></wbr><span><span>Key</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Semantic property key for the list item index.</p></div></div></div></div><div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>length</span><wbr></wbr><span>Semantics</span><wbr></wbr><span>Property</span><wbr></wbr><span><span>Key</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Semantic property key for the list length.</p></div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
         <h2 class="">Constructors</h2>
-        <div class="table"><a data-name="127097980%2FConstructors%2F901554290" anchor-label="KLazyListItemNode" id="127097980%2FConstructors%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+        <div class="table"><a data-name="1808206459%2FConstructors%2F901554290" anchor-label="KListNode" id="1808206459%2FConstructors%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
           <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="-k-lazy-list-item-node.html"><span>KLazy</span><wbr></wbr><span>List</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>Node</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="127097980%2FConstructors%2F901554290"></span>
+                  <div><a href="-k-list-node.html"><span>KList</span><wbr></wbr><span><span>Node</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1808206459%2FConstructors%2F901554290"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="index.html">KLazyListItemNode</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token operator">&gt;</span> <a href="-k-lazy-list-item-node.html"><span class="token function">KLazyListItemNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsNode.html">SemanticsNode</a> semanticNode<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/SemanticsNodeInteractionsProvider.html">SemanticsNodeInteractionsProvider</a> semanticsProvider</span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="index.html">KListNode</a> <a href="-k-list-node.html"><span class="token function">KListNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/SemanticsNodeInteractionsProvider.html">SemanticsNodeInteractionsProvider</a> semanticsProvider<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.core/-base-node/index.html">BaseNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> parentNode<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> useUnmergedTree<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> isScrollable<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span> itemIndexSemanticsPropertyKey<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span> lengthSemanticsPropertyKey</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Constructor for creating <a href="index.html">KListNode</a> using a convenient <a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a>.</p></div><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="index.html">KListNode</a> <a href="-k-list-node.html"><span class="token function">KListNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/SemanticsNodeInteractionsProvider.html">SemanticsNodeInteractionsProvider</a> semanticsProvider<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-node-matcher/index.html">NodeMatcher</a> nodeMatcher<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.core/-base-node/index.html">BaseNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> parentNode<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> useUnmergedTree<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> isScrollable<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span> itemIndexSemanticsPropertyKey<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span> lengthSemanticsPropertyKey</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-199220441%2FClasslikes%2F901554290" anchor-label="Companion" id="-199220441%2FClasslikes%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-199220441%2FClasslikes%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">public </span><span class="token keyword">class </span><a href="-companion/index.html">Companion</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -91,17 +110,107 @@
       </div>
       <div data-togglable="PROPERTY">
         <h2 class="">Properties</h2>
-        <div class="table"><a data-name="-961540308%2FProperties%2F901554290" anchor-label="delegate" id="-961540308%2FProperties%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+        <div class="table"><a data-name="-116373450%2FProperties%2F901554290" anchor-label="Companion" id="-116373450%2FProperties%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
           <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html#-961540308%2FProperties%2F901554290"><span><span>delegate</span></span></a></div>
+                  <div><a href="index.html#-116373450%2FProperties%2F901554290"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-116373450%2FProperties%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword">static </span><a href="-companion/index.html">KListNode.Companion</a> <a href="index.html#-116373450%2FProperties%2F901554290">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-961540308%2FProperties%2F901554290" anchor-label="delegate" id="-961540308%2FProperties%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-961540308%2FProperties%2F901554290"><span><span>delegate</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-961540308%2FProperties%2F901554290"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.intercept.delegate/-compose-delegate/index.html">ComposeDelegate</a> <a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html#-961540308%2FProperties%2F901554290">delegate</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.intercept.delegate/-compose-delegate/index.html">ComposeDelegate</a> <a href="index.html#-961540308%2FProperties%2F901554290">delegate</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2056927895%2FProperties%2F901554290" anchor-label="isScrollable" id="-2056927895%2FProperties%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-scrollable.html"><span>is</span><wbr></wbr><span><span>Scrollable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2056927895%2FProperties%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> <a href="is-scrollable.html">isScrollable</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1126832932%2FProperties%2F901554290" anchor-label="itemIndexSemanticsPropertyKey" id="1126832932%2FProperties%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1126832932%2FProperties%2F901554290"><span>item</span><wbr></wbr><span>Index</span><wbr></wbr><span>Semantics</span><wbr></wbr><span>Property</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1126832932%2FProperties%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span> <a href="index.html#1126832932%2FProperties%2F901554290">itemIndexSemanticsPropertyKey</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="588114615%2FProperties%2F901554290" anchor-label="lengthSemanticsPropertyKey" id="588114615%2FProperties%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#588114615%2FProperties%2F901554290"><span>length</span><wbr></wbr><span>Semantics</span><wbr></wbr><span>Property</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="588114615%2FProperties%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span> <a href="index.html#588114615%2FProperties%2F901554290">lengthSemanticsPropertyKey</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1712133330%2FProperties%2F901554290" anchor-label="rootNodeMatcher" id="1712133330%2FProperties%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1712133330%2FProperties%2F901554290"><span>root</span><wbr></wbr><span>Node</span><wbr></wbr><span><span>Matcher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1712133330%2FProperties%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/SemanticsMatcher.html">SemanticsMatcher</a> <a href="index.html#1712133330%2FProperties%2F901554290">rootNodeMatcher</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1101432970%2FProperties%2F901554290" anchor-label="useUnmergedTree" id="-1101432970%2FProperties%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1101432970%2FProperties%2F901554290"><span>use</span><wbr></wbr><span>Unmerged</span><wbr></wbr><span><span>Tree</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1101432970%2FProperties%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> <a href="index.html#-1101432970%2FProperties%2F901554290">useUnmergedTree</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -395,6 +504,81 @@
               </div>
             </div>
           </div>
+<a data-name="2070753837%2FFunctions%2F901554290" anchor-label="assertItemIsDisplayedAt" id="2070753837%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="assert-item-is-displayed-at.html"><span>assert</span><wbr></wbr><span>Item</span><wbr></wbr><span>Is</span><wbr></wbr><span>Displayed</span><wbr></wbr><span><span>At</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2070753837%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="assert-item-is-displayed-at.html"><span class="token function">assertItemIsDisplayedAt</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Checks that the item at the specified position is displayed.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1739912468%2FFunctions%2F901554290" anchor-label="assertItemIsNotDisplayedAt" id="1739912468%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="assert-item-is-not-displayed-at.html"><span>assert</span><wbr></wbr><span>Item</span><wbr></wbr><span>Is</span><wbr></wbr><span>Not</span><wbr></wbr><span>Displayed</span><wbr></wbr><span><span>At</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1739912468%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="assert-item-is-not-displayed-at.html"><span class="token function">assertItemIsNotDisplayedAt</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Checks that the item at the specified position is not displayed.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="46619478%2FFunctions%2F901554290" anchor-label="assertItemWithIsDisplayed" id="46619478%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="assert-item-with-is-displayed.html"><span>assert</span><wbr></wbr><span>Item</span><wbr></wbr><span>With</span><wbr></wbr><span>Is</span><wbr></wbr><span><span>Displayed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="46619478%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="assert-item-with-is-displayed.html"><span class="token function">assertItemWithIsDisplayed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Checks that the item found using the Matcher exists in the list.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="843524315%2FFunctions%2F901554290" anchor-label="assertItemWithIsNotDisplayed" id="843524315%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="assert-item-with-is-not-displayed.html"><span>assert</span><wbr></wbr><span>Item</span><wbr></wbr><span>With</span><wbr></wbr><span>Is</span><wbr></wbr><span>Not</span><wbr></wbr><span><span>Displayed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="843524315%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="assert-item-with-is-not-displayed.html"><span class="token function">assertItemWithIsNotDisplayed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Checks that the item found using the Matcher does not exist in the list.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1556708417%2FFunctions%2F901554290" anchor-label="assertLengthEquals" id="-1556708417%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../io.github.kakaocup.compose.node.assertion/-list-node-assertions/assert-length-equals.html"><span>assert</span><wbr></wbr><span>Length</span><wbr></wbr><span><span>Equals</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1556708417%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="../../io.github.kakaocup.compose.node.assertion/-list-node-assertions/assert-length-equals.html"><span class="token function">assertLengthEquals</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> length</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Checks that the length of the list is equal to <a href="../../io.github.kakaocup.compose.node.assertion/-list-node-assertions/assert-length-equals.html">length</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-1604778295%2FFunctions%2F901554290" anchor-label="assertRangeInfoEquals" id="-1604778295%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
           <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
@@ -455,6 +639,21 @@
               </div>
             </div>
           </div>
+<a data-name="1839999844%2FFunctions%2F901554290" anchor-label="buildChildMatcher" id="1839999844%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build-child-matcher.html"><span>build</span><wbr></wbr><span>Child</span><wbr></wbr><span><span>Matcher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1839999844%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-node-matcher/index.html">NodeMatcher</a> <a href="build-child-matcher.html"><span class="token function">buildChildMatcher</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction</span></span><span class="token punctuation">)</span></div><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-node-matcher/index.html">NodeMatcher</a> <a href="build-child-matcher.html"><span class="token function">buildChildMatcher</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="979327505%2FFunctions%2F901554290" anchor-label="child" id="979327505%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
           <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
@@ -470,6 +669,111 @@
               </div>
             </div>
           </div>
+<a data-name="1012302499%2FFunctions%2F901554290" anchor-label="childAt" id="1012302499%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="child-at.html"><span>child</span><wbr></wbr><span><span>At</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1012302499%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="child-at.html"><span class="token function">childAt</span></a><span class="token operator">&lt;</span>T<span class="token keyword"> extends </span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="child-at.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Performs the specified actions / checks on the list item at the specified position.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1585378158%2FFunctions%2F901554290" anchor-label="childWith" id="-1585378158%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="child-with.html"><span>child</span><wbr></wbr><span><span>With</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1585378158%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="child-with.html"><span class="token function">childWith</span></a><span class="token operator">&lt;</span>T<span class="token keyword"> extends </span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="child-with.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Finds a child element of the list node using <a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a> and performs <a href="child-with.html">function</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1468764382%2FFunctions%2F901554290" anchor-label="createListItemNode" id="-1468764382%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-list-item-node.html"><span>create</span><wbr></wbr><span>List</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>Node</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1468764382%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="create-list-item-node.html">T</a> <a href="create-list-item-node.html"><span class="token function">createListItemNode</span></a><span class="token operator">&lt;</span>T<span class="token keyword"> extends </span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsNode.html">SemanticsNode</a> semanticsNode</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="844724321%2FFunctions%2F901554290" anchor-label="firstChild" id="844724321%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="first-child.html"><span>first</span><wbr></wbr><span><span>Child</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="844724321%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="first-child.html"><span class="token function">firstChild</span></a><span class="token operator">&lt;</span>T<span class="token keyword"> extends </span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="first-child.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Performs the specified actions / checks on the list item at the first position.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1302923444%2FFunctions%2F901554290" anchor-label="firstItem" id="-1302923444%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="first-item.html"><span>first</span><wbr></wbr><span><span>Item</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1302923444%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="first-item.html"><span class="token function">firstItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Performs the specified actions / checks on the list item at the first position.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1291681637%2FFunctions%2F901554290" anchor-label="getChildAt" id="1291681637%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-child-at.html"><span>get</span><wbr></wbr><span>Child</span><wbr></wbr><span><span>At</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1291681637%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="get-child-at.html">T</a> <a href="get-child-at.html"><span class="token function">getChildAt</span></a><span class="token operator">&lt;</span>T<span class="token keyword"> extends </span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Returns a child element of the list node at the specified position. Depending on the <a href="get-child-at.html">needPerformScroll</a> parameter, additional scrolling may be performed to the element at the specified position.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-870733068%2FFunctions%2F901554290" anchor-label="getChildWith" id="-870733068%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-child-with.html"><span>get</span><wbr></wbr><span>Child</span><wbr></wbr><span><span>With</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-870733068%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="get-child-with.html">T</a> <a href="get-child-with.html"><span class="token function">getChildWith</span></a><span class="token operator">&lt;</span>T<span class="token keyword"> extends </span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Returns a child element of the list node found using <a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-57581746%2FFunctions%2F901554290" anchor-label="getDelegate" id="-57581746%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
           <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
@@ -481,6 +785,96 @@
               <div>
                 <div class="title">
                   <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.intercept.delegate/-compose-delegate/index.html">ComposeDelegate</a> <a href="../../io.github.kakaocup.compose.node.core/-base-node/get-delegate.html"><span class="token function">getDelegate</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-906624286%2FFunctions%2F901554290" anchor-label="getItemAt" id="-906624286%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-item-at.html"><span>get</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>At</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-906624286%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> <a href="get-item-at.html"><span class="token function">getItemAt</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Returns a child element of the list node at the specified position. Depending on the <a href="get-item-at.html">needPerformScroll</a> parameter, additional scrolling may be performed to the element at the specified position.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="302257652%2FFunctions%2F901554290" anchor-label="getItemIndexSemanticsPropertyKey" id="302257652%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-item-index-semantics-property-key.html"><span>get</span><wbr></wbr><span>Item</span><wbr></wbr><span>Index</span><wbr></wbr><span>Semantics</span><wbr></wbr><span>Property</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="302257652%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span> <a href="get-item-index-semantics-property-key.html"><span class="token function">getItemIndexSemanticsPropertyKey</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-557437929%2FFunctions%2F901554290" anchor-label="getItemWith" id="-557437929%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-item-with.html"><span>get</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>With</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-557437929%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span> <a href="get-item-with.html"><span class="token function">getItemWith</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Returns a child element of the list node found using <a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="702702055%2FFunctions%2F901554290" anchor-label="getLengthSemanticsPropertyKey" id="702702055%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-length-semantics-property-key.html"><span>get</span><wbr></wbr><span>Length</span><wbr></wbr><span>Semantics</span><wbr></wbr><span>Property</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="702702055%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span> <a href="get-length-semantics-property-key.html"><span class="token function">getLengthSemanticsPropertyKey</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2124727390%2FFunctions%2F901554290" anchor-label="getRootNodeMatcher" id="-2124727390%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-root-node-matcher.html"><span>get</span><wbr></wbr><span>Root</span><wbr></wbr><span>Node</span><wbr></wbr><span><span>Matcher</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2124727390%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/test/SemanticsMatcher.html">SemanticsMatcher</a> <a href="get-root-node-matcher.html"><span class="token function">getRootNodeMatcher</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-643326394%2FFunctions%2F901554290" anchor-label="getUseUnmergedTree" id="-643326394%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-use-unmerged-tree.html"><span>get</span><wbr></wbr><span>Use</span><wbr></wbr><span>Unmerged</span><wbr></wbr><span><span>Tree</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-643326394%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> <a href="get-use-unmerged-tree.html"><span class="token function">getUseUnmergedTree</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -515,17 +909,62 @@
               </div>
             </div>
           </div>
-<a data-name="355264025%2FFunctions%2F901554290" anchor-label="invoke" id="355264025%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+<a data-name="1531812988%2FFunctions%2F901554290" anchor-label="invoke" id="1531812988%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
           <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#355264025%2FFunctions%2F901554290"><span><span>invoke</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="355264025%2FFunctions%2F901554290"></span>
+                  <div><a href="index.html#1531812988%2FFunctions%2F901554290"><span><span>invoke</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1531812988%2FFunctions%2F901554290"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="index.html#355264025%2FFunctions%2F901554290"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="index.html#1531812988%2FFunctions%2F901554290"><span class="token function">invoke</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">KListNode</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2056927895%2FFunctions%2F901554290" anchor-label="isScrollable" id="-2056927895%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-scrollable.html"><span>is</span><wbr></wbr><span><span>Scrollable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2056927895%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> <a href="is-scrollable.html"><span class="token function">isScrollable</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1013239164%2FFunctions%2F901554290" anchor-label="itemAt" id="1013239164%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="item-at.html"><span>item</span><wbr></wbr><span><span>At</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1013239164%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="item-at.html"><span class="token function">itemAt</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Performs the specified actions / checks on the list item at the specified position.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1162161967%2FFunctions%2F901554290" anchor-label="itemWith" id="-1162161967%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="item-with.html"><span>item</span><wbr></wbr><span><span>With</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1162161967%2FFunctions%2F901554290"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="item-with.html"><span class="token function">itemWith</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Boolean.html">Boolean</a> needPerformScroll<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-k-list-item-node/index.html">KListItemNode</a><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Finds a child element of the list node using <a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a> and performs <a href="item-with.html">function</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -534,28 +973,28 @@
           <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html#188440987%2FExtensions%2F901554290"><span>KList</span><wbr></wbr><span><span>Node</span></span></a></div>
+                  <div><a href="index.html#188440987%2FExtensions%2F901554290"><span>KList</span><wbr></wbr><span><span>Node</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1139494406%2FFunctions%2F901554290"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html">KListNode</a> <a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html#188440987%2FExtensions%2F901554290"><span class="token function">KListNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> useUnmergedTree<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> isScrollable<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span> itemIndexSemanticsPropertyKey<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span> lengthSemanticsPropertyKey<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function1/index.html">Function1</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Simplified builder for creating <a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html">KListNode</a>.</p></div><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html">KListNode</a> <a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html#2049414263%2FExtensions%2F901554290"><span class="token function">KListNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> testTag<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> useUnmergedTree<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> isScrollable<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span> itemIndexSemanticsPropertyKey<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span> lengthSemanticsPropertyKey</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Simplified builder for creating <a href="../../io.github.kakaocup.compose.node.element.list/-k-list-node/index.html">KListNode</a> with tesgTag.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="index.html">KListNode</a> <a href="index.html#188440987%2FExtensions%2F901554290"><span class="token function">KListNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> useUnmergedTree<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> isScrollable<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span> itemIndexSemanticsPropertyKey<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span> lengthSemanticsPropertyKey<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-function1/index.html">Function1</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../io.github.kakaocup.compose.node.builder/-view-builder/index.html">ViewBuilder</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> viewBuilderAction</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Simplified builder for creating <a href="index.html">KListNode</a>.</p></div><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="index.html">KListNode</a> <a href="index.html#2049414263%2FExtensions%2F901554290"><span class="token function">KListNode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> testTag<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> useUnmergedTree<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> isScrollable<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span> itemIndexSemanticsPropertyKey<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/compose/ui/semantics/SemanticsPropertyKey.html">SemanticsPropertyKey</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span> lengthSemanticsPropertyKey</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Simplified builder for creating <a href="index.html">KListNode</a> with tesgTag.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="619355592%2FFunctions%2F901554290" anchor-label="perform" id="619355592%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+<a data-name="-854155475%2FFunctions%2F901554290" anchor-label="perform" id="-854155475%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
           <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="index.html#619355592%2FFunctions%2F901554290"><span><span>perform</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="619355592%2FFunctions%2F901554290"></span>
+                  <div><a href="index.html#-854155475%2FFunctions%2F901554290"><span><span>perform</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-854155475%2FFunctions%2F901554290"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="index.html">T</a> <a href="index.html#619355592%2FFunctions%2F901554290"><span class="token function">perform</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="index.html">KListNode</a> <a href="index.html#-854155475%2FFunctions%2F901554290"><span class="token function">perform</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlin.jvm.functions/Function1///PointingToDeclaration/">Function1</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">KListNode</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">&gt;</span> function</span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -620,17 +1059,17 @@
               </div>
             </div>
           </div>
-<a data-name="362910341%2FFunctions%2F901554290" anchor-label="performScrollToIndex" id="362910341%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
+<a data-name="1185977487%2FFunctions%2F901554290" anchor-label="performScrollToIndex" id="1185977487%2FFunctions%2F901554290" data-filterable-set=":compose:dokkaHtml/release"></a>
           <div class="table-row" data-filterable-current=":compose:dokkaHtml/release" data-filterable-set=":compose:dokkaHtml/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="../../io.github.kakaocup.compose.node.action/-node-actions/perform-scroll-to-index.html"><span>perform</span><wbr></wbr><span>Scroll</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Index</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="362910341%2FFunctions%2F901554290"></span>
+                  <div><a href="perform-scroll-to-index.html"><span>perform</span><wbr></wbr><span>Scroll</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Index</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1185977487%2FFunctions%2F901554290"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="../../io.github.kakaocup.compose.node.action/-node-actions/perform-scroll-to-index.html"><span class="token function">performScrollToIndex</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Scrolls a scrollable container with items to the item with the given <a href="../../io.github.kakaocup.compose.node.action/-node-actions/perform-scroll-to-index.html">index</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":compose:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="perform-scroll-to-index.html"><span class="token function">performScrollToIndex</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> index</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Performs scroll to position with <a href="perform-scroll-to-index.html">index</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
