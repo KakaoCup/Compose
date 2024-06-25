@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.test.*
 import androidx.compose.ui.text.input.ImeAction
+import io.github.kakaocup.compose.KakaoCompose
 import io.github.kakaocup.compose.node.core.ComposeMarker
 import io.github.kakaocup.compose.utilities.getResourceString
 
@@ -14,7 +15,7 @@ class ViewBuilder {
 
     private var position = 0
 
-    var useUnmergedTree: Boolean = false
+    var useUnmergedTree: Boolean = KakaoCompose.Override.useUnmergedTree ?: false
 
     fun isEnabled() = addFilter(androidx.compose.ui.test.isEnabled())
 

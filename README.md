@@ -294,6 +294,10 @@ class SomeTest {
 ```
 For more detailed info please refer to the documentation.
 
+### Useful tips:
+By default Espresso using `useUnmergedTree = true` and it create a lot of inconveniences with node matching.
+However you can override global parameter `KakaoCompose.Override.useUnmergedTree = false` in single place for all tests
+
 ### Setup
 Maven
 ```xml

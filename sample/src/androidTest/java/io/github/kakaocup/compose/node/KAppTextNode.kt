@@ -9,7 +9,7 @@ import io.github.kakaocup.compose.node.element.KTextNode
 import io.github.kakaocup.compose.sample.semantics.TextColorSemanticKey
 
 class KAppTextNode(
-    semanticsProvider: SemanticsNodeInteractionsProvider,
+    semanticsProvider: SemanticsNodeInteractionsProvider?,
     nodeMatcher: NodeMatcher,
     parentNode: BaseNode<*>? = null,
 ) : KTextNode(

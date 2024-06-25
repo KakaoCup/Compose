@@ -16,7 +16,7 @@ import io.github.kakaocup.compose.node.core.BaseNode
  */
 abstract class KLazyListItemNode<out T : KLazyListItemNode<T>>(
     semanticNode: SemanticsNode,
-    semanticsProvider: SemanticsNodeInteractionsProvider,
+    semanticsProvider: SemanticsNodeInteractionsProvider? = null,
 ) : BaseNode<T>(
     semanticsProvider,
     NodeMatcher(
