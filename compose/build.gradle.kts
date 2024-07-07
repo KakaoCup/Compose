@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     kotlin ("android")
     id("org.jetbrains.dokka")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
