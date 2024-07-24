@@ -1,60 +1,36 @@
 @file:Suppress("DEPRECATION")
 
-import com.android.build.gradle.LibraryExtension
-import com.android.build.gradle.internal.tasks.factory.dependsOn
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomContributorSpec
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.tasks.bundling.Jar
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.extra
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.get
-import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.the
 import org.gradle.plugins.signing.SigningExtension
-import org.jetbrains.dokka.gradle.DokkaTask
 import java.net.URI
 
 object Deployment {
     val ghToken = System.getenv("GH_TOKEN")
-    val sonatypeUser = System.getenv("SONATYPE_USERNAME")
-    val sonatypePassword = System.getenv("SONATYPE_PASSWORD")
-    var releaseMode: String? = null
-    var versionSuffix: String? = null
-    var deployUrl: String? = null
-
-    val snapshotDeployUrl = System.getenv("SONATYPE_SNAPSHOTS_URL")
-        ?: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-    val releaseDeployUrl = System.getenv("SONATYPE_RELEASES_URL")
-        ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
 
     fun initialize(project: Project) {
         val releaseMode: String? by project
-        val versionSuffix = when (releaseMode) {
-            "RELEASE" -> ""
-            else -> "-SNAPSHOT"
-        }
-
-        Deployment.releaseMode = releaseMode
-        Deployment.versionSuffix = versionSuffix
-        deployUrl = when (releaseMode) {
-            "RELEASE" -> releaseDeployUrl
-            else -> snapshotDeployUrl
-        }
-
-        initializePublishing(project)
+        initializePublishing(project, releaseMode)
         initializeSigning(project)
     }
 
-    private fun initializePublishing(project: Project) {
+    private fun initializePublishing(project: Project, releaseMode: String?) {
+        val versionSuffix = when (releaseMode) {
+            "RELEASE" -> ""
+            "SNAPSHOT" -> "-SNAPSHOT"
+            else -> throw Exception("Unknown release mode")
+        }
+
         project.version = PackageInfo.version + versionSuffix
 
         project.plugins.apply("maven-publish")
@@ -75,10 +51,18 @@ object Deployment {
                 maven {
                     name = "OSSHR"
                     credentials {
-                        username = sonatypeUser
-                        password = sonatypePassword
+                        username = System.getenv("SONATYPE_USERNAME")
+                        password = System.getenv("SONATYPE_PASSWORD")
                     }
-                    url = URI.create(deployUrl)
+                    url = URI.create(
+                        when (releaseMode) {
+                            "RELEASE" -> System.getenv("SONATYPE_RELEASES_URL")
+                                ?: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+
+                            else -> System.getenv("SONATYPE_SNAPSHOTS_URL")
+                                ?: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                        }
+                    )
                 }
 
                 maven {
@@ -105,7 +89,10 @@ object Deployment {
 
             project.extra.set("signing.keyId", "0110979F")
             project.extra.set("signing.password", passphrase)
-            project.extra.set("signing.secretKeyRingFile", "${project.rootProject.rootDir}/buildsystem/secring.gpg")
+            project.extra.set(
+                "signing.secretKeyRingFile",
+                "${project.rootProject.rootDir}/buildsystem/secring.gpg"
+            )
         }
     }
 
