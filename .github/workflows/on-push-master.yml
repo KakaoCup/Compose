@@ -63,7 +63,7 @@ jobs:
           cache: gradle
       - uses: little-core-labs/get-git-tag@v3.0.2
       - name: Deploy to GitHub
-        run: ./gradlew :compose:publishDefaultPublicationToOSSHRRepository -PreleaseMode=SNAPSHOT --stacktrace
+        run: ./gradlew :compose:publishDefaultPublicationToGithubRepository -PreleaseMode=SNAPSHOT --stacktrace
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
