@@ -45,10 +45,10 @@ jobs:
       - name: Deploy to OSSRH
         run: ./gradlew :compose:publishDefaultPublicationToOSSHRRepository -PreleaseMode=SNAPSHOT --stacktrace
         env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
 
   deploy-github:
     name: Deploy to GitHub
