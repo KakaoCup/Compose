@@ -10,7 +10,7 @@ import io.github.kakaocup.compose.sample.semantics.ImageContentSemanticKey
 import io.github.kakaocup.compose.sample.semantics.TintColorSemanticKey
 
 class KAppIconNode(
-    semanticsProvider: SemanticsNodeInteractionsProvider,
+    semanticsProvider: SemanticsNodeInteractionsProvider?,
     nodeMatcher: NodeMatcher,
     parentNode: BaseNode<*>? = null,
 ) : KIconNode(

@@ -12,12 +12,14 @@ import io.github.kakaocup.compose.node.assertion.TextResourcesNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.NodeProvider
 import io.github.kakaocup.compose.node.builder.ViewBuilder
+import io.github.kakaocup.compose.utilities.checkNotNull
+import io.github.kakaocup.compose.utilities.orGlobal
 
 @ComposeMarker
 abstract class BaseNode<out T : BaseNode<T>> constructor(
-    @PublishedApi internal val semanticsProvider: SemanticsNodeInteractionsProvider,
-    private val nodeMatcher: NodeMatcher,
-    private val parentNode: BaseNode<*>? = null,
+    @PublishedApi internal var semanticsProvider: SemanticsNodeInteractionsProvider? = null,
+    private var nodeMatcher: NodeMatcher? = null,
+    private var parentNode: BaseNode<*>? = null,
 ) : KDSL<T>,
     NodeAssertions,
     TextResourcesNodeAssertions,
@@ -26,7 +28,7 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     ComposeInterceptable {
 
     constructor(
-        semanticsProvider: SemanticsNodeInteractionsProvider,
+        semanticsProvider: SemanticsNodeInteractionsProvider? = null,
         viewBuilderAction: ViewBuilder.() -> Unit,
     ) : this(
         semanticsProvider = semanticsProvider,
@@ -35,7 +37,7 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
     )
 
     constructor(
-        semanticsProvider: SemanticsNodeInteractionsProvider,
+        semanticsProvider: SemanticsNodeInteractionsProvider? = null,
         nodeMatcher: NodeMatcher,
     ) : this(
         semanticsProvider = semanticsProvider,
@@ -48,10 +50,10 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
             nodeProvider = NodeProvider(
                 nodeMatcher = NodeMatcher(
                     matcher = combineSemanticMatchers(),
-                    position = nodeMatcher.position,
-                    useUnmergedTree = nodeMatcher.useUnmergedTree
+                    position = nodeMatcher.checkNotNull().position,
+                    useUnmergedTree = nodeMatcher.checkNotNull().useUnmergedTree
                 ),
-                semanticsProvider = semanticsProvider
+                semanticsProvider = semanticsProvider.orGlobal().checkNotNull()
             ),
             parentDelegate = parentNode?.delegate
         )
@@ -63,10 +65,24 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
             NodeMatcher::class.java,
             BaseNode::class.java,
         ).newInstance(
-            semanticsProvider,
+            semanticsProvider.orGlobal().checkNotNull(),
             ViewBuilder().apply(function).build(),
             this,
         )
+    }
+
+    /**
+     * Method for deferred initialization of [BaseNode] constructor parameters.
+     * Simplifies the description of child nodes in list nodes.
+     */
+    fun initSemantics(
+        semanticsProvider: SemanticsNodeInteractionsProvider,
+        nodeMatcher: NodeMatcher,
+        parentNode: BaseNode<*>? = null,
+    ) {
+        this.semanticsProvider = semanticsProvider
+        this.nodeMatcher = nodeMatcher
+        this.parentNode = parentNode
     }
 
     /***
@@ -77,10 +93,10 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
         var parent = this.parentNode
 
         while (parent != null) {
-            semanticsMatcherList.add(hasAnyAncestor(parent.nodeMatcher.matcher))
+            semanticsMatcherList.add(hasAnyAncestor(parent.nodeMatcher.checkNotNull().matcher))
             parent = parent.parentNode
         }
-        semanticsMatcherList.add(this.nodeMatcher.matcher)
+        semanticsMatcherList.add(this.nodeMatcher.checkNotNull().matcher)
 
         return semanticsMatcherList.reduce { finalMatcher, matcher -> finalMatcher and matcher }
     }
