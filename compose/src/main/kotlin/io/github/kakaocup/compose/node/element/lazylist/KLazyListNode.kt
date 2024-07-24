@@ -22,7 +22,7 @@ class KLazyListNode(
     nodeMatcher: NodeMatcher,
     itemTypeBuilder: KLazyListItemBuilder.() -> Unit,
     val positionMatcher: (position: Int) -> SemanticsMatcher,
-    override val lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>,
+    override val lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>? = null,
 ) : BaseNode<KLazyListNode>(semanticsProvider, nodeMatcher),
     LazyListNodeAssertions {
     val semanticsMatcher = nodeMatcher.matcher
@@ -35,6 +35,7 @@ class KLazyListNode(
      * @param viewBuilderAction ViewBuilder which will result in view's interaction
      * @param itemTypeBuilder Lambda with receiver where you pass your item providers
      * @param positionMatcher Lambda which finds node by given position
+     * @param lengthSemanticsPropertyKey SemanticsPropertyKey with length list size
      *
      * @see ViewBuilder
      */
@@ -43,7 +44,7 @@ class KLazyListNode(
         viewBuilderAction: ViewBuilder.() -> Unit,
         itemTypeBuilder: KLazyListItemBuilder.() -> Unit,
         positionMatcher: (position: Int) -> SemanticsMatcher,
-        lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>
+        lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>? = null
     ) : this(
         semanticsProvider = semanticsProvider,
         nodeMatcher = ViewBuilder().apply(viewBuilderAction).build(),
