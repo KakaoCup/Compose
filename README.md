@@ -294,9 +294,16 @@ class SomeTest {
 ```
 For more detailed info please refer to the documentation.
 
-### Useful tips:
+### `KakaoComposeTestRule`
+
 By default Espresso using `useUnmergedTree = true` and it create a lot of inconveniences with node matching.
-However you can override global parameter `KakaoCompose.Override.useUnmergedTree = false` in single place for all tests
+However you can override global parameter with `KakaoComposeTestRule`.
+
+Every Compose screen require `composeTestRule` whats creating a lot of boilerplate like `onComposeScreen<LazyListScreen>**(composeTestRule)** {`
+But you can provide `composeTestRule` into `KakaoComposeTestRule` and use all screens without injection like `onComposeScreen<LazyListScreen> {`, it possible to mix both 
+of implementation, injected `composeTestRule` will override provided via `KakaoComposeTestRule`.
+
+You can find examples of it in [Simple project](https://github.com/KakaoCup/Compose/blob/master/sample/src/androidTest/java/io/github/kakaocup/compose/test/SimpleTestGlobalSemantic.kt)
 
 ### Setup
 Maven
@@ -312,6 +319,12 @@ or Gradle:
 ```groovy
 dependencies {
     androidTestImplementation 'io.github.kakaocup:compose:<latest version>'
+}
+```
+
+```kotlin
+dependencies {
+    androidTestImplementation("io.github.kakaocup:compose:<latest version>")
 }
 ```
 

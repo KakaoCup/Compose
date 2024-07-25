@@ -27,8 +27,7 @@ object Deployment {
     private fun initializePublishing(project: Project, releaseMode: String?) {
         val versionSuffix = when (releaseMode) {
             "RELEASE" -> ""
-            "SNAPSHOT" -> "-SNAPSHOT"
-            else -> throw Exception("Unknown release mode")
+            else -> "-SNAPSHOT"
         }
 
         project.version = PackageInfo.version + versionSuffix
