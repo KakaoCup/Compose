@@ -68,6 +68,7 @@ jobs:
       - name: Deploy to GitHub
         run: ./gradlew :compose:publishDefaultPublicationToGithubRepository -PreleaseMode=SNAPSHOT --stacktrace
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ secrets.GH_ACTOR }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
