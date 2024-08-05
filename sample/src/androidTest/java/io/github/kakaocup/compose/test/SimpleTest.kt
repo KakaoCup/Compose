@@ -1,10 +1,13 @@
 package io.github.kakaocup.compose.test
 
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.unit.dp
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.sample.MainActivity
 import io.github.kakaocup.compose.sample.R
@@ -145,6 +148,35 @@ class SimpleTest {
                 assertTextColorEquals("0000FF")
                 assertTextColorEquals("#0000FF")
                 assertTextColorEquals(0xFF0000FF)
+            }
+        }
+    }
+
+    @Test
+    fun backgroundColorAndShapeTest() {
+        onComposeScreen<MainActivityScreen>(composeTestRule) {
+            changeBackgroundColorAndShapeButton {
+                assertIsDisplayed()
+            }
+
+            with(boxColorAndShape) {
+                assertIsDisplayed()
+                assertBackgroundColorEquals(Color.Black)
+                assertBackgroundColorEquals("000000")
+                assertBackgroundColorEquals("#000000")
+                assertBackgroundColorEquals(0xFF000000)
+                assertBackgroundShapeEquals(RectangleShape)
+            }
+
+            changeBackgroundColorAndShapeButton.performClick()
+
+            with(boxColorAndShape) {
+                assertIsDisplayed()
+                assertBackgroundColorEquals(Color.Blue)
+                assertBackgroundColorEquals("0000FF")
+                assertBackgroundColorEquals("#0000FF")
+                assertBackgroundColorEquals(0xFF0000FF)
+                assertBackgroundShapeEquals(RoundedCornerShape(20.dp))
             }
         }
     }
