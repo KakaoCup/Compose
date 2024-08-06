@@ -14,7 +14,10 @@ class SimpleTestGlobalSemantic {
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @get:Rule
-    val kakaoComposeTestRule = KakaoComposeTestRule(composeTestRule)
+    val kakaoComposeTestRule = KakaoComposeTestRule(
+        semanticsProvider = composeTestRule,
+        useUnmergedTree = true
+    )
 
     @Test
     fun simpleTest() {

@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     kotlin ("android")
     id("org.jetbrains.dokka")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -24,16 +25,16 @@ android {
         }
     }
 
-    kotlin {
-        jvmToolchain(17)
-    }
-
     publishing {
         singleVariant("release") {
             withJavadocJar()
             withSourcesJar()
         }
     }
+}
+
+kotlin {
+    jvmToolchain(8)
 }
 
 dependencies {

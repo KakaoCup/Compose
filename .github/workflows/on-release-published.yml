@@ -1,9 +1,10 @@
-name: release-deploy
+name: Publish Release
 on:
   release:
     types: [published]
 jobs:
-  deploy:
+  deploy-osshr:
+    name: Deploy to OSSHR
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -18,4 +19,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }} 
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}

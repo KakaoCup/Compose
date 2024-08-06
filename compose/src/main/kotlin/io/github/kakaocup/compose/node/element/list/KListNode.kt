@@ -476,6 +476,7 @@ class KListNode(
         return ViewBuilder()
             .apply {
                 this.useUnmergedTree = this@KListNode.useUnmergedTree
+                hasParent(this@KListNode.rootNodeMatcher)
                 addSemanticsMatcher(
                     SemanticsMatcher.expectValue(this@KListNode.itemIndexSemanticsPropertyKey, index)
                 )

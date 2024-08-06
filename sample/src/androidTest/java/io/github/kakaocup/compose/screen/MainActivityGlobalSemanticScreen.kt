@@ -1,14 +1,14 @@
 package io.github.kakaocup.compose.screen
 
-import io.github.kakaocup.compose.node.KAppIconNode
-import io.github.kakaocup.compose.node.KAppTextNode
+import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.KNode
 
-class MainActivityGlobalSemanticScreen :
+class MainActivityGlobalSemanticScreen(semanticsProvider: SemanticsNodeInteractionsProvider? = null) :
     ComposeScreen<MainActivityGlobalSemanticScreen>(
-        viewBuilderAction = { hasTestTag("MainScreen") }
-) {
+        semanticsProvider = semanticsProvider,
+        viewBuilderAction = { hasTestTag("MainScreen") },
+    ) {
 
     val myText1: KNode = child {
         hasTestTag("mySimpleText")
