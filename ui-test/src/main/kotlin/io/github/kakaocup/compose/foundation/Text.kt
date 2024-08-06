@@ -32,9 +32,11 @@ open class KTextNode : BaseNode<KTextNode> {
      * Throws [IllegalStateException] if the compose view does not contain the [TextColorSemanticKey] modifier.
      */
     fun assertTextColorEquals(color: Color) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-            assert(hasProperty(color, TextColorSemanticKey, "text color"))
-        }
+        assertHasProperty(
+            color,
+            TextColorSemanticKey,
+            "text color"
+        )
     }
 
     /**
@@ -45,15 +47,11 @@ open class KTextNode : BaseNode<KTextNode> {
      * Throws [IllegalArgumentException] if the color value is incorrect.
      */
     fun assertTextColorEquals(color: String) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-            assert(
-                hasProperty(
-                    Color(android.graphics.Color.parseColor(color)),
-                    TextColorSemanticKey,
-                    "text color"
-                )
+        assertHasProperty(
+            Color(android.graphics.Color.parseColor(color)),
+            TextColorSemanticKey,
+            "text color",
             )
-        }
     }
 
     /**
@@ -63,8 +61,10 @@ open class KTextNode : BaseNode<KTextNode> {
      * Throws [IllegalStateException] if the compose view does not contain the [TextColorSemanticKey] modifier.
      */
     fun assertTextColorEquals(color: Long) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-            assert(hasProperty(Color(color), TextColorSemanticKey, "text color"))
-        }
+        assertHasProperty(
+            Color(color),
+            TextColorSemanticKey,
+            "text color",
+        )
     }
 }

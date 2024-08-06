@@ -30,6 +30,11 @@
             android:name=".TextActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".CustomSemanticPropertyKeyActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

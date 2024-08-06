@@ -20,9 +20,11 @@ import io.github.kakaocup.compose.node.element.KNode
  * Throws [IllegalStateException] if the compose view does not contain the [BackgroundColorSemanticKey] modifier.
  */
 fun KNode.assertBackgroundColorEquals(color: Color) {
-    delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-        assert(hasProperty(color, BackgroundColorSemanticKey, "color"))
-    }
+    assertHasProperty(
+        color,
+        BackgroundColorSemanticKey,
+        "color",
+        )
 }
 
 /**
@@ -33,15 +35,11 @@ fun KNode.assertBackgroundColorEquals(color: Color) {
  * Throws [IllegalArgumentException] if the color value is incorrect.
  */
 fun KNode.assertBackgroundColorEquals(color: String) {
-    delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-        assert(
-            hasProperty(
-                Color(android.graphics.Color.parseColor(color)),
-                BackgroundColorSemanticKey,
-                "color"
-            )
+    assertHasProperty(
+        Color(android.graphics.Color.parseColor(color)),
+        BackgroundColorSemanticKey,
+        "color",
         )
-    }
 }
 
 /**
@@ -51,9 +49,11 @@ fun KNode.assertBackgroundColorEquals(color: String) {
  * Throws [IllegalStateException] if the compose view does not contain the [BackgroundColorSemanticKey] modifier.
  */
 fun KNode.assertBackgroundColorEquals(color: Long) {
-    delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-        assert(hasProperty(Color(color), BackgroundColorSemanticKey, "color"))
-    }
+    assertHasProperty(
+        Color(color),
+        BackgroundColorSemanticKey,
+        "color",
+        )
 }
 
 /**
@@ -63,9 +63,11 @@ fun KNode.assertBackgroundColorEquals(color: Long) {
  * Throws [IllegalStateException] if the compose view does not contain the [BackgroundShapeSemanticKey] modifier.
  */
 fun KNode.assertBackgroundShapeEquals(shape: Shape) {
-    delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-        assert(hasProperty(shape, BackgroundShapeSemanticKey, "shape"))
-    }
+    assertHasProperty(
+        shape,
+        BackgroundShapeSemanticKey,
+        "shape",
+        )
 }
 
 /**
@@ -75,9 +77,11 @@ fun KNode.assertBackgroundShapeEquals(shape: Shape) {
  * Throws [IllegalStateException] if the compose view does not contain the [BackgroundBrushSemanticKey] modifier.
  */
 fun KNode.assertBackgroundBrushEquals(brush: Brush) {
-    delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-        assert(hasProperty(brush, BackgroundBrushSemanticKey, "brush"))
-    }
+    assertHasProperty(
+        brush,
+        BackgroundBrushSemanticKey,
+        "brush",
+        )
 }
 
 /**
@@ -87,7 +91,9 @@ fun KNode.assertBackgroundBrushEquals(brush: Brush) {
  * Throws [IllegalStateException] if the compose view does not contain the [BackgroundAlphaSemanticKey] modifier.
  */
 fun KNode.assertBackgroundAlphaEquals(alpha: Float) {
-    delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-        assert(hasProperty(alpha, BackgroundAlphaSemanticKey, "alpha"))
-    }
+    assertHasProperty(
+        alpha,
+        BackgroundAlphaSemanticKey,
+        "alpha",
+        )
 }

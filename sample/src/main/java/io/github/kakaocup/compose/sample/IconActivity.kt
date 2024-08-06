@@ -24,7 +24,7 @@ class IconActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            IconScreen()
+            Screen()
         }
     }
 
@@ -35,7 +35,7 @@ class IconActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun IconScreen() {
+    private fun Screen() {
         val tintColor by remember { mutableStateOf(Color.Black) }
         val iconRes by remember { mutableIntStateOf(R.drawable.ic_android) }
         val iconImageVector by remember { mutableStateOf(Icons.Filled.AccountCircle) }
@@ -65,7 +65,7 @@ class IconActivity : AppCompatActivity() {
     @Preview(showSystemUi = true)
     private fun MainScreenPreview() {
         MaterialTheme {
-            IconScreen()
+            Screen()
         }
     }
 }

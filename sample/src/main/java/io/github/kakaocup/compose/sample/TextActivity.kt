@@ -25,7 +25,7 @@ class TextActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TextScreen()
+            Screen()
         }
     }
 
@@ -37,7 +37,7 @@ class TextActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun TextScreen() {
+    private fun Screen() {
         Column(
             modifier = Modifier
                 .semantics { testTag = TextScreenTestTags.TextScreen }
@@ -73,7 +73,7 @@ class TextActivity : AppCompatActivity() {
     @Preview(showSystemUi = true)
     private fun TextScreenScreenPreview() {
         MaterialTheme {
-            TextScreen()
+            Screen()
         }
     }
 }

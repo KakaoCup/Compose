@@ -4,8 +4,6 @@ import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import androidx.compose.ui.test.assert
-import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
@@ -34,9 +32,7 @@ open class KIconNode : BaseNode<KIconNode> {
      * Throws [IllegalStateException] if the compose view does not contain the [TintColorSemanticKey] modifier.
      */
     fun assertTintColorEquals(color: Color) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-            assert(hasProperty(color, TintColorSemanticKey, "tint color"))
-        }
+        assertHasProperty(color, TintColorSemanticKey, "tint color")
     }
 
     /**
@@ -47,15 +43,11 @@ open class KIconNode : BaseNode<KIconNode> {
      * Throws [IllegalArgumentException] if the color value is incorrect.
      */
     fun assertTintColorEquals(color: String) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-            assert(
-                hasProperty(
-                    Color(android.graphics.Color.parseColor(color)),
-                    TintColorSemanticKey,
-                    "tint color"
-                )
-            )
-        }
+        assertHasProperty(
+            Color(android.graphics.Color.parseColor(color)),
+            TintColorSemanticKey,
+            "tint color",
+        )
     }
 
     /**
@@ -65,9 +57,11 @@ open class KIconNode : BaseNode<KIconNode> {
      * Throws [IllegalStateException] if the compose view does not contain the [TintColorSemanticKey] modifier.
      */
     fun assertTintColorEquals(color: Long) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-            assert(hasProperty(Color(color), TintColorSemanticKey, "tint color"))
-        }
+        assertHasProperty(
+            Color(color),
+            TintColorSemanticKey,
+            "tint color",
+        )
     }
 
     /**
@@ -77,11 +71,11 @@ open class KIconNode : BaseNode<KIconNode> {
      * Throws [IllegalStateException] if the image or icon does not contain the [ImageContentSemanticKey] modifier.
      */
     fun assertContentEquals(imageVector: ImageVector) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-            assert(
-                hasProperty(imageVector, ImageContentSemanticKey, "image vector")
-            )
-        }
+        assertHasProperty(
+            imageVector,
+            ImageContentSemanticKey,
+            "image vector",
+        )
     }
 
     /**
@@ -91,10 +85,10 @@ open class KIconNode : BaseNode<KIconNode> {
      * Throws [IllegalStateException] if the image or icon does not contain the [ImageContentSemanticKey] modifier.
      */
     fun assertContentEquals(@DrawableRes drawableRes: Int) {
-        delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-            assert(
-                hasProperty(drawableRes, ImageContentSemanticKey, "image drawable")
-            )
-        }
+        assertHasProperty(
+            drawableRes,
+            ImageContentSemanticKey,
+            "image drawable",
+        )
     }
 }
