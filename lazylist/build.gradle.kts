@@ -38,7 +38,7 @@ kotlin {
 }
 
 dependencies {
-    implementation(project(":compose"))
+    implementation(project(":foundation"))
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui.uiTooling)
     implementation(libs.androidx.compose.material)

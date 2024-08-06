@@ -22,9 +22,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/compose" />
+            <option value="$PROJECT_DIR$/foundation" />
             <option value="$PROJECT_DIR$/lazylist" />
             <option value="$PROJECT_DIR$/sample" />
+            <option value="$PROJECT_DIR$/semantics" />
             <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/ui-test" />
           </set>

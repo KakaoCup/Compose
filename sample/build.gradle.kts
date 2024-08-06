@@ -69,7 +69,7 @@ android {
 }
 
 dependencies {
-    androidTestImplementation(project(":compose"))
+    androidTestImplementation(project(":foundation"))
     implementation(project(":ui"))
     androidTestImplementation(project(":ui-test"))
     androidTestImplementation(project(":lazylist"))

@@ -1,17 +1,13 @@
 package io.github.kakaocup.compose.foundation
 
-import androidx.annotation.FloatRange
-import androidx.compose.foundation.background
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.semantics.SemanticsPropertyKey
-import androidx.compose.ui.semantics.SemanticsPropertyReceiver
-import androidx.compose.ui.semantics.semantics
-import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.compose.node.element.KNode
+import io.github.kakaocup.compose.semantics.BackgroundAlphaSemanticKey
+import io.github.kakaocup.compose.semantics.BackgroundBrushSemanticKey
+import io.github.kakaocup.compose.semantics.BackgroundColorSemanticKey
+import io.github.kakaocup.compose.semantics.BackgroundShapeSemanticKey
 
 /**
  * Asserts that the compose view background color contains the given [color].

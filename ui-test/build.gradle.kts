@@ -38,8 +38,8 @@ kotlin {
 }
 
 dependencies {
-    implementation(project(":compose"))
-    implementation(project(":ui"))
+    implementation(project(":foundation"))
+    implementation(project(":semantics"))
     implementation(platform(libs.androidx.compose.bom))
 
     implementation(libs.androidx.compose.ui.uiTooling)

@@ -7,6 +7,7 @@ import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
+import io.github.kakaocup.compose.semantics.TextColorSemanticKey
 
 open class KTextNode : BaseNode<KTextNode> {
     constructor(

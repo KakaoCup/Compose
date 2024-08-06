@@ -7,19 +7,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.semantics.SemanticsPropertyKey
-import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
-
-val BackgroundColorSemanticKey = SemanticsPropertyKey<Any>("BackgroundColor")
-val BackgroundShapeSemanticKey = SemanticsPropertyKey<Shape>("BackgroundShape")
-val BackgroundBrushSemanticKey = SemanticsPropertyKey<Brush>("BackgroundBrush")
-val BackgroundAlphaSemanticKey = SemanticsPropertyKey<Float>("BackgroundAlpha")
-
-var SemanticsPropertyReceiver.backgroundColor by BackgroundColorSemanticKey
-var SemanticsPropertyReceiver.backgroundShape by BackgroundShapeSemanticKey
-var SemanticsPropertyReceiver.backgroundBrush by BackgroundBrushSemanticKey
-var SemanticsPropertyReceiver.backgroundAlpha by BackgroundAlphaSemanticKey
+import io.github.kakaocup.compose.semantics.backgroundAlpha
+import io.github.kakaocup.compose.semantics.backgroundBrush
+import io.github.kakaocup.compose.semantics.backgroundColor
+import io.github.kakaocup.compose.semantics.backgroundShape
 
 fun Modifier.background(
     color: Color,

@@ -12,15 +12,9 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.SemanticsPropertyKey
-import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
-
-val ImageContentSemanticKey = SemanticsPropertyKey<Any>("ImageContent")
-val TintColorSemanticKey = SemanticsPropertyKey<Color>("TintColor")
-
-var SemanticsPropertyReceiver.tintColor by TintColorSemanticKey
-var SemanticsPropertyReceiver.imageContent by ImageContentSemanticKey
+import io.github.kakaocup.compose.semantics.imageContent
+import io.github.kakaocup.compose.semantics.tintColor
 
 /**
  * A Material Design icon component that draws [imageVector] using [tint], with a default value

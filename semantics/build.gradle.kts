@@ -37,8 +37,6 @@ kotlin {
 }
 
 dependencies {
-    implementation(project(":semantics"))
-
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.ui.uiTooling)
 }

@@ -24,7 +24,7 @@ class KLazyListNode(
     val positionMatcher: (position: Int) -> SemanticsMatcher,
     override val lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>? = null,
 ) : BaseNode<KLazyListNode>(semanticsProvider, nodeMatcher),
-    io.github.kakaocup.compose.node.assertion.LazyListNodeAssertions {
+    LazyListNodeAssertions {
     val semanticsMatcher = nodeMatcher.matcher
     val itemTypes = KLazyListItemBuilder().apply(itemTypeBuilder).itemTypes
 
