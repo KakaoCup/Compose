@@ -4,8 +4,8 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.node.element.ComposeScreen
 import io.github.kakaocup.compose.node.element.KNode
 
-class MainActivityGlobalSemanticScreen(semanticsProvider: SemanticsNodeInteractionsProvider? = null) :
-    ComposeScreen<MainActivityGlobalSemanticScreen>(
+class GlobalSemanticScreen(semanticsProvider: SemanticsNodeInteractionsProvider? = null) :
+    ComposeScreen<GlobalSemanticScreen>(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("MainScreen") },
     ) {

@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/compose" />
             <option value="$PROJECT_DIR$/sample" />
+            <option value="$PROJECT_DIR$/semantics" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

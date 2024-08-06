@@ -70,6 +70,7 @@ android {
 
 dependencies {
     androidTestImplementation(project(":compose"))
+    implementation(project(":semantics"))
 
     implementation(libs.androidx.appcompat)
     implementation(libs.com.google.android.material)
