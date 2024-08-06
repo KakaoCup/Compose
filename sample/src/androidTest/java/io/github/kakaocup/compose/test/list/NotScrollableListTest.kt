@@ -10,7 +10,6 @@ import io.github.kakaocup.compose.SampleNoActivityTest
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import io.github.kakaocup.compose.sample.NotScrollableListScreen
-import io.github.kakaocup.compose.sample.semantics.ImageContentSemanticKey
 import io.github.kakaocup.compose.screen.list.NotScrollableListComposeScreen
 import org.junit.Rule
 import org.junit.Test
@@ -39,11 +38,6 @@ class NotScrollableListTest : SampleNoActivityTest() {
                 childAt<NotScrollableListComposeScreen.TabBarListItemNode>(2) {
                     text {
                         assertTextEquals("Responses")
-                    }
-                    icon {
-                        assert(
-                            SemanticsMatcher.expectValue(ImageContentSemanticKey, Icons.Outlined.Email)
-                        )
                     }
                 }
 

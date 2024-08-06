@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.semantics
+package io.github.kakaocup.compose.foundation
 
 import androidx.annotation.FloatRange
 import androidx.compose.foundation.background
@@ -12,37 +12,6 @@ import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.compose.node.element.KNode
-
-val BackgroundColorSemanticKey = SemanticsPropertyKey<Any>("BackgroundColor")
-val BackgroundShapeSemanticKey = SemanticsPropertyKey<Shape>("BackgroundShape")
-val BackgroundBrushSemanticKey = SemanticsPropertyKey<Brush>("BackgroundBrush")
-val BackgroundAlphaSemanticKey = SemanticsPropertyKey<Float>("BackgroundAlpha")
-
-var SemanticsPropertyReceiver.backgroundColor by BackgroundColorSemanticKey
-var SemanticsPropertyReceiver.backgroundShape by BackgroundShapeSemanticKey
-var SemanticsPropertyReceiver.backgroundBrush by BackgroundBrushSemanticKey
-var SemanticsPropertyReceiver.backgroundAlpha by BackgroundAlphaSemanticKey
-
-fun Modifier.background(
-    color: Color,
-    shape: Shape = RectangleShape
-): Modifier {
-    return then(background(color, shape)).
-    then(semantics { this.backgroundColor = color }).
-    then(semantics { this.backgroundShape = shape })
-}
-
-fun Modifier.background(
-    brush: Brush,
-    shape: Shape = RectangleShape,
-    @FloatRange(from = 0.0, to = 1.0)
-    alpha: Float = 1.0f
-): Modifier {
-    return then(background(brush, shape, alpha)).
-    then(semantics { this.backgroundBrush = brush }).
-    then(semantics { this.backgroundShape = shape }).
-    then(semantics { this.backgroundAlpha = alpha })
-}
 
 /**
  * Asserts that the compose view background color contains the given [color].
@@ -65,7 +34,13 @@ fun KNode.assertBackgroundColorEquals(color: Color) {
  */
 fun KNode.assertBackgroundColorEquals(color: String) {
     delegate.check(NodeAssertions.ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
-        assert(hasProperty(Color(android.graphics.Color.parseColor(color)), BackgroundColorSemanticKey, "color"))
+        assert(
+            hasProperty(
+                Color(android.graphics.Color.parseColor(color)),
+                BackgroundColorSemanticKey,
+                "color"
+            )
+        )
     }
 }
 

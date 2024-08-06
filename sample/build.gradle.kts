@@ -70,7 +70,8 @@ android {
 
 dependencies {
     androidTestImplementation(project(":compose"))
-    implementation(project(":semantics"))
+    implementation(project(":ui"))
+    androidTestImplementation(project(":ui-test"))
 
     implementation(libs.androidx.appcompat)
     implementation(libs.com.google.android.material)

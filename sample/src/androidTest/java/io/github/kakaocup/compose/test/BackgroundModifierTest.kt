@@ -6,19 +6,19 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.rule.KakaoComposeTestRule
-import io.github.kakaocup.compose.sample.BackgroundSemanticsActivity
-import io.github.kakaocup.compose.screen.SemanticsExtensionActivityScreen
-import io.github.kakaocup.compose.semantics.assertBackgroundAlphaEquals
-import io.github.kakaocup.compose.semantics.assertBackgroundBrushEquals
-import io.github.kakaocup.compose.semantics.assertBackgroundColorEquals
-import io.github.kakaocup.compose.semantics.assertBackgroundShapeEquals
+import io.github.kakaocup.compose.sample.BackgroundActivity
+import io.github.kakaocup.compose.screen.BackgroundActivityScreen
+import io.github.kakaocup.compose.foundation.assertBackgroundAlphaEquals
+import io.github.kakaocup.compose.foundation.assertBackgroundBrushEquals
+import io.github.kakaocup.compose.foundation.assertBackgroundColorEquals
+import io.github.kakaocup.compose.foundation.assertBackgroundShapeEquals
 import org.junit.Rule
 import org.junit.Test
 
-class BackgroundSemanticsExtensionTest {
+class BackgroundModifierTest {
 
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<BackgroundSemanticsActivity>()
+    val composeTestRule = createAndroidComposeRule<BackgroundActivity>()
 
     @get:Rule
     val kakaoComposeTestRule = KakaoComposeTestRule(
@@ -28,7 +28,7 @@ class BackgroundSemanticsExtensionTest {
 
     @Test
     fun testColor() {
-        onComposeScreen<SemanticsExtensionActivityScreen> {
+        onComposeScreen<BackgroundActivityScreen> {
             backgroundColorAndShapeBox {
                 assertBackgroundColorEquals(Color.Black)
             }
@@ -37,7 +37,7 @@ class BackgroundSemanticsExtensionTest {
 
     @Test
     fun testColorString() {
-        onComposeScreen<SemanticsExtensionActivityScreen> {
+        onComposeScreen<BackgroundActivityScreen> {
             backgroundColorAndShapeBox {
                 assertBackgroundColorEquals("#000000")
             }
@@ -46,7 +46,7 @@ class BackgroundSemanticsExtensionTest {
 
     @Test
     fun testColorLong() {
-        onComposeScreen<SemanticsExtensionActivityScreen> {
+        onComposeScreen<BackgroundActivityScreen> {
             backgroundColorAndShapeBox {
                 assertBackgroundColorEquals(0xFF000000)
             }
@@ -55,7 +55,7 @@ class BackgroundSemanticsExtensionTest {
 
     @Test
     fun testShape() {
-        onComposeScreen<SemanticsExtensionActivityScreen> {
+        onComposeScreen<BackgroundActivityScreen> {
             backgroundColorAndShapeBox {
                 assertBackgroundShapeEquals(RectangleShape)
             }
@@ -64,7 +64,7 @@ class BackgroundSemanticsExtensionTest {
 
     @Test
     fun testBrush() {
-        onComposeScreen<SemanticsExtensionActivityScreen> {
+        onComposeScreen<BackgroundActivityScreen> {
             backgroundBrushAndShapeBox {
                 assertBackgroundBrushEquals(Brush.linearGradient(listOf(Color.Green, Color.Red)))
             }
@@ -73,7 +73,7 @@ class BackgroundSemanticsExtensionTest {
 
     @Test
     fun testAlpha() {
-        onComposeScreen<SemanticsExtensionActivityScreen> {
+        onComposeScreen<BackgroundActivityScreen> {
             backgroundBrushAndShapeBox {
                 assertBackgroundAlphaEquals(0.5f)
             }

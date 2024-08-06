@@ -1,5 +1,6 @@
 include(":compose")
-include(":semantics")
+include(":ui")
+include(":ui-test")
 include(":sample")
 
 buildscript {

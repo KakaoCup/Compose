@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.semantics
+package io.github.kakaocup.compose.foundation
 
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.semantics.getOrNull
