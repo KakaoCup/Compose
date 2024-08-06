@@ -72,6 +72,7 @@ dependencies {
     androidTestImplementation(project(":compose"))
     implementation(project(":ui"))
     androidTestImplementation(project(":ui-test"))
+    androidTestImplementation(project(":lazylist"))
 
     implementation(libs.androidx.appcompat)
     implementation(libs.com.google.android.material)

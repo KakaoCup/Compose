@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "io.github.kakaocup.compose.semantics"
+    namespace = "io.github.kakaocup.compose"
     compileSdk = 34
     defaultConfig.apply {
         minSdk = 21
@@ -48,10 +48,10 @@ dependencies {
 }
 
 tasks.dokkaGfm {
-    moduleName.set("semantics")
+    moduleName.set("ui")
     outputDirectory.set(File("$rootDir/docs"))
 }
 tasks.dokkaHtml.configure {
-    moduleName.set("semantics")
+    moduleName.set("ui")
     outputDirectory.set(File("$rootDir/html"))
 }

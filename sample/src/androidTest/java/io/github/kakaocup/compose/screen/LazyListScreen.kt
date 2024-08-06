@@ -14,14 +14,19 @@ class LazyListScreen(semanticsProvider: SemanticsNodeInteractionsProvider) : Com
     semanticsProvider = semanticsProvider,
     viewBuilderAction = { hasTestTag("LazyListScreen") }
 ) {
-    val list = KLazyListNode(
+    val list = io.github.kakaocup.compose.node.element.lazylist.KLazyListNode(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("LazyList") },
         itemTypeBuilder = {
             itemType(::LazyListItemNode)
             itemType(::LazyListHeaderNode)
         },
-        positionMatcher = { position -> SemanticsMatcher.expectValue(LazyListItemPositionSemantics, position) },
+        positionMatcher = { position ->
+            SemanticsMatcher.expectValue(
+                LazyListItemPositionSemantics,
+                position
+            )
+        },
         lengthSemanticsPropertyKey = LazyListLengthSemantics
     )
 
@@ -31,12 +36,12 @@ class LazyListScreen(semanticsProvider: SemanticsNodeInteractionsProvider) : Com
 class LazyListItemNode(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode<LazyListItemNode>(semanticsNode, semanticsProvider)
+) : io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode<LazyListItemNode>(semanticsNode, semanticsProvider)
 
 class LazyListHeaderNode(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : KLazyListItemNode<LazyListHeaderNode>(semanticsNode, semanticsProvider) {
+) : io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode<LazyListHeaderNode>(semanticsNode, semanticsProvider) {
     val title: KNode = child {
         hasTestTag("LazyListHeaderTitle")
     }

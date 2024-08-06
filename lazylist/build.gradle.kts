@@ -39,22 +39,19 @@ kotlin {
 
 dependencies {
     implementation(project(":compose"))
-    implementation(project(":ui"))
     implementation(platform(libs.androidx.compose.bom))
-
     implementation(libs.androidx.compose.ui.uiTooling)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.ui.uiTestJunit4)
-
 
     dokkaHtmlPlugin(libs.org.jetbrains.dokka.kotlinAsJavaPlugin)
 }
 
 tasks.dokkaGfm {
-    moduleName.set("ui-test")
+    moduleName.set("lazylist")
     outputDirectory.set(File("$rootDir/docs"))
 }
 tasks.dokkaHtml.configure {
-    moduleName.set("ui-test")
+    moduleName.set("lazylist")
     outputDirectory.set(File("$rootDir/html"))
 }

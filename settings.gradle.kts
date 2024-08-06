@@ -1,6 +1,7 @@
 include(":compose")
 include(":ui")
 include(":ui-test")
+include(":lazylist")
 include(":sample")
 
 buildscript {

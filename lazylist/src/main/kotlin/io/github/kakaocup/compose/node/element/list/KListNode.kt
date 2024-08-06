@@ -50,7 +50,7 @@ class KListNode(
     val itemIndexSemanticsPropertyKey: SemanticsPropertyKey<Int>?,
     override val lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>,
 ) : BaseNode<KListNode>(semanticsProvider, nodeMatcher, parentNode),
-    ListNodeAssertions {
+    io.github.kakaocup.compose.node.assertion.ListNodeAssertions {
 
     companion object {
         val itemIndexPropertyErrorMessage = """

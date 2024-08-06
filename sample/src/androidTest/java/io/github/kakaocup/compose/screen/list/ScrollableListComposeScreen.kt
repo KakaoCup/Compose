@@ -11,7 +11,7 @@ class ScrollableListComposeScreen : ComposeScreen<ScrollableListComposeScreen>()
 
     val pullToRefresh = KNode() { hasTestTag("PullToRefresh") }
 
-    class ListHeaderNode : KListItemNode<ListHeaderNode>() {
+    class ListHeaderNode : io.github.kakaocup.compose.node.element.list.KListItemNode<ListHeaderNode>() {
 
         val title: KNode by lazy {
             child {

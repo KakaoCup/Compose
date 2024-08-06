@@ -12,7 +12,7 @@ class NotScrollableListComposeScreen : ComposeScreen<NotScrollableListComposeScr
         isScrollable = false,
     )
 
-    class TabBarListItemNode : KListItemNode<TabBarListItemNode>() {
+    class TabBarListItemNode : io.github.kakaocup.compose.node.element.list.KListItemNode<TabBarListItemNode>() {
 
         val text: KNode by lazy {
             child {

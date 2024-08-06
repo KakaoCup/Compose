@@ -5,7 +5,6 @@ import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assert
 import io.github.kakaocup.compose.exception.KakaoComposeException
-import io.github.kakaocup.compose.utilities.checkNotNull
 
 interface LazyListNodeAssertions : NodeAssertions {
     val lengthSemanticsPropertyKey: SemanticsPropertyKey<Int>?
