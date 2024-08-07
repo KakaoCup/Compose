@@ -1,4 +1,4 @@
-name: Master
+name: On Push into Master
 
 on:
   push:
@@ -6,46 +6,28 @@ on:
       - master
 
 jobs:
-  github-pages:
-    name: Generate Documentation
+  deploy-osshr:
+    name: Deploy to OSSHR
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [ compose, compose-semantics, compose-test, compose-ui ]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           distribution: "temurin"
           java-version: 17
           cache: gradle
-      - name: dokkaHtml
-        run: |
-          ./gradlew clean dokkaHtml
-      - name: Build Page
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: "./html"
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-
-  deploy-osshr:
-    name: Deploy to OSSHR
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 8
-        uses: actions/setup-java@v3
-        with:
-          distribution: "temurin"
-          java-version: 17
-          cache: gradle
       - uses: little-core-labs/get-git-tag@v3.0.2
-      - name: Deploy to OSSRH
-        run: ./gradlew :compose:publishDefaultPublicationToOSSHRRepository -PreleaseMode=SNAPSHOT --stacktrace
+
+      - name: Deploy Snapshot to OSSRH
+        run: ./gradlew :$PACKAGE:publishDefaultPublicationToOSSHRRepository -PreleaseMode=SNAPSHOT
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          PACKAGE: ${{ matrix.package }}

@@ -1,0 +1,13 @@
+name: Semantics Library Publish Release
+
+on:
+  push:
+    tags:
+      - 'semantics_*'
+
+jobs:
+  publish-release:
+    uses: ./.github/workflows/publish-release-workflow.yaml
+    with:
+      project: compose-semantics
+    secrets: inherit

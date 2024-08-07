@@ -14,7 +14,7 @@ class LazyListScreen(semanticsProvider: SemanticsNodeInteractionsProvider) : Com
     semanticsProvider = semanticsProvider,
     viewBuilderAction = { hasTestTag("LazyListScreen") }
 ) {
-    val list = io.github.kakaocup.compose.node.element.lazylist.KLazyListNode(
+    val list = KLazyListNode(
         semanticsProvider = semanticsProvider,
         viewBuilderAction = { hasTestTag("LazyList") },
         itemTypeBuilder = {
@@ -36,12 +36,12 @@ class LazyListScreen(semanticsProvider: SemanticsNodeInteractionsProvider) : Com
 class LazyListItemNode(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode<LazyListItemNode>(semanticsNode, semanticsProvider)
+) : KLazyListItemNode<LazyListItemNode>(semanticsNode, semanticsProvider)
 
 class LazyListHeaderNode(
     semanticsNode: SemanticsNode,
     semanticsProvider: SemanticsNodeInteractionsProvider,
-) : io.github.kakaocup.compose.node.element.lazylist.KLazyListItemNode<LazyListHeaderNode>(semanticsNode, semanticsProvider) {
+) : KLazyListItemNode<LazyListHeaderNode>(semanticsNode, semanticsProvider) {
     val title: KNode = child {
         hasTestTag("LazyListHeaderTitle")
     }
