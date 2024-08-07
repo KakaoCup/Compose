@@ -22,7 +22,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
+import io.github.kakaocup.compose.semantics.fontFamily
+import io.github.kakaocup.compose.semantics.fontSize
+import io.github.kakaocup.compose.semantics.fontStyle
+import io.github.kakaocup.compose.semantics.fontWeight
+import io.github.kakaocup.compose.semantics.letterSpacing
+import io.github.kakaocup.compose.semantics.lineHeight
+import io.github.kakaocup.compose.semantics.maxLines
+import io.github.kakaocup.compose.semantics.minLines
+import io.github.kakaocup.compose.semantics.overflow
+import io.github.kakaocup.compose.semantics.softWrap
+import io.github.kakaocup.compose.semantics.textAlign
 import io.github.kakaocup.compose.semantics.textColor
+import io.github.kakaocup.compose.semantics.textDecoration
 
 /**
  * High level element that displays text and provides semantics / accessibility information.
@@ -105,6 +117,18 @@ fun Text(
                     style.color.isSpecified -> style.color
                     else -> Color.Black
                 }
+                this.fontSize = fontSize
+                this.fontStyle = fontStyle
+                this.fontWeight = fontWeight
+                this.fontFamily = fontFamily
+                this.letterSpacing = letterSpacing
+                this.textDecoration = textDecoration
+                this.textAlign = textAlign
+                this.lineHeight = lineHeight
+                this.overflow = overflow
+                this.softWrap = softWrap
+                this.maxLines = maxLines
+                this.minLines = minLines
             },
         color = color,
         fontSize = fontSize,
