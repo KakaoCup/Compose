@@ -12,6 +12,10 @@ class TextActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider? =
         viewBuilderAction = { hasTestTag(IconActivity.IconScreenTestTags.IconScreen) }
     ) {
 
+    val textWithAllFields: KTextNode = child {
+        hasTestTag(TextActivity.TextScreenTestTags.textWithAllFields)
+    }
+
     val textWithSemantic: KTextNode = child {
         hasTestTag(TextActivity.TextScreenTestTags.textWithSemantic)
     }

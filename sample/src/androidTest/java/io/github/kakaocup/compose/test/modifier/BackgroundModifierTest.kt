@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.test
+package io.github.kakaocup.compose.test.modifier
 
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color

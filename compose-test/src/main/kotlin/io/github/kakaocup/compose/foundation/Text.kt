@@ -108,7 +108,7 @@ open class KTextNode : BaseNode<KTextNode> {
      * Throws [AssertionError] if the font size value is not equal to `fontStyle`.
      * Throws [IllegalStateException] if the compose view does not contain the [TextFontStyleSemanticKey] modifier.
      */
-    fun assertFontSizeEquals(fontStyle: FontStyle) {
+    fun assertFontStyleEquals(fontStyle: FontStyle) {
         assertHasProperty(
             fontStyle,
             TextFontStyleSemanticKey,

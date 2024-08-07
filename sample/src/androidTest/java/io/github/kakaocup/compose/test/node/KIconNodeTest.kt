@@ -1,4 +1,4 @@
-package io.github.kakaocup.compose.test
+package io.github.kakaocup.compose.test.node
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
