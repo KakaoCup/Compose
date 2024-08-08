@@ -21,7 +21,12 @@ class LazyListScreen(semanticsProvider: SemanticsNodeInteractionsProvider) : Com
             itemType(::LazyListItemNode)
             itemType(::LazyListHeaderNode)
         },
-        positionMatcher = { position -> SemanticsMatcher.expectValue(LazyListItemPositionSemantics, position) },
+        positionMatcher = { position ->
+            SemanticsMatcher.expectValue(
+                LazyListItemPositionSemantics,
+                position
+            )
+        },
         lengthSemanticsPropertyKey = LazyListLengthSemantics
     )
 

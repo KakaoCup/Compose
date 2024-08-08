@@ -3,8 +3,7 @@ on:
   pull_request:
     paths-ignore:
       - 'README.md'
-      - '.github/workflows/master-github-pages.yaml'
-      - '.github/workflows/release-deploy.yaml'
+      -
 jobs:
   assemble-debug-apk:
     name: Assemble Debug APK

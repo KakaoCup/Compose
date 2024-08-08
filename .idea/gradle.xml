@@ -23,6 +23,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/compose" />
+            <option value="$PROJECT_DIR$/compose-semantics" />
+            <option value="$PROJECT_DIR$/compose-test" />
+            <option value="$PROJECT_DIR$/compose-ui" />
             <option value="$PROJECT_DIR$/sample" />
           </set>
         </option>

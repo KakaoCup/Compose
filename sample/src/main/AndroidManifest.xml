@@ -16,6 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".BackgroundActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".IconActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".TextActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".CustomSemanticPropertyKeyActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

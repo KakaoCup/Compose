@@ -1,5 +1,23 @@
 include(":compose")
+include(":compose-ui")
+include(":compose-test")
+include(":compose-semantics")
 include(":sample")
+
+pluginManagement {
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
 
 buildscript {
     repositories {

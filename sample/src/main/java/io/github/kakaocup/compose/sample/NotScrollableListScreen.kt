@@ -44,7 +44,6 @@ import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.github.kakaocup.compose.sample.semantics.imageContentSemantic
 import io.github.kakaocup.compose.sample.semantics.listItemIndexSemantic
 import io.github.kakaocup.compose.sample.semantics.listLength
 
@@ -152,7 +151,6 @@ private fun TabBarItemContent(
                     contentDescription = null,
                     modifier = Modifier
                         .testTag("tabbar_item_icon")
-                        .imageContentSemantic(iconContent)
                 )
 
                 if (item.counter != null) {

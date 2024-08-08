@@ -17,7 +17,7 @@ import io.github.kakaocup.compose.utilities.orGlobal
 
 @ComposeMarker
 abstract class BaseNode<out T : BaseNode<T>> constructor(
-    @PublishedApi internal var semanticsProvider: SemanticsNodeInteractionsProvider? = null,
+    var semanticsProvider: SemanticsNodeInteractionsProvider? = null,
     private var nodeMatcher: NodeMatcher? = null,
     private var parentNode: BaseNode<*>? = null,
 ) : KDSL<T>,
