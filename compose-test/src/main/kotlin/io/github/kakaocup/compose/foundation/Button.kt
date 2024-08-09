@@ -7,9 +7,9 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
-import io.github.kakaocup.compose.semantics.ButtonBorderStrokeSemanticKey
-import io.github.kakaocup.compose.semantics.ButtonPaddingValuesSemanticKey
-import io.github.kakaocup.compose.semantics.ButtonShapeSemanticKey
+import io.github.kakaocup.compose.semantics.BorderSemanticKey
+import io.github.kakaocup.compose.semantics.ContentPaddingSemanticKey
+import io.github.kakaocup.compose.semantics.ShapeSemanticKey
 
 open class KButtonNode : BaseNode<KButtonNode> {
     constructor(
@@ -32,12 +32,12 @@ open class KButtonNode : BaseNode<KButtonNode> {
      * Asserts that the shape is equal the given [shape].
      *
      * Throws [AssertionError] if the button shape is not equal to `shape`.
-     * Throws [IllegalStateException] if the compose view does not contain the [ButtonShapeSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [ShapeSemanticKey] modifier.
      */
     fun assertShapeEquals(shape: Shape) {
         assertHasProperty(
             shape,
-            ButtonShapeSemanticKey,
+            ShapeSemanticKey,
             "shape",
         )
     }
@@ -46,12 +46,12 @@ open class KButtonNode : BaseNode<KButtonNode> {
      * Asserts that the border stroke is equal the given [borderStroke].
      *
      * Throws [AssertionError] if the button border stroke is not equal to `borderStroke`.
-     * Throws [IllegalStateException] if the compose view does not contain the [ButtonShapeSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [ShapeSemanticKey] modifier.
      */
     fun assertBorderStrokeEquals(borderStroke: BorderStroke) {
         assertHasProperty(
             borderStroke,
-            ButtonBorderStrokeSemanticKey,
+            BorderSemanticKey,
             "border stroke",
         )
     }
@@ -62,12 +62,12 @@ open class KButtonNode : BaseNode<KButtonNode> {
      * Asserts that the content padding is equal the given [contentPadding].
      *
      * Throws [AssertionError] if the content padding is not equal to `contentPadding`.
-     * Throws [IllegalStateException] if the compose view does not contain the [ButtonPaddingValuesSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [ContentPaddingSemanticKey] modifier.
      */
     fun assertPaddingValuesEquals(contentPadding: PaddingValues) {
         assertHasProperty(
             contentPadding,
-            ButtonPaddingValuesSemanticKey,
+            ContentPaddingSemanticKey,
             "content padding",
         )
     }

@@ -2,7 +2,6 @@ package io.github.kakaocup.compose.foundation
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
-import androidx.compose.ui.test.assert
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -10,23 +9,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
-import io.github.kakaocup.compose.node.assertion.NodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
 import io.github.kakaocup.compose.semantics.TextColorSemanticKey
-import io.github.kakaocup.compose.semantics.TextFontFamilySemanticKey
-import io.github.kakaocup.compose.semantics.TextFontSizeSemanticKey
-import io.github.kakaocup.compose.semantics.TextFontStyleSemanticKey
-import io.github.kakaocup.compose.semantics.TextFontWeightSemanticKey
-import io.github.kakaocup.compose.semantics.TextLetterSpacingSizeSemanticKey
-import io.github.kakaocup.compose.semantics.TextLineHeightSemanticKey
-import io.github.kakaocup.compose.semantics.TextMaxLinesSemanticKey
-import io.github.kakaocup.compose.semantics.TextMinLinesSemanticKey
-import io.github.kakaocup.compose.semantics.TextOverflowSemanticKey
-import io.github.kakaocup.compose.semantics.TextSoftWrapSemanticKey
-import io.github.kakaocup.compose.semantics.TextTextAlignSemanticKey
-import io.github.kakaocup.compose.semantics.TextTextDecorationSemanticKey
+import io.github.kakaocup.compose.semantics.FontFamilySemanticKey
+import io.github.kakaocup.compose.semantics.FontSizeSemanticKey
+import io.github.kakaocup.compose.semantics.FontStyleSemanticKey
+import io.github.kakaocup.compose.semantics.FontWeightSemanticKey
+import io.github.kakaocup.compose.semantics.LetterSpacingSizeSemanticKey
+import io.github.kakaocup.compose.semantics.LineHeightSemanticKey
+import io.github.kakaocup.compose.semantics.MaxLinesSemanticKey
+import io.github.kakaocup.compose.semantics.MinLinesSemanticKey
+import io.github.kakaocup.compose.semantics.OverflowSemanticKey
+import io.github.kakaocup.compose.semantics.SoftWrapSemanticKey
+import io.github.kakaocup.compose.semantics.TextAlignSemanticKey
+import io.github.kakaocup.compose.semantics.TextDecorationSemanticKey
 
 open class KTextNode : BaseNode<KTextNode> {
     constructor(
@@ -92,12 +90,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the font size is equal to the given [fontSize].
      *
      * Throws [AssertionError] if the font size value is not equal to `fontSize`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextFontSizeSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [FontSizeSemanticKey] modifier.
      */
     fun assertFontSizeEquals(fontSize: TextUnit) {
         assertHasProperty(
             fontSize,
-            TextFontSizeSemanticKey,
+            FontSizeSemanticKey,
             "font size",
         )
     }
@@ -106,12 +104,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the font style is equal to the given [fontStyle].
      *
      * Throws [AssertionError] if the font size value is not equal to `fontStyle`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextFontStyleSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [FontStyleSemanticKey] modifier.
      */
     fun assertFontStyleEquals(fontStyle: FontStyle) {
         assertHasProperty(
             fontStyle,
-            TextFontStyleSemanticKey,
+            FontStyleSemanticKey,
             "font style",
         )
     }
@@ -120,12 +118,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the font weight is equal to the given [fontWeight].
      *
      * Throws [AssertionError] if the font weight value is not equal to `fontWeight`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextFontWeightSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [FontWeightSemanticKey] modifier.
      */
     fun assertFontWeightEquals(fontWeight: FontWeight) {
         assertHasProperty(
             fontWeight,
-            TextFontWeightSemanticKey,
+            FontWeightSemanticKey,
             "font weight",
         )
     }
@@ -134,12 +132,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the font family is equal to the given [fontFamily].
      *
      * Throws [AssertionError] if the font family value is not equal to `fontFamily`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextFontFamilySemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [FontFamilySemanticKey] modifier.
      */
     fun assertFontFamilyEquals(fontFamily: FontFamily) {
         assertHasProperty(
             fontFamily,
-            TextFontFamilySemanticKey,
+            FontFamilySemanticKey,
             "font family",
         )
     }
@@ -148,12 +146,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the letter spacing is equal to the given [letterSpacing].
      *
      * Throws [AssertionError] if the letter spacing value is not equal to `letterSpacing`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextLetterSpacingSizeSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [LetterSpacingSizeSemanticKey] modifier.
      */
     fun assertLetterSpacingEquals(letterSpacing: TextUnit) {
         assertHasProperty(
             letterSpacing,
-            TextLetterSpacingSizeSemanticKey,
+            LetterSpacingSizeSemanticKey,
             "letter spacing",
         )
     }
@@ -162,12 +160,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the text decoration is equal to the given [textDecoration].
      *
      * Throws [AssertionError] if the text decoration value is not equal to `textDecoration`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextTextDecorationSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [TextDecorationSemanticKey] modifier.
      */
     fun assertTextDecorationEquals(textDecoration: TextDecoration) {
         assertHasProperty(
             textDecoration,
-            TextTextDecorationSemanticKey,
+            TextDecorationSemanticKey,
             "text decoration",
         )
     }
@@ -176,12 +174,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the text align is equal to the given [textAlign].
      *
      * Throws [AssertionError] if the text align is not equal to `textAlign`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextTextAlignSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [TextAlignSemanticKey] modifier.
      */
     fun assertTextAlignEquals(textAlign: TextAlign) {
         assertHasProperty(
             textAlign,
-            TextTextAlignSemanticKey,
+            TextAlignSemanticKey,
             "text align",
         )
     }
@@ -190,12 +188,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the line height is equal the given [lineHeight].
      *
      * Throws [AssertionError] if the line height value is not equal to `lineHeight`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextLineHeightSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [LineHeightSemanticKey] modifier.
      */
     fun assertLineHeightEquals(lineHeight: TextUnit) {
         assertHasProperty(
             lineHeight,
-            TextLineHeightSemanticKey,
+            LineHeightSemanticKey,
             "line height",
         )
     }
@@ -204,12 +202,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the text overflow equal the given [overflow].
      *
      * Throws [AssertionError] if the text overflow value is not equal to `overflow`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextOverflowSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [OverflowSemanticKey] modifier.
      */
     fun assertOverflowEquals(overflow: TextOverflow) {
         assertHasProperty(
             overflow,
-            TextOverflowSemanticKey,
+            OverflowSemanticKey,
             "text overflow",
         )
     }
@@ -218,12 +216,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the soft wrap is equal the given [softWrap].
      *
      * Throws [AssertionError] if the soft wrap is not equal to `softWrap`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextSoftWrapSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [SoftWrapSemanticKey] modifier.
      */
     fun assertSoftWrapEquals(softWrap: Boolean) {
         assertHasProperty(
             softWrap,
-            TextSoftWrapSemanticKey,
+            SoftWrapSemanticKey,
             "soft wrap",
         )
     }
@@ -232,12 +230,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the max lines is equal the given [maxLines].
      *
      * Throws [AssertionError] if the text max lines is not equal to `maxLines`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextMaxLinesSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [MaxLinesSemanticKey] modifier.
      */
     fun assertMaxLinesEquals(maxLines: Int) {
         assertHasProperty(
             maxLines,
-            TextMaxLinesSemanticKey,
+            MaxLinesSemanticKey,
             "max lines",
         )
     }
@@ -246,12 +244,12 @@ open class KTextNode : BaseNode<KTextNode> {
      * Asserts that the min lines is equal the given [minLines].
      *
      * Throws [AssertionError] if the text min lines is not equal to `minLines`.
-     * Throws [IllegalStateException] if the compose view does not contain the [TextMinLinesSemanticKey] modifier.
+     * Throws [IllegalStateException] if the compose view does not contain the [MinLinesSemanticKey] modifier.
      */
     fun assertMinLinesEquals(minLines: Int) {
         assertHasProperty(
             minLines,
-            TextMinLinesSemanticKey,
+            MinLinesSemanticKey,
             "min lines",
         )
     }

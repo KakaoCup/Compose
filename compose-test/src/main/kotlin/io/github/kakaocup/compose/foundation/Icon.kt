@@ -7,8 +7,8 @@ import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import io.github.kakaocup.compose.node.builder.NodeMatcher
 import io.github.kakaocup.compose.node.builder.ViewBuilder
 import io.github.kakaocup.compose.node.core.BaseNode
-import io.github.kakaocup.compose.semantics.IconImageContentSemanticKey
-import io.github.kakaocup.compose.semantics.IconTintColorSemanticKey
+import io.github.kakaocup.compose.semantics.ImageContentSemanticKey
+import io.github.kakaocup.compose.semantics.TintColorSemanticKey
 
 open class KIconNode : BaseNode<KIconNode> {
     constructor(
@@ -34,7 +34,7 @@ open class KIconNode : BaseNode<KIconNode> {
      * Throws [IllegalStateException] if the compose view does not contain the [TintColorSemanticKey] modifier.
      */
     fun assertTintColorEquals(color: Color) {
-        assertHasProperty(color, IconTintColorSemanticKey, "tint color")
+        assertHasProperty(color, TintColorSemanticKey, "tint color")
     }
 
     /**
@@ -47,7 +47,7 @@ open class KIconNode : BaseNode<KIconNode> {
     fun assertTintColorEquals(color: String) {
         assertHasProperty(
             Color(android.graphics.Color.parseColor(color)),
-            IconTintColorSemanticKey,
+            TintColorSemanticKey,
             "tint color",
         )
     }
@@ -61,7 +61,7 @@ open class KIconNode : BaseNode<KIconNode> {
     fun assertTintColorEquals(color: Long) {
         assertHasProperty(
             Color(color),
-            IconTintColorSemanticKey,
+            TintColorSemanticKey,
             "tint color",
         )
     }
@@ -75,7 +75,7 @@ open class KIconNode : BaseNode<KIconNode> {
     fun assertContentEquals(imageVector: ImageVector) {
         assertHasProperty(
             imageVector,
-            IconImageContentSemanticKey,
+            ImageContentSemanticKey,
             "image vector",
         )
     }
@@ -89,7 +89,7 @@ open class KIconNode : BaseNode<KIconNode> {
     fun assertContentEquals(@DrawableRes drawableRes: Int) {
         assertHasProperty(
             drawableRes,
-            IconImageContentSemanticKey,
+            ImageContentSemanticKey,
             "image drawable",
         )
     }

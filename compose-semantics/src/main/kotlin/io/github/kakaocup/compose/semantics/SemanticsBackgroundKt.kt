@@ -5,12 +5,10 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 
-val BackgroundColorSemanticKey = SemanticsPropertyKey<Any>("BackgroundColor")
 val BackgroundShapeSemanticKey = SemanticsPropertyKey<Shape>("BackgroundShape")
 val BackgroundBrushSemanticKey = SemanticsPropertyKey<Brush>("BackgroundBrush")
 val BackgroundAlphaSemanticKey = SemanticsPropertyKey<Float>("BackgroundAlpha")
 
-var SemanticsPropertyReceiver.backgroundColor by BackgroundColorSemanticKey
 var SemanticsPropertyReceiver.backgroundShape by BackgroundShapeSemanticKey
 var SemanticsPropertyReceiver.backgroundBrush by BackgroundBrushSemanticKey
 var SemanticsPropertyReceiver.backgroundAlpha by BackgroundAlphaSemanticKey
