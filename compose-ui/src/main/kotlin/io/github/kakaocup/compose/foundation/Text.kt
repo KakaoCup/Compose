@@ -232,6 +232,18 @@ fun Text(
                     style.color.isSpecified -> style.color
                     else -> Color.Black
                 }
+                this.fontSize = fontSize
+                this.fontStyle = fontStyle
+                this.fontWeight = fontWeight
+                this.fontFamily = fontFamily
+                this.letterSpacing = letterSpacing
+                this.textDecoration = textDecoration
+                this.textAlign = textAlign
+                this.lineHeight = lineHeight
+                this.overflow = overflow
+                this.softWrap = softWrap
+                this.maxLines = maxLines
+                this.minLines = minLines
             },
         color = color,
         fontSize = fontSize,

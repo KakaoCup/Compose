@@ -5,7 +5,6 @@
       <module name="Compose.buildSrc" target="17" />
       <module name="Compose.buildSrc.main" target="17" />
       <module name="Compose.buildSrc.test" target="17" />
-      <module name="Compose.sample" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
