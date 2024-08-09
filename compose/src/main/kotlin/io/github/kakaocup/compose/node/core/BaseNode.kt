@@ -1,8 +1,12 @@
 package io.github.kakaocup.compose.node.core
 
 import androidx.compose.ui.test.SemanticsMatcher
+import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasAnyAncestor
+import androidx.compose.ui.test.isDisplayed
+import androidx.compose.ui.test.junit4.ComposeTestRule
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.delegate.ComposeInterceptable
 import io.github.kakaocup.compose.node.action.NodeActions
@@ -99,5 +103,20 @@ abstract class BaseNode<out T : BaseNode<T>> constructor(
         semanticsMatcherList.add(this.nodeMatcher.checkNotNull().matcher)
 
         return semanticsMatcherList.reduce { finalMatcher, matcher -> finalMatcher and matcher }
+    }
+
+    fun waitUntil(
+        composeTestRule: ComposeTestRule = semanticsProvider as ComposeTestRule,
+        timeoutMillis: Long = 1_000,
+        condition: SemanticsNodeInteraction.() -> Unit
+    ) {
+        composeTestRule.waitUntil(timeoutMillis) {
+            try {
+                condition.invoke(this.delegate.interaction.semanticsNodeInteraction)
+                true
+            } catch (e: AssertionError) {
+                false
+            }
+        }
     }
 }
