@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".DelayDisplayActivity" android:exported="true" />
         <activity android:name=".BackgroundActivity" android:exported="true" />
         <activity android:name=".IconActivity" android:exported="true" />
         <activity android:name=".TextActivity" android:exported="true" />
