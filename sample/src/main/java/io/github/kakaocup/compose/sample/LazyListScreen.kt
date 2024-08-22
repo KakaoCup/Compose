@@ -61,12 +61,13 @@ fun LazyListScreen() {
                 Modifier
                     .fillMaxSize()
                     .testTag("LazyList")
-                    .lazyListLength(items.size)
+                    .semantics { lazyListLength = items.size }
             ) {
                 itemsIndexed(items) { index, item ->
+                    val positionModifier = Modifier.semantics { lazyListItemPosition = index }
                     when (item) {
-                        is LazyListItem.Header -> ListItemHeader(item, Modifier.lazyListItemPosition(index))
-                        is LazyListItem.Item -> ListItemCell(item, Modifier.lazyListItemPosition(index))
+                        is LazyListItem.Header -> ListItemHeader(item, positionModifier)
+                        is LazyListItem.Item -> ListItemCell(item, positionModifier)
                     }
                 }
             }
@@ -130,12 +131,5 @@ private sealed class LazyListItem {
 val LazyListItemPositionSemantics = SemanticsPropertyKey<Int>("LazyListItemPosition")
 var SemanticsPropertyReceiver.lazyListItemPosition by LazyListItemPositionSemantics
 
-fun Modifier.lazyListItemPosition(position: Int): Modifier {
-    return semantics { lazyListItemPosition = position }
-}
-
 val LazyListLengthSemantics = SemanticsPropertyKey<Int>("LazyListLength")
 var SemanticsPropertyReceiver.lazyListLength by LazyListLengthSemantics
-fun Modifier.lazyListLength(length: Int): Modifier {
-    return semantics { lazyListLength = length }
-}
