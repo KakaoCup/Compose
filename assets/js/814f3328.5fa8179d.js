@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Kakao Compose 1.0.0","permalink":"/blog/first-blog-post","unlisted":false,"date":"2024-09-01T00:00:00.000Z"}]}')}}]);
