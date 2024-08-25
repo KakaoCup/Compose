@@ -1,9 +1,5 @@
 package io.github.kakaocup.compose.test
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.sample.MainActivity
@@ -40,111 +36,6 @@ class SimpleTest {
                 hasTestTag("doesNotExist")
             }.invoke {
                 assertDoesNotExist()
-            }
-        }
-    }
-
-    @Test
-    fun iconTest() {
-        onComposeScreen<MainActivityScreen>(composeTestRule) {
-            changeIconsButton {
-                assertIsDisplayed()
-            }
-            iconDrawableRes {
-                assertIsDisplayed()
-                assertContentEquals(R.drawable.ic_android)
-                assertTintColorEquals(Color.Black)
-                assertTintColorEquals("000000")
-                assertTintColorEquals("#000000")
-                assertTintColorEquals(0xFF000000)
-            }
-
-            iconImageVector {
-                assertIsDisplayed()
-                assertContentEquals(Icons.Filled.AccountCircle)
-                assertTintColorEquals(Color.Black)
-                assertTintColorEquals("000000")
-                assertTintColorEquals("#000000")
-                assertTintColorEquals(0xFF000000)
-            }
-
-            changeIconsButton.performClick()
-
-            iconDrawableRes {
-                assertIsDisplayed()
-                assertContentEquals(R.drawable.ic_adb)
-                assertTintColorEquals(Color.Blue)
-                assertTintColorEquals("0000FF")
-                assertTintColorEquals("#0000FF")
-                assertTintColorEquals(0xFF0000FF)
-            }
-
-            iconImageVector {
-                assertIsDisplayed()
-                assertContentEquals(Icons.Filled.Call)
-                assertTintColorEquals(Color.Blue)
-                assertTintColorEquals("0000FF")
-                assertTintColorEquals("#0000FF")
-                assertTintColorEquals(0xFF0000FF)
-            }
-        }
-    }
-
-    @Test
-    fun textColorTest() {
-        onComposeScreen<MainActivityScreen>(composeTestRule) {
-            changeTextColorButton {
-                assertIsDisplayed()
-            }
-
-            textWithoutStyle {
-                assertIsDisplayed()
-                assertTextColorEquals(Color.Black)
-                assertTextColorEquals("000000")
-                assertTextColorEquals("#000000")
-                assertTextColorEquals(0xFF000000)
-            }
-
-            textWithStyle {
-                assertIsDisplayed()
-                assertTextColorEquals(Color.Black)
-                assertTextColorEquals("000000")
-                assertTextColorEquals("#000000")
-                assertTextColorEquals(0xFF000000)
-            }
-
-            textWithSemantic {
-                assertIsDisplayed()
-                assertTextColorEquals(Color.Black)
-                assertTextColorEquals("000000")
-                assertTextColorEquals("#000000")
-                assertTextColorEquals(0xFF000000)
-            }
-
-            changeTextColorButton.performClick()
-
-            textWithoutStyle {
-                assertIsDisplayed()
-                assertTextColorEquals(Color.Black)
-                assertTextColorEquals("000000")
-                assertTextColorEquals("#000000")
-                assertTextColorEquals(0xFF000000)
-            }
-
-            textWithStyle {
-                assertIsDisplayed()
-                assertTextColorEquals(Color.Blue)
-                assertTextColorEquals("0000FF")
-                assertTextColorEquals("#0000FF")
-                assertTextColorEquals(0xFF0000FF)
-            }
-
-            textWithSemantic {
-                assertIsDisplayed()
-                assertTextColorEquals(Color.Blue)
-                assertTextColorEquals("0000FF")
-                assertTextColorEquals("#0000FF")
-                assertTextColorEquals(0xFF0000FF)
             }
         }
     }

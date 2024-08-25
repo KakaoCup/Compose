@@ -1,0 +1,13 @@
+name: Test Library Publish Release
+
+on:
+  push:
+    tags:
+      - 'test_*'
+
+jobs:
+  publish-release:
+    uses: ./.github/workflows/publish-release-workflow.yaml
+    with:
+      project: compose-test
+    secrets: inherit
