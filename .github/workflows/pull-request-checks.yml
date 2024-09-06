@@ -63,3 +63,24 @@ jobs:
           device-id: MediumPhone.arm
           os-version-id: ${{ matrix.api }}
           num-flaky-test-attempts: 4
+
+  build-documentation:
+    runs-on: ubuntu-latest
+    name: Build Documentation
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        working-directory: ./documentation
+        run: npm install
+
+      - name: Build site
+        working-directory: ./documentation
+        run: npm run build
