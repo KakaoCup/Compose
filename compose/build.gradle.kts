@@ -13,8 +13,6 @@ android {
         targetSdk = 34
     }
 
-    packaging.resources.excludes.add("META-INF/*")
-
     sourceSets {
         getByName("main") {
             kotlin.srcDirs("src/main/kotlin")
