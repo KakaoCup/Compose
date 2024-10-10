@@ -1,15 +1,12 @@
-name: Deploy Documentation
-
+name: Pull Request Documentation Checks
 on:
-  push:
+  pull_request:
     paths:
       - 'documentation/**'
-    branches:
-      - master
-
 jobs:
-  deploy:
+  build-documentation:
     runs-on: ubuntu-latest
+    name: Build Documentation
 
     steps:
       - name: Checkout code
@@ -27,9 +24,3 @@ jobs:
       - name: Build site
         working-directory: ./documentation
         run: npm run build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./documentation/build
