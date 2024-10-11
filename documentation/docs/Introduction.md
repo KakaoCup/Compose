@@ -25,8 +25,7 @@ flowchart TD
     Test --> Semantics
 ```
 
-* `compose` - Core module, which providing DSL wrapping for Espresso methods, 
-Screens page objects and `LazyList` support
+* `compose` - Core module, which providing DSL wrapping for Espresso methods, `ComposeScreen` page objects and `KNode` 
 * `compose-semantics` - Set of default semantics keys, what can be used by `compose-ui` and `compose-test` modules
 * `compose-ui` - Wrapped over Compose base components, with the same constructors signatures. 
 Those wrappers will set all possible semantics from `compose-semantics` module, which can be used by `compose-test` module
