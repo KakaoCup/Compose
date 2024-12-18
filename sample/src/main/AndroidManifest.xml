@@ -24,5 +24,6 @@
         <activity android:name=".CustomSemanticPropertyKeyActivity" android:exported="true" />
         <activity android:name=".ButtonActivity" android:exported="true" />
         <activity android:name=".ProgressIndicatorActivity" android:exported="true" />
+       <activity android:name=".DialogActivity" android:exported="true" />
     </application>
 </manifest>
