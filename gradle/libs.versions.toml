@@ -1,12 +1,12 @@
 [versions]
 dokkaGradlePluginVersion = "1.9.20"
 githubApiVersion = "1.318"
-gradle = "8.5.1"
+gradle = "8.5.2"
 kotlin = "2.0.0"
-gradleVersion = "8.5.1"
-compileSdk = "34"
-targetSdk = "34"
-minSdk = "21"
+gradleVersion = "8.5.2"
+compileSdk = "35"
+targetSdk = "35"
+minSdk = "24"
 jvmVersion = "8"
 
 dokkaVersion = "1.9.20"
@@ -18,11 +18,11 @@ junitExtVersion = "1.2.1"
 kotlinGradlePluginVersion = "2.0.0"
 multidexVersion = "2.0.1"
 materialVersion = "1.12.0"
-activityComposeVersion = "1.9.0"
+activityComposeVersion = "1.10.0"
 composeMaterialVersion = "1.3.1"
-composeCompilerVersion = "1.5.4"
+composeCompilerVersion = "1.5.15"
 
-androidxComposeBom = "2024.06.00"
+androidxComposeBom = "2025.02.00"
 
 [libraries]
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokkaGradlePluginVersion" }
@@ -39,6 +39,8 @@ androidx-test-espresso-espressoCore = { group = "androidx.test.espresso", name =
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-ui-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-material = { group = "androidx.compose.material", name = "material" }
+androidx-compose-material-iconsCore = { group = "androidx.compose.material", name = "material-icons-core" }
+
 androidx-compose-ui-uiTestJunit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-uiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 

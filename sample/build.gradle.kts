@@ -37,6 +37,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui.uiTooling)
     implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.compose.material.iconsCore)
     debugImplementation(libs.androidx.compose.ui.uiTestManifest)
 
     implementation(libs.junit.junit)
