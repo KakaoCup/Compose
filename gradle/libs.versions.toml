@@ -4,9 +4,9 @@ githubApiVersion = "1.318"
 gradle = "8.5.2"
 kotlin = "2.0.0"
 gradleVersion = "8.5.2"
-compileSdk = "34"
-targetSdk = "34"
-minSdk = "21"
+compileSdk = "35"
+targetSdk = "35"
+minSdk = "24"
 jvmVersion = "8"
 
 dokkaVersion = "1.9.20"
@@ -39,6 +39,8 @@ androidx-test-espresso-espressoCore = { group = "androidx.test.espresso", name =
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
 androidx-compose-ui-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-material = { group = "androidx.compose.material", name = "material" }
+androidx-compose-material-iconsCore = { group = "androidx.compose.material", name = "material-icons-core" }
+
 androidx-compose-ui-uiTestJunit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-ui-uiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 
