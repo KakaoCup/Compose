@@ -1,6 +1,6 @@
 {
-  "label": "Basic",
-  "position": 3,
+  "label": "Intermediate",
+  "position": 4,
   "link": {
     "type": "generated-index",
     "description": "How to start UI testing"

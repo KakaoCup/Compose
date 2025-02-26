@@ -1,6 +1,6 @@
 {
-  "label": "Intermediate",
-  "position": 4,
+  "label": "Basic",
+  "position": 3,
   "link": {
     "type": "generated-index",
     "description": "How to cook your UI tests better"
