@@ -204,7 +204,9 @@ By using `IdlingResource` with coroutines, you can ensure your UI tests wait for
 
 This approach ensures your tests are reliable and synchronized with coroutine-based asynchronous operations.
 
-### Using `waitUntil` from Kakao
+---
+
+### **Using `waitUntil` from Kakao**
 
 As an alternative option you can use `waitUntil` function from Kakao Compose library
 [Example](https://github.com/KakaoCup/Compose/blob/master/sample/src/androidTest/java/io/github/kakaocup/compose/test/WaitForTest.kt): 
