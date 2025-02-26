@@ -44,8 +44,8 @@ That's can create an issue with wrong matching. For example you have fields with
 :::
 
    [Example](https://github.com/KakaoCup/Compose/blob/master/sample/src/androidTest/java/io/github/kakaocup/compose/screen/MainActivityScreen.kt):
-   ```kotlin
-    class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
+```kotlin
+class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
   ComposeScreen<MainActivityScreen>(
       semanticsProvider = semanticsProvider,
       viewBuilderAction = { hasTestTag("MainScreen") }) 
@@ -57,17 +57,16 @@ That's can create an issue with wrong matching. For example you have fields with
   val clickCounter: KNode = child {
       hasTestTag("clickCounter")
   }
-   }
-
-   ```
+}
+```
 
 2. **Use Page Objects in Tests**:
     - Tests interact with the application through the methods provided by the Page Objects.
     - Tests are concise and focus on the test scenario.
 
    Example:
-   ```kotlin
-   class SimpleTest {
+```kotlin
+class SimpleTest {
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
@@ -80,9 +79,8 @@ That's can create an issue with wrong matching. For example you have fields with
             }
         } 
    }
-   }
-
-   ```
+}
+```
 
 3. **Handle Complex Flows with Page Objects**:
     - For multi-step workflows, chain methods from different Page Objects (Screens or KNodes).
@@ -175,4 +173,3 @@ class LoginTest {
 ---
 
 By using the Page Object pattern, UI tests become more robust, maintainable, and scalable, especially in large and complex applications.
-

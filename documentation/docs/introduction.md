@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+# Introduction
+
 Welcome to **Kakao Compose** tutorial. Let's make UI testing easies and simple. In this documentation we will try to explain functionality of Kakao Compose and
 fundamental concepts of implementation, modules and responsibility of each, how to add this library to your project and
 how to start works on UI test step by step.
@@ -24,9 +26,11 @@ flowchart TD
     UI --> Semantics
     Test --> Semantics
 ```
+* Core
+  * `compose` - Core module, which providing DSL wrapping for Espresso methods, `ComposeScreen` page objects and `KNode`
 
-* `compose` - Core module, which providing DSL wrapping for Espresso methods, `ComposeScreen` page objects and `KNode` 
-* `compose-semantics` - Set of default semantics keys, what can be used by `compose-ui` and `compose-test` modules
-* `compose-ui` - Wrapped over Compose base components, with the same constructors signatures. 
-Those wrappers will set all possible semantics from `compose-semantics` module, which can be used by `compose-test` module
-* `compose-test` - Providing nodes for typed component validation
+* Extra
+  * `compose-semantics` - Set of default semantics keys, what can be used by `compose-ui` and `compose-test` modules
+  * `compose-ui` - Wrapped over Compose base components, with the same constructors signatures. 
+  Those wrappers will set all possible semantics from `compose-semantics` module, which can be used by `compose-test` module
+  * `compose-test` - Providing nodes for typed component validation
