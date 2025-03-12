@@ -18,13 +18,26 @@ From version `1.0.0` Kakao Compose contains four main modules, with following de
 
 ```mermaid
 flowchart TD
-    Test(compose-test)
-    Compose(compose)
-    UI(compose-ui)
-    Semantics(compose-semantics)
-    Test --> Compose
-    UI --> Semantics
-    Test --> Semantics
+%% Nodes
+    KTest("compose-test")
+    KCompose("compose")
+    KUI("compose-ui")
+    KSemantics("compose-semantics")
+    AEspresso("Espresso")
+    ACompose("Android Compose")
+
+%% Connections
+    KTest --> KCompose
+    KUI --> KSemantics
+    KTest --> KSemantics
+    KSemantics --> ACompose 
+    KCompose --> ACompose 
+    KCompose --> AEspresso
+
+%% Style
+    style AEspresso color:#FFFFFF, fill:#AA00FF, stroke:#AA00FF
+    style ACompose color:#FFFFFF, fill:#AA00FF, stroke:#AA00FF
+
 ```
 * Core
   * `compose` - Core module, which providing DSL wrapping for Espresso methods, `ComposeScreen` page objects and `KNode`
