@@ -37,7 +37,7 @@ Need to be added explicitly only in case of having design system and avoiding di
 
 Can be added `implementation("io.github.kakaocup:compose-semantics:1.0.0")`
 
-:::tip In you have a design system in your project
+:::tip If you have a design system in your project
 
 You can add all required parameters to your design system based matching from [compose-ui](https://github.com/KakaoCup/Compose/tree/master/compose-ui/src/main/kotlin/io/github/kakaocup/compose/foundation) to avoid transitive dependency on Compose via Kakao
 
