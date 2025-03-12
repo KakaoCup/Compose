@@ -10,6 +10,5 @@ android {
 
 dependencies {
     implementation(project(":compose-semantics"))
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material)
 }
