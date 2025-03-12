@@ -32,7 +32,8 @@ flowchart TD
 ```
 
 ### **Core**
-* `compose` - The foundational module that provides a DSL wrapper for Espresso methods, `ComposeScreen` page objects, and support for `KNode` and lists. Version 1+ maintains broad compatibility with version 0+, requiring minimal effort to upgrade.
+#### `compose`
+The foundational module that provides a DSL wrapper for Espresso methods, `ComposeScreen` page objects, and support for `KNode` and lists. Version 1+ maintains broad compatibility with version 0+, requiring minimal effort to upgrade.
 
 Add it with: `implementation("io.github.kakaocup:compose:1.0.0")`
 
