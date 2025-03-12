@@ -71,7 +71,3 @@ Offers nodes for validating typed components, such as `KButtonNode`, `KIconNode`
 Add it with: `testImplementation("io.github.kakaocup:compose-test:1.0.0")`
 
 Usage examples are available in the [Sample project](https://github.com/KakaoCup/Compose/tree/master/sample/src/androidTest/java/io/github/kakaocup/compose/test/node).
-
---- 
-
-This version maintains the original meaning while improving clarity and flow. Let me know if you'd like further adjustments!
