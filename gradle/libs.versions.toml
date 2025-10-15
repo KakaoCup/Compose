@@ -6,7 +6,7 @@ kotlin = "2.0.0"
 gradleVersion = "8.5.2"
 compileSdk = "35"
 targetSdk = "35"
-minSdk = "24"
+minSdk = "21"
 jvmVersion = "8"
 
 dokkaVersion = "1.9.20"
