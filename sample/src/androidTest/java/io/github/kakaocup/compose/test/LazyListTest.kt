@@ -32,7 +32,7 @@ class LazyListTest {
                 swipeDown(startY = 200f)
             }
             list {
-                assertLengthEquals(33)
+                assertLengthEquals(34)
                 firstChild<LazyListHeaderNode> {
                     title.assertTextEquals("Items from 1 to 10")
                 }
@@ -55,12 +55,15 @@ class LazyListTest {
                 childAt<LazyListItemNode>(32) {
                     assertTextEquals("Item 30")
                 }
+                descendantAt<LazyListItemNode>(33) {
+                    assertTextEquals("Nested Item 1")
+                }
             }
             list.performScrollToIndex(0)
             pullToRefresh.performTouchInput {
                 swipeDown(startY = 200f)
             }
-            list.assertLengthEquals(34)
+            list.assertLengthEquals(35)
         }
     }
 }

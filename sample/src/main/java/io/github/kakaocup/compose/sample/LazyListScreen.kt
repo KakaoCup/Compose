@@ -1,7 +1,9 @@
 package io.github.kakaocup.compose.sample
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,6 +70,7 @@ fun LazyListScreen() {
                     when (item) {
                         is LazyListItem.Header -> ListItemHeader(item, positionModifier)
                         is LazyListItem.Item -> ListItemCell(item, positionModifier)
+                        is LazyListItem.NestedItem -> NestedListItemCell(item, positionModifier)
                     }
                 }
             }
@@ -110,6 +113,23 @@ private fun ListItemCell(item: LazyListItem.Item, modifier: Modifier = Modifier)
     )
 }
 
+@Composable
+private fun NestedListItemCell(item: LazyListItem.NestedItem, modifier: Modifier = Modifier) {
+    Box(
+        modifier = Modifier.border(BorderStroke(2.dp, Color.Blue))
+    ) {
+        Text(
+            item.title,
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+                .testTag("LazyListItemTitle")
+                .then(modifier)
+        )
+    }
+}
+
+
 private fun getItems(): List<LazyListItem> {
     val result = mutableListOf<LazyListItem>()
 
@@ -120,12 +140,15 @@ private fun getItems(): List<LazyListItem> {
         result += LazyListItem.Item("Item ${index + 1}")
     }
 
+    result += LazyListItem.NestedItem("Nested Item 1")
+
     return result
 }
 
 private sealed class LazyListItem {
     data class Header(val title: String) : LazyListItem()
     data class Item(val title: String) : LazyListItem()
+    data class NestedItem(val title: String) : LazyListItem()
 }
 
 val LazyListItemPositionSemantics = SemanticsPropertyKey<Int>("LazyListItemPosition")
