@@ -9,8 +9,10 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0")
-    implementation("com.android.tools.build:gradle:8.5.0")
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.9.20")
-    implementation("org.kohsuke:github-api:1.129")
+    implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.gradle.v851)
+    implementation(libs.dokka.gradle.plugin)
+    implementation(libs.github.api)
+    // workaround for https://github.com/gradle/gradle/issues/15383
+    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }

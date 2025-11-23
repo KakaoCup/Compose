@@ -1,0 +1,35 @@
+name: On Push into Master
+
+on:
+  push:
+    paths-ignore:
+      - 'documentation/**'
+    branches:
+      - master
+
+jobs:
+  deploy-osshr:
+    name: Deploy to OSSHR
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [ compose, compose-semantics, compose-test, compose-ui ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: 17
+          cache: gradle
+      - uses: little-core-labs/get-git-tag@v3.0.2
+
+      - name: Deploy Snapshot to OSSRH
+        run: ./gradlew :$PACKAGE:publishDefaultPublicationToOSSHRRepository -PreleaseMode=SNAPSHOT
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          PACKAGE: ${{ matrix.package }}

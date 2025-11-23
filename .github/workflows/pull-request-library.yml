@@ -1,0 +1,72 @@
+name: Pull Request Library Checks
+on:
+  pull_request:
+    paths-ignore:
+      - 'documentation/**'
+      - 'README.md'
+jobs:
+  assemble-debug-apk:
+    name: Assemble Debug APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: 17
+          cache: gradle
+      - name: Assemble Debug APK
+        run: bash ./gradlew sample:assembleDebug
+      - name: Upload app APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: sample/build/outputs/apk/debug/sample-debug.apk
+
+  assemble-debug-android-test-apk:
+    name: Assemble Instrumental APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: 17
+          cache: gradle
+      - name: Assemble Instrumental APK
+        run: bash ./gradlew sample:assembleDebugAndroidTest
+      - name: Upload app APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-apk
+          path: sample/build/outputs/apk/androidTest/debug/sample-debug-androidTest.apk
+
+  firebase-lab-test:
+    needs: [ assemble-debug-apk, assemble-debug-android-test-apk ]
+    name: Firebase Instrumental API
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [ 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download Debug APK
+        uses: actions/download-artifact@v4
+        with:
+          name: debug-apk
+      - name: Download Test APK
+        uses: actions/download-artifact@v4
+        with:
+          name: test-apk
+      - name: Run tests on Firebase Test Lab for API ${{ matrix.api }}
+        uses: vacxe/firebase-test-lab-action@0.0.6
+        with:
+          service-account: ${{ secrets.FIREBASE_TESTLAB_JSON }}
+          app: sample-debug.apk
+          test: sample-debug-androidTest.apk
+          device-id: MediumPhone.arm
+          os-version-id: ${{ matrix.api }}
+          num-flaky-test-attempts: 4

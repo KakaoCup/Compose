@@ -1,7 +1,10 @@
 package io.github.kakaocup.compose.node.assertion
 
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.SemanticsPropertyKey
+import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.*
 import io.github.kakaocup.compose.intercept.delegate.ComposeDelegate
 import io.github.kakaocup.compose.intercept.operation.ComposeOperationType
@@ -278,6 +281,31 @@ interface NodeAssertions {
         messagePrefixOnError: (() -> String)? = null
     ) {
         delegate.check(ComposeBaseAssertionType.ASSERT) { assert(matcher, messagePrefixOnError) }
+    }
+
+    /**
+     * Asserts that the provided `expected` is satisfied for this node.
+     * @param expected expected value.
+     * @param semanticsPropertyKey semantics Property key
+     * @param property free text about the field (Displayed in case of [AssertionError])
+     * @throws [AssertionError] if the matcher does not match or the node can no longer be found.
+     */
+    fun <T>assertHasProperty(expected: T,
+                             semanticsPropertyKey: SemanticsPropertyKey<*>,
+                             property: String? = null,
+                             ) {
+        delegate.check(ComposeBaseAssertionType.ASSERT_VALUE_EQUALS) {
+            assert(
+                SemanticsMatcher(
+                    property?.let { "The $it is expected to be $expected, but the actual $it is different" }.orEmpty()
+                ) { node ->
+                    val actual = node.config.getOrNull(semanticsPropertyKey)
+                        ?: error("Compose view does not contain $semanticsPropertyKey modifier")
+
+                    return@SemanticsMatcher actual == expected
+                }
+            )
+        }
     }
 
     enum class ComposeBaseAssertionType : ComposeOperationType {

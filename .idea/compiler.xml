@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="17" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="Compose.buildSrc" target="17" />
+      <module name="Compose.buildSrc.main" target="17" />
+      <module name="Compose.buildSrc.test" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

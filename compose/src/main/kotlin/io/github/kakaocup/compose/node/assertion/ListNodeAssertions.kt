@@ -3,7 +3,6 @@ import androidx.compose.ui.semantics.SemanticsPropertyKey
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.assert
-import io.github.kakaocup.compose.node.assertion.NodeAssertions
 
 /**
  * Basic assertions for working with lists.

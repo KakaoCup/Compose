@@ -6,6 +6,7 @@ import androidx.compose.ui.test.SemanticsMatcher
 import androidx.compose.ui.test.SemanticsNodeInteractionsProvider
 import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.filterToOne
+import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.onChildren
 import io.github.kakaocup.compose.node.assertion.LazyListNodeAssertions
 import io.github.kakaocup.compose.node.builder.NodeMatcher
@@ -76,6 +77,38 @@ class KLazyListNode(
             .onNode(semanticsMatcher)
             .onChildren()
             .filterToOne(positionMatcher(position))
+            .fetchSemanticsNode()
+
+        function(provideItem(
+            semanticsNode,
+            semanticsProvider.orGlobal().checkNotNull()
+        ) as T)
+    }
+
+    /**
+     * Performs given actions/assertion on descendant at given position
+     *
+     * @param T Type of item at given position. Must be registered via constructor.
+     * @param position Position of item in lazy list
+     * @param function Tail lambda which receiver will be matched item with given type T
+     */
+    @ExperimentalTestApi
+    inline fun <reified T : KLazyListItemNode<*>> descendantAt(
+        position: Int,
+        function: T.() -> Unit
+    ) {
+        val provideItem = itemTypes.getOrElse(T::class) {
+            throw LazyListItemProvisionException(T::class)
+        }.provideItem
+
+        performScrollToIndex(position)
+
+        val semanticsNode = semanticsProvider
+            .orGlobal()
+            .checkNotNull()
+            .onNode(positionMatcher(position) and
+                    hasAnyAncestor(semanticsMatcher)
+            )
             .fetchSemanticsNode()
 
         function(provideItem(
