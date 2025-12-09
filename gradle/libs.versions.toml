@@ -1,9 +1,9 @@
 [versions]
 dokkaGradlePluginVersion = "2.1.0"
 githubApiVersion = "1.318"
-gradle = "8.13.0"
+gradle = "8.13.1"
 kotlin = "2.0.0"
-gradleVersion = "8.13.0"
+gradleVersion = "8.13.1"
 compileSdk = "36"
 targetSdk = "36"
 minSdk = "21"
@@ -18,11 +18,11 @@ junitExtVersion = "1.3.0"
 kotlinGradlePluginVersion = "2.0.0"
 multidexVersion = "2.0.1"
 materialVersion = "1.13.0"
-activityComposeVersion = "1.11.0"
+activityComposeVersion = "1.12.1"
 composeMaterialVersion = "1.3.1"
 composeCompilerVersion = "1.5.15"
 
-androidxComposeBom = "2025.11.01"
+androidxComposeBom = "2025.12.00"
 
 [libraries]
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokkaGradlePluginVersion" }

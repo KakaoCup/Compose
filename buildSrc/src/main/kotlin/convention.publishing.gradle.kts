@@ -98,6 +98,19 @@ if (!passphrase.isNullOrBlank()) {
     project.extra.set("signing.secretKeyRingFile", "${project.rootProject.rootDir}/buildsystem/secring.gpg")
 }
 
+tasks.register<Zip>("bundleForCentralSigned") {
+    from(project.layout.buildDirectory.dir("repository")) {
+        include("**/*")
+    }
+
+    archiveFileName.set("${project.name}-signed.zip")
+    destinationDirectory.set(layout.buildDirectory.dir("central-bundles"))
+
+    doLast {
+        println("✓ Signed bundle ready: ${archiveFile.get().asFile.absolutePath}")
+    }
+}
+
 fun readVersion(): String {
     return project.properties.getValue("lib.version.${project.name}")?.toString() ?: throw Exception("Undefined version '\"lib.version.${project.name}\"' in versions.properties")
 }
