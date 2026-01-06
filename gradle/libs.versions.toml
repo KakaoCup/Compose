@@ -2,16 +2,17 @@
 dokkaGradlePluginVersion = "2.1.0"
 githubApiVersion = "1.318"
 gradle = "8.13.1"
+javaClientVersion = "10.0.0"
 kotlin = "2.0.0"
 gradleVersion = "8.13.1"
 compileSdk = "36"
+seleniumJavaVersion = "4.39.0"
 targetSdk = "36"
 minSdk = "21"
 jvmVersion = "8"
 
 dokkaVersion = "1.9.20"
 appcompatVersion = "1.7.1"
-espressoVersion = "3.7.0"
 
 junitVersion = "4.13.2"
 junitExtVersion = "1.3.0"
@@ -24,6 +25,9 @@ composeCompilerVersion = "1.5.15"
 
 composeVersion = "1.10.0"
 materialsIcon = "1.7.8"
+agpVersion = "8.13.1"
+coreKtxVersion = "1.17.0"
+espressoCoreVersion = "3.7.0"
 
 [libraries]
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokkaGradlePluginVersion" }
@@ -35,8 +39,6 @@ com-google-android-material = { group = "com.google.android.material", name = "m
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
 androidx-activity-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityComposeVersion" }
 
-androidx-test-espresso-espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoVersion" }
-
 androidx-compose-ui-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "composeVersion" }
 androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "composeVersion" }
 androidx-compose-material-iconsCore = { group = "androidx.compose.material", name = "material-icons-core", version.ref = "materialsIcon"  }
@@ -45,14 +47,19 @@ androidx-compose-ui-uiTestJunit4 = { group = "androidx.compose.ui", name = "ui-t
 androidx-compose-ui-uiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "composeVersion"  }
 
 gradle-v851 = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+java-client = { module = "io.appium:java-client", version.ref = "javaClientVersion" }
 junit-junit = { group = "junit", name = "junit", version.ref = "junitVersion" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExtVersion" }
 
 androidx-multidex-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidexVersion" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePluginVersion" }
 org-jetbrains-dokka-kotlinAsJavaPlugin = { group = "org.jetbrains.dokka", name = "kotlin-as-java-plugin", version.ref = "dokkaVersion" }
+selenium-java = { module = "org.seleniumhq.selenium:selenium-java", version.ref = "seleniumJavaVersion" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCoreVersion" }
 
 [plugins]
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-application = { id = "com.android.application", version.ref = "agpVersion" }

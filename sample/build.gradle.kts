@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "io.github.kakaocup.compose.sample"
+    namespace = "io.github.kakaocup.appium.sample"
 
     defaultConfig.apply {
         versionCode = 1
@@ -24,9 +24,10 @@ android {
 }
 
 dependencies {
-    androidTestImplementation(project(":compose"))
-    implementation(project(":compose-ui"))
-    androidTestImplementation(project(":compose-test"))
+    testImplementation(project(":appium"))
+
+    testImplementation(libs.java.client)
+    testImplementation(libs.selenium.java)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.com.google.android.material)
@@ -40,7 +41,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.uiTestManifest)
 
     implementation(libs.junit.junit)
-    implementation(libs.androidx.test.espresso.espressoCore)
 
     implementation(libs.androidx.compose.ui.uiTestJunit4)
     implementation(libs.androidx.test.ext.junit)

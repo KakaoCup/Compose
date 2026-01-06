@@ -1,8 +1,6 @@
-include(":compose")
-include(":compose-ui")
-include(":compose-test")
-include(":compose-semantics")
+include(":appium")
 include(":sample")
+include(":appium-tests")
 
 pluginManagement {
     repositories {

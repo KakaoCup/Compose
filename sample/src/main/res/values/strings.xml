@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KakaoCompose</string>
+    <string name="app_name">Kakao Appium</string>
     <string name="button_1">Button 1</string>
     <string name="button_change_icon">Change icon</string>
     <string name="button_change_text_color">Change text color</string>
