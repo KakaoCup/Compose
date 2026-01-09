@@ -11,17 +11,17 @@ import org.openqa.selenium.remote.DesiredCapabilities
 import java.net.URL
 
 class SimpleAppiumTest {
-    private lateinit var driver: AppiumDriver
+    private var driver: AppiumDriver? = null
 
     @Before
     fun setUp() {
         val caps = DesiredCapabilities().apply {
             setCapability("platformName", "Android")
-            setCapability("deviceName", "emulator-5554")
-            setCapability("automationName", "UiAutomator2")
-            setCapability("appPackage", "io.github.kakaocup.sample")
-            setCapability("appActivity", "io.github.kakaocup.sample.MainActivity")
-            setCapability("noReset", true)
+            setCapability("appium:deviceName", "emulator-5554")
+            setCapability("appium:automationName", "UiAutomator2")
+            setCapability("appium:appPackage", "io.github.kakaocup.appium.sample")
+            setCapability("appium:appActivity", "io.github.kakaocup.appium.sample.MainActivity")
+            setCapability("appium:noReset", true)
         }
 
         driver = AndroidDriver(URL("http://127.0.0.1:4723"), caps)
@@ -38,6 +38,6 @@ class SimpleAppiumTest {
 
     @After
     fun tearDown() {
-        driver.quit()
+        driver?.quit()
     }
 }

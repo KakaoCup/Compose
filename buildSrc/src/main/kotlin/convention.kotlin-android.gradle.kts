@@ -1,7 +1,9 @@
 import io.github.kakaocup.withVersionCatalog
+import org.gradle.kotlin.dsl.kotlin
+import kotlin.text.toInt
 
 plugins {
-    kotlin("jvm")
+    kotlin("android")
 }
 
 withVersionCatalog { libs ->

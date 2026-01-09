@@ -9,7 +9,7 @@ compileSdk = "36"
 seleniumJavaVersion = "4.39.0"
 targetSdk = "36"
 minSdk = "21"
-jvmVersion = "8"
+jvmVersion = "17"
 
 dokkaVersion = "1.9.20"
 appcompatVersion = "1.7.1"

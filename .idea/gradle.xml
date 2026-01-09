@@ -22,6 +22,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/appium" />
+            <option value="$PROJECT_DIR$/appium-tests" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/sample" />
           </set>

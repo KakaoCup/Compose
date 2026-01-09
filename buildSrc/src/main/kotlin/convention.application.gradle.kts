@@ -4,7 +4,7 @@ import io.github.kakaocup.withVersionCatalog
 plugins {
     id("com.android.application")
     id("convention.android-base")
-    id("convention.kotlin")
+    id("convention.kotlin-android")
 }
 
 withVersionCatalog { libs ->
