@@ -15,12 +15,14 @@ espressoVersion = "3.7.0"
 
 junitVersion = "4.13.2"
 junitExtVersion = "1.3.0"
+testRunnerVersion = "1.7.0"
 kotlinGradlePluginVersion = "2.4.10"
 multidexVersion = "2.0.1"
 materialVersion = "1.14.0"
 activityComposeVersion = "1.13.0"
 
 composeVersion = "1.12.0"
+composeMultiplatform = "1.12.0"
 materialsIcon = "1.7.8"
 
 [libraries]
@@ -45,12 +47,21 @@ androidx-compose-ui-uiTestManifest = { group = "androidx.compose.ui", name = "ui
 gradle-v851 = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit-junit = { group = "junit", name = "junit", version.ref = "junitVersion" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitExtVersion" }
+androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "testRunnerVersion" }
 
 androidx-multidex-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidexVersion" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePluginVersion" }
 org-jetbrains-dokka-kotlinAsJavaPlugin = { group = "org.jetbrains.dokka", name = "kotlin-as-java-plugin", version.ref = "dokkaVersion" }
 
+jetbrains-compose-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "composeMultiplatform" }
+jetbrains-compose-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "composeMultiplatform" }
+jetbrains-compose-material = { group = "org.jetbrains.compose.material", name = "material", version.ref = "composeMultiplatform" }
+jetbrains-compose-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "composeMultiplatform" }
+jetbrains-compose-ui-test = { group = "org.jetbrains.compose.ui", name = "ui-test", version.ref = "composeMultiplatform" }
+
 [plugins]
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

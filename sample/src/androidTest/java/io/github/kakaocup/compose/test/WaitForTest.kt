@@ -2,6 +2,7 @@ package io.github.kakaocup.compose.test
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import io.github.kakaocup.compose.node.core.waitUntil
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import io.github.kakaocup.compose.rule.KakaoComposeTestRule
 import io.github.kakaocup.compose.sample.DelayDisplayActivity

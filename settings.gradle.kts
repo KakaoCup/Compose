@@ -3,6 +3,7 @@ include(":compose-ui")
 include(":compose-test")
 include(":compose-semantics")
 include(":sample")
+include(":sample-kmp")
 
 pluginManagement {
     repositories {

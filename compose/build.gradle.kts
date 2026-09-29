@@ -1,15 +1,32 @@
 plugins {
-    id("convention.library")
-    id("convention.publishing")
+    id("org.jetbrains.kotlin.multiplatform")
+    id("com.android.kotlin.multiplatform.library")
+    alias(libs.plugins.jetbrains.compose)
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
-android {
-    namespace = "io.github.kakaocup.compose"
-}
+kotlin {
+    jvmToolchain(libs.versions.jvmVersion.get().toInt())
 
-dependencies {
-    implementation(libs.androidx.test.espresso.espressoCore)
-    implementation(libs.androidx.test.ext.junit)
+    android {
+        namespace = "io.github.kakaocup.compose"
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+    }
 
-    implementation(libs.androidx.compose.ui.uiTestJunit4)
+    iosArm64()
+    iosSimulatorArm64()
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(libs.jetbrains.compose.runtime)
+            implementation(libs.jetbrains.compose.foundation)
+            implementation(libs.jetbrains.compose.ui)
+            implementation(libs.jetbrains.compose.ui.test)
+        }
+        androidMain.dependencies {
+            implementation(libs.androidx.compose.ui.uiTestJunit4)
+            implementation(libs.androidx.test.ext.junit)
+        }
+    }
 }
