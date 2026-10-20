@@ -80,7 +80,7 @@ class MainActivityScreen(semanticsProvider: SemanticsNodeInteractionsProvider) :
 }
 ```
 `myButton2` will be calculated with the following
-`SemanticMatcher = hasTestTag("myTestButton") + hasParent(myButton.matcher) + hasParent(MainActivityScreen.matcher)`.
+`SemanticMatcher = hasTestTag("myTestButton2") + hasParent(myButton.matcher) + hasParent(MainActivityScreen.matcher)`.
 But, we advise not to abuse inheritance and use only the following chain: "ComposeScreen" - "Element of ComposeScreen".
 
 The last, `KNode` can be declared without `child` function using only explicit matchers:
